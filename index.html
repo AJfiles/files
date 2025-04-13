@@ -138,6 +138,25 @@
       border-top: 1px solid #444;
       margin-top: 40px;
     }
+    
+    /* =======================
+       Estilos para el botón grande de Video Explicativo
+    ========================== */
+    .large-button {
+      display: block;
+      margin: 0 auto 15px auto;
+      padding: 15px 30px;
+      font-size: 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .large-button:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
@@ -155,10 +174,24 @@
   <main>
     <!-- Acortador de Archivos -->
     <section>
-      <h2 class="section-title">Como Pasar El Acortador De Los Archivos</h2>
-      <p style="text-align: center;">
-        <a href="https://vimeo.com/1074788174" target="_blank">Ver video explicativo</a>
-      </p>
+      <h2 class="section-title">Como Pasar El Acortador De Mis Archivos</h2>
+      <div style="text-align: center;">
+        <button class="large-button" onclick="window.open('https://vimeo.com/1074788174', '_blank')">
+          Ver Video Explicativo
+        </button>
+      </div>
+      <!-- Accordion para Ver Importante -->
+      <button class="accordion">VER IMPORTANTE</button>
+      <div class="panel">
+        <ul>
+          <li>
+            Ojo con las descargas maliciosas, la mayoría de los enlaces (si no es que todos) son por MediaFire, no a páginas +18 o similares, ni descargas con contraseñas.  
+            Todo está abierto, por favor ver el video de como pasar el acortador!
+            <br><br>
+            Solo dejo 1 Acortador porque así apoyas mi contenido sin pedir directamente donaciones. Muchas gracias y espero disfrutes mis archivos y trabajos, ¡Gracias!
+          </li>
+        </ul>
+      </div>
     </section>
     
     <!-- Sistema Operativo -->
