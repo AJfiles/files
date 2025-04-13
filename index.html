@@ -3,184 +3,230 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJ - Mis Archivos y Enlaces</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Archivos y Recursos de AJ</title>
+  <style>
+    /* ======================= 
+       Estilos Generales 
+    ========================== */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1e1e1e;
+      color: #f1f1f1;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      background-color: #ff2d55;
+      width: 100%;
+      padding: 20px 0;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      color: #fff;
+    }
+    .social-links {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    .social-links a {
+      text-decoration: none;
+      color: #fff;
+      background-color: #333;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    .social-links a:hover {
+      background-color: #ff2d55;
+    }
+    main {
+      width: 90%;
+      max-width: 800px;
+      margin: 20px;
+    }
+    h2 {
+      text-align: center;
+      color: #ff2d55;
+      border-bottom: 1px solid #444;
+      padding-bottom: 10px;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+    
+    /* =======================
+       Estilos para el Menú Accordion
+    ========================== */
+    .accordion {
+      background-color: #2c2c2c;
+      color: #f1f1f1;
+      cursor: pointer;
+      padding: 15px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 18px;
+      transition: background-color 0.3s ease;
+      margin-bottom: 5px;
+    }
+    .accordion:hover,
+    .active-accordion {
+      background-color: #444;
+    }
+    .panel {
+      background-color: #333;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      max-height: 0;
+      padding-left: 15px;
+    }
+    .panel ul {
+      list-style: none;
+      padding: 0 15px 15px 15px;
+      margin: 0;
+    }
+    .panel ul li {
+      margin: 10px 0;
+    }
+    .panel ul li a {
+      text-decoration: none;
+      color: #ccc;
+      transition: color 0.3s;
+    }
+    .panel ul li a:hover {
+      color: #ff2d55;
+    }
+    
+    /* =======================
+       Estilos para Otros Archivos (por ejemplo, sistemas, etc.)
+    ========================== */
+    .file-links {
+      background-color: #2c2c2c;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 40px;
+    }
+    .file-links ul {
+      list-style: none;
+      padding: 0;
+    }
+    .file-links ul li {
+      margin: 10px 0;
+    }
+    .file-links ul li a {
+      text-decoration: none;
+      color: #ccc;
+      transition: color 0.3s;
+    }
+    .file-links ul li a:hover {
+      color: #ff2d55;
+    }
+    
+    footer {
+      background-color: #1e1e1e;
+      width: 100%;
+      padding: 15px 0;
+      text-align: center;
+      font-size: 0.9em;
+      border-top: 1px solid #444;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>AJ - Mis Archivos y Enlaces</h1>
-    <p>Encuentra a continuación mis redes, archivos y optimizaciones</p>
+    <h1>Archivos y Recursos de AJ</h1>
   </header>
 
-  <main>
-    <!-- Sección Redes Sociales -->
-    <section id="social">
-      <h2>Redes Sociales</h2>
-      <ul>
-        <li><a href="https://www.tiktok.com/@ajk.al" target="_blank">TikTok</a></li>
-        <li><a href="https://www.youtube.com/@Oficial-AJ" target="_blank">YouTube</a></li>
-        <li><a href="https://discord.com/invite/v6sXsaHhpu" target="_blank">Discord</a></li>
-        <li><a href="https://www.whatsapp.com/channel/0029Vb78y6d6GcGLSt1Xw834" target="_blank">Canal WhatsApp</a></li>
-      </ul>
-    </section>
+  <div class="social-links">
+    <a href="https://www.tiktok.com/@ajk.al" target="_blank">TikTok 🇨🇴</a>
+    <a href="https://www.youtube.com/@Oficial-AJ" target="_blank">YouTube</a>
+    <a href="https://discord.com/invite/v6sXsaHhpu" target="_blank">Discord</a>
+    <a href="https://www.whatsapp.com/channel/0029Vb78y6d6GcGLSt1Xw834" target="_blank">WhatsApp</a>
+  </div>
 
-    <!-- Sección Acortador de Archivos -->
-    <section id="acortador">
-      <h2>Acortador de mis Archivos</h2>
-      <p>
-        <a href="https://vimeo.com/1074788174" target="_blank">
-          Mira el video explicativo
-        </a>
+  <main>
+    <!-- Sección para Acortador de Archivos -->
+    <section>
+      <h2>Acortador de Archivos</h2>
+      <p style="text-align: center;">
+        <a href="https://vimeo.com/1074788174" target="_blank" style="color: #ff2d55; text-decoration: none;">Ver video explicativo</a>
       </p>
     </section>
 
-    <!-- Sección Windows que Uso -->
-    <section id="windows">
-      <h2>Windows que Uso (WinterOS Rev14)</h2>
+    <!-- Sección para Sistemas Operativos -->
+    <section class="file-links">
+      <h2>Sistemas Operativos (WinterOS)</h2>
       <ul>
-        <li>
-          <strong>Windows 10 +FPS (ISO):</strong> 
-          <a href="https://cutyion.com/Win10Win" target="_blank">Descargar</a>
-        </li>
-        <li>
-          <strong>Windows 10 LTSC +FPS (ISO):</strong> 
-          <a href="https://cutyion.com/Win10LT" target="_blank">Descargar</a>
-        </li>
-        <li>
-          <strong>Windows 11 +FPS (ISO):</strong> 
-          <a href="https://cutyion.com/Win11WinterO" target="_blank">Descargar</a>
-        </li>
-        <li>
-          <strong>Windows 11 LTSC +FPS (ISO):</strong> 
-          <a href="https://cutyion.com/Win11LTS" target="_blank">Descargar</a>
-        </li>
+        <li><a href="https://cutyion.com/Win10Win" target="_blank">WinterOS Rev14 - Windows 10 +FPS (ISO)</a></li>
+        <li><a href="https://cutyion.com/Win10LT" target="_blank">WinterOS Rev14 - Windows 10 LTSC +FPS (ISO)</a></li>
+        <li><a href="https://cutyion.com/Win11WinterO" target="_blank">WinterOS Rev14 - Windows 11 +FPS (ISO)</a></li>
+        <li><a href="https://cutyion.com/Win11LTS" target="_blank">WinterOS Rev14 - Windows 11 LTSC +FPS (ISO)</a></li>
       </ul>
     </section>
 
-    <!-- Sección Juegos Optimizados -->
-    <section id="juegos">
+    <!-- Sección para Juegos Optimizados -->
+    <section>
       <h2>Juegos Optimizados</h2>
-      <div class="card-container">
-        <!-- Card: Minecraft 1.21.4 -->
-        <div class="card">
-          <img src="https://via.placeholder.com/150?text=MC+1.21.4" alt="Minecraft 1.21.4">
-          <h3>Minecraft 1.21.4</h3>
-          <a href="https://cutyion.com/MC1214AJ" target="_blank">Descargar</a>
-        </div>
-        <!-- Card: Minecraft 1.21.5 -->
-        <div class="card">
-          <img src="https://via.placeholder.com/150?text=MC+1.21.5" alt="Minecraft 1.21.5">
-          <h3>Minecraft 1.21.5</h3>
-          <a href="https://cutyion.com/MC1215AJ" target="_blank">Descargar</a>
-        </div>
-        <!-- Card: Schedule I -->
-        <div class="card">
-          <img src="https://via.placeholder.com/150?text=Schedule+I" alt="Schedule I">
-          <h3>Schedule I</h3>
-          <a href="https://cutyion.com/ScheduleAJ" target="_blank">Descargar</a>
-        </div>
-        <!-- Card: Minecraft 1.21.1 -->
-        <div class="card">
-          <img src="https://via.placeholder.com/150?text=MC+1.21.1" alt="Minecraft 1.21.1">
-          <h3>Minecraft 1.21.1</h3>
-          <a href="https://cutyion.com/MC1211" target="_blank">Descargar</a>
-        </div>
-        <!-- Card: Optimización Android -->
-        <div class="card">
-          <img src="https://via.placeholder.com/150?text=Android+Optimización" alt="Optimización Android">
-          <h3>Optimización Android</h3>
-          <a href="https://cutyion.com/OPTIANDROID" target="_blank">Descargar</a>
-        </div>
-        <!-- Card: Watchdogs 2 -->
-        <div class="card">
-          <img src="https://via.placeholder.com/150?text=Watchdogs+2" alt="Watchdogs 2 Optimización">
-          <h3>Watchdogs 2 +FPS</h3>
-          <a href="https://cutyion.com/WD2FPS" target="_blank">Descargar</a>
-        </div>
-        <!-- Card: Fortnite -->
-        <div class="card">
-          <img src="https://via.placeholder.com/150?text=Fortnite" alt="Optimización Fortnite">
-          <h3>Fortnite +FPS</h3>
-          <a href="https://cutyion.com/FortniteFPS" target="_blank">Descargar</a>
-        </div>
-        <!-- Card: Freefire -->
-        <div class="card">
-          <img src="https://via.placeholder.com/150?text=Freefire" alt="Hacks de Freefire">
-          <h3>Freefire (Root Magisk)</h3>
-          <a href="https://cutyion.com/FreefireH" target="_blank">Descargar</a>
-        </div>
-        <!-- Card: Dragon Ball Sparking Zero -->
-        <div class="card">
-          <img src="https://via.placeholder.com/150?text=Dragon+Ball" alt="Dragon Ball Sparking Zero">
-          <h3>Dragon Ball Sparking Zero +FPS</h3>
-          <a href="https://cutyion.com/DragonBallAJ" target="_blank">Descargar</a>
-        </div>
-        <!-- Card: Minecraft Bedrock +FPS -->
-        <div class="card">
-          <img src="https://via.placeholder.com/150?text=MC+Bedrock+FPS" alt="Minecraft Bedrock +FPS">
-          <h3>Minecraft Bedrock +FPS</h3>
-          <a href="https://cutyion.com/AJBEDROCKFPS" target="_blank">Descargar</a>
-        </div>
-        <!-- Card: Minecraft Bedrock (PC) +FPS -->
-        <div class="card">
-          <img src="https://via.placeholder.com/150?text=MC+Bedrock+PC+FPS" alt="Minecraft Bedrock PC +FPS">
-          <h3>Minecraft Bedrock (PC) +FPS</h3>
-          <a href="https://cutyion.com/BEDROCKPCFPS" target="_blank">Descargar</a>
-        </div>
-        <!-- Card: PES 2017 -->
-        <div class="card">
-          <img src="https://via.placeholder.com/150?text=PES+2017" alt="PES 2017 Optimización">
-          <h3>PES 2017 +FPS</h3>
-          <a href="https://cuty.io/PES2017AJ" target="_blank">Descargar</a>
-        </div>
-        <!-- Card: Wifi de PC a Android -->
-        <div class="card">
-          <img src="https://via.placeholder.com/150?text=PC+to+Android" alt="Wifi de PC a Android Directo">
-          <h3>Wifi de PC a Android Directo</h3>
-          <a href="https://cuty.io/PCAANDROID" target="_blank">Descargar</a>
-        </div>
-        <!-- Card: Rocket League -->
-        <div class="card">
-          <img src="https://via.placeholder.com/150?text=Rocket+League" alt="Rocket League +FPS">
-          <h3>Rocket League +FPS</h3>
-          <a href="https://cuty.io/ROCKETFPSAJ" target="_blank">Descargar</a>
-        </div>
-        <!-- Card: Call of Duty Black Ops 2 -->
-        <div class="card">
-          <img src="https://via.placeholder.com/150?text=COD+BO2" alt="Call of Duty Black Ops 2">
-          <h3>Call of Duty Black Ops 2 +FPS</h3>
-          <a href="https://cuty.io/CODBO2FPS" target="_blank">Descargar</a>
-        </div>
-        <!-- Card: Bajar Resolución en Android (Tutorial) -->
-        <div class="card">
-          <img src="https://via.placeholder.com/150?text=Android+Tutorial" alt="Tutorial: Bajar Resolución en Android">
-          <h3>Bajar Resolución en Android +FPS</h3>
-          <a href="https://www.tiktok.com/@ajk.al/video/7273274423484976390?_r=1&_d=secCgYIASAHKAESPgo81KehpLsYrfiuTBkNwI3vabWQahoKSw8zPM2A9t%2B91K8cczx6wIRgFU88AjINHsBmKmnxVNlTJj8m0YFbGgA%3D&u_code=e2b81549am3l8e&share_item_id=7273274423484976390&timestamp=1694866296&share_app_id=1233" target="_blank">Ver Tutorial</a>
-        </div>
-        <!-- Card: AndroidFPS (Archivo adicional) -->
-        <div class="card">
-          <img src="https://via.placeholder.com/150?text=AndroidFPS" alt="AndroidFPS">
-          <h3>AndroidFPS</h3>
-          <a href="https://cuty.io/ANDROIDFPS" target="_blank">Descargar</a>
-        </div>
-        <!-- Card: GTA V -->
-        <div class="card">
-          <img src="https://via.placeholder.com/150?text=GTA+V" alt="GTA V +FPS">
-          <h3>GTA V +FPS</h3>
-          <a href="https://cuty.io/GTAVFPSAJ" target="_blank">Descargar</a>
-        </div>
-        <!-- Card: Call of Duty MW3 -->
-        <div class="card">
-          <img src="https://via.placeholder.com/150?text=COD+MW3" alt="Call of Duty MW3 +FPS">
-          <h3>Call of Duty MW3 +FPS</h3>
-          <a href="https://cuty.io/CODMW3FPS" target="_blank">Descargar</a>
-        </div>
+
+      <!-- Accordion para Minecraft -->
+      <button class="accordion">Minecraft</button>
+      <div class="panel">
+        <ul>
+          <li><a href="https://cutyion.com/MC1214AJ" target="_blank">Minecraft 1.21.4 +FPS</a></li>
+          <li><a href="https://cutyion.com/MC1215AJ" target="_blank">Minecraft 1.21.5 +FPS</a></li>
+          <li><a href="https://cutyion.com/MC1211" target="_blank">Minecraft 1.21.1 +FPS</a></li>
+          <li><a href="https://cutyion.com/AJBEDROCKFPS" target="_blank">Minecraft Bedrock +FPS</a></li>
+          <li><a href="https://cutyion.com/BEDROCKPCFPS" target="_blank">Minecraft Bedrock (PC) +FPS</a></li>
+        </ul>
+      </div>
+
+      <!-- Accordion para Otros Juegos -->
+      <button class="accordion">Otros Juegos</button>
+      <div class="panel">
+        <ul>
+          <li><a href="https://cutyion.com/WD2FPS" target="_blank">Watch Dogs 2 +FPS</a></li>
+          <li><a href="https://cutyion.com/FortniteFPS" target="_blank">Fortnite Optimización +FPS</a></li>
+          <li><a href="https://cutyion.com/DragonBallAJ" target="_blank">Dragon Ball Sparking Zero +FPS</a></li>
+          <li><a href="https://cuty.io/PES2017AJ" target="_blank">PES 2017 +FPS</a></li>
+          <li><a href="https://cuty.io/ROCKETFPSAJ" target="_blank">Rocket League +FPS</a></li>
+          <li><a href="https://cuty.io/CODBO2FPS" target="_blank">COD Black Ops 2 +FPS</a></li>
+          <li><a href="https://cuty.io/GTAVFPSAJ" target="_blank">GTA V +FPS</a></li>
+          <li><a href="https://cuty.io/CODMW3FPS" target="_blank">COD MW3 +FPS</a></li>
+        </ul>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 AJ - Todos los derechos reservados</p>
+    <p>Hecho con ❤️ por AJ</p>
   </footer>
+
+  <script>
+    // Script para el comportamiento del Accordion
+    const accordions = document.getElementsByClassName("accordion");
+    for (let i = 0; i < accordions.length; i++) {
+      accordions[i].addEventListener("click", function() {
+        this.classList.toggle("active-accordion");
+        let panel = this.nextElementSibling;
+        if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+      });
+    }
+  </script>
 </body>
 </html>
