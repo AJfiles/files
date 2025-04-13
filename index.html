@@ -8,9 +8,7 @@
     /* =======================
        Estilos Generales
     ========================== */
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       font-family: Arial, sans-serif;
       background-color: #1e1e1e;
@@ -51,11 +49,10 @@
     }
     main {
       width: 90%;
-      max-width: 800px;
+      max-width: 900px;
       margin: 20px;
     }
-    /* Los títulos de cada sección se muestran en azul */
-    h2 {
+    h2.section-title {
       text-align: center;
       color: #007bff;
       border-bottom: 1px solid #444;
@@ -65,9 +62,32 @@
     section {
       margin-bottom: 40px;
     }
+    a { text-decoration: none; }
     
     /* =======================
-       Accordion (menú desplegable)
+       Estilos para archivos que no son redes sociales
+    ========================== */
+    .file-links,
+    .accordion, .panel {
+      width: 100%;
+    }
+    .file-links ul {
+      list-style: none;
+      padding: 0;
+    }
+    .file-links ul li {
+      margin: 10px 0;
+    }
+    .file-links ul li a {
+      color: #007bff;
+      transition: color 0.3s;
+    }
+    .file-links ul li a:hover {
+      color: #66b3ff;
+    }
+    
+    /* =======================
+       Accordion para desplegar contenido
     ========================== */
     .accordion {
       background-color: #2c2c2c;
@@ -95,44 +115,18 @@
     }
     .panel ul {
       list-style: none;
-      padding: 0 15px 15px 15px;
+      padding: 0 15px 15px;
       margin: 0;
     }
     .panel ul li {
       margin: 10px 0;
     }
     .panel ul li a {
-      text-decoration: none;
-      color: #ccc;
+      color: #007bff;
       transition: color 0.3s;
     }
     .panel ul li a:hover {
-      color: #007bff;
-    }
-    
-    /* =======================
-       Sección de archivos generales (ej. Acortador y Sistema Operativo)
-    ========================== */
-    .file-links {
-      background-color: #2c2c2c;
-      padding: 20px;
-      border-radius: 8px;
-      margin-bottom: 40px;
-    }
-    .file-links ul {
-      list-style: none;
-      padding: 0;
-    }
-    .file-links ul li {
-      margin: 10px 0;
-    }
-    .file-links ul li a {
-      text-decoration: none;
-      color: #ccc;
-      transition: color 0.3s;
-    }
-    .file-links ul li a:hover {
-      color: #007bff;
+      color: #66b3ff;
     }
     
     footer {
@@ -161,26 +155,29 @@
   <main>
     <!-- Acortador de Archivos -->
     <section>
-      <h2>Acortador de Archivos</h2>
+      <h2 class="section-title">Acortador de Archivos</h2>
       <p style="text-align: center;">
-        <a href="https://vimeo.com/1074788174" target="_blank" style="color: #007bff; text-decoration: none;">Ver video explicativo</a>
+        <a href="https://vimeo.com/1074788174" target="_blank">Ver video explicativo</a>
       </p>
     </section>
     
     <!-- Sistema Operativo -->
-    <section class="file-links">
-      <h2>Sistema Operativo que uso (WinterOS)</h2>
-      <ul>
-        <li><a href="https://cutyion.com/Win10Win" target="_blank">WinterOS Rev14 - Windows 10 +FPS (ISO)</a></li>
-        <li><a href="https://cutyion.com/Win10LT" target="_blank">WinterOS Rev14 - Windows 10 LTSC +FPS (ISO)</a></li>
-        <li><a href="https://cutyion.com/Win11WinterO" target="_blank">WinterOS Rev14 - Windows 11 +FPS (ISO)</a></li>
-        <li><a href="https://cutyion.com/Win11LTS" target="_blank">WinterOS Rev14 - Windows 11 LTSC +FPS (ISO)</a></li>
-      </ul>
+    <section>
+      <h2 class="section-title">Sistema Operativo que uso (WinterOS)</h2>
+      <button class="accordion">Ver Opciones</button>
+      <div class="panel">
+        <ul>
+          <li><a href="https://cutyion.com/Win10Win" target="_blank">WinterOS Rev14 - Windows 10 +FPS (ISO)</a></li>
+          <li><a href="https://cutyion.com/Win10LT" target="_blank">WinterOS Rev14 - Windows 10 LTSC +FPS (ISO)</a></li>
+          <li><a href="https://cutyion.com/Win11WinterO" target="_blank">WinterOS Rev14 - Windows 11 +FPS (ISO)</a></li>
+          <li><a href="https://cutyion.com/Win11LTS" target="_blank">WinterOS Rev14 - Windows 11 LTSC +FPS (ISO)</a></li>
+        </ul>
+      </div>
     </section>
     
-    <!-- Juegos Optimizados con varios despliegues -->
+    <!-- Juegos Optimzados -->
     <section>
-      <h2>Juegos Optimizados</h2>
+      <h2 class="section-title">Juegos Optimzados</h2>
       
       <!-- Accordion para Minecraft -->
       <button class="accordion">Minecraft</button>
@@ -194,33 +191,103 @@
         </ul>
       </div>
       
-      <!-- Accordion para Otros Juegos -->
-      <button class="accordion">Otros Juegos</button>
+      <!-- Accordion para SCHEDULE I -->
+      <button class="accordion">SCHEDULE I</button>
       <div class="panel">
         <ul>
-          <li><a href="https://cutyion.com/ScheduleAJ" target="_blank">Schedule I</a></li>
-          <li><a href="https://cutyion.com/WD2FPS" target="_blank">Watch Dogs 2 +FPS</a></li>
-          <li><a href="https://cutyion.com/FortniteFPS" target="_blank">Fortnite Optimización +FPS</a></li>
-          <li><a href="https://cutyion.com/DragonBallAJ" target="_blank">Dragon Ball Sparking Zero +FPS</a></li>
-          <li><a href="https://cuty.io/PES2017AJ" target="_blank">PES 2017 +FPS</a></li>
-          <li><a href="https://cuty.io/ROCKETFPSAJ" target="_blank">Rocket League +FPS</a></li>
-          <li><a href="https://cuty.io/CODBO2FPS" target="_blank">COD Black Ops 2 +FPS</a></li>
-          <li><a href="https://cuty.io/GTAVFPSAJ" target="_blank">GTA V +FPS</a></li>
-          <li><a href="https://cuty.io/CODMW3FPS" target="_blank">COD MW3 +FPS</a></li>
+          <li><a href="https://cutyion.com/ScheduleAJ" target="_blank">Descargar SCHEDULE I</a></li>
         </ul>
       </div>
       
-      <!-- Accordion para Optimización Android y Trucos -->
-      <button class="accordion">Optimización Android y Trucos</button>
+      <!-- Accordion para WATCHDOGS 2 OPTIMIZACION +FPS -->
+      <button class="accordion">WATCHDOGS 2 OPTIMIZACION +FPS</button>
       <div class="panel">
         <ul>
-          <li><a href="https://cutyion.com/OPTIANDROID" target="_blank">Optimizador Android</a></li>
-          <li><a href="https://cuty.io/PCAANDROID" target="_blank">WiFi de PC a Android Directo</a></li>
-          <li><a href="https://cutyion.com/FreefireH" target="_blank">Hacks Free Fire (Root Magisk)</a></li>
-          <li><a href="https://www.tiktok.com/@ajk.al/video/7273274423484976390" target="_blank">Bajar Resolución en Android +FPS (Video Tutorial)</a></li>
-          <li><a href="https://cuty.io/ANDROIDFPS" target="_blank">Archivo: Resolución +FPS</a></li>
+          <li><a href="https://cutyion.com/WD2FPS" target="_blank">Descargar WATCHDOGS 2 +FPS</a></li>
         </ul>
       </div>
+      
+      <!-- Accordion para OPTIMIZACION DEFINITIVA FORTNITE -->
+      <button class="accordion">OPTIMIZACION DEFINITIVA FORTNITE</button>
+      <div class="panel">
+        <ul>
+          <li><a href="https://cutyion.com/FortniteFPS" target="_blank">Descargar Fortnite +FPS</a></li>
+        </ul>
+      </div>
+      
+      <!-- Accordion para HACKS DE FREEFIRE (ROOT MAGISK) -->
+      <button class="accordion">HACKS DE FREEFIRE (ROOT MAGISK)</button>
+      <div class="panel">
+        <ul>
+          <li><a href="https://cutyion.com/FreefireH" target="_blank">Descargar Hacks Freefire</a></li>
+        </ul>
+      </div>
+      
+      <!-- Accordion para DRAGON BALL SPARKING ZERO +FPS -->
+      <button class="accordion">DRAGON BALL SPARKING ZERO +FPS</button>
+      <div class="panel">
+        <ul>
+          <li><a href="https://cutyion.com/DragonBallAJ" target="_blank">Descargar Dragon Ball +FPS</a></li>
+        </ul>
+      </div>
+      
+      <!-- Accordion para PES-2017 OPTI +FPS -->
+      <button class="accordion">PES-2017 OPTI +FPS</button>
+      <div class="panel">
+        <ul>
+          <li><a href="https://cuty.io/PES2017AJ" target="_blank">Descargar PES 2017 +FPS</a></li>
+        </ul>
+      </div>
+      
+      <!-- Accordion para WIFI DE PC A ANDROID DIRECTO -->
+      <button class="accordion">WIFI DE PC A ANDROID DIRECTO</button>
+      <div class="panel">
+        <ul>
+          <li><a href="https://cuty.io/PCAANDROID" target="_blank">Descargar WiFi PC a Android</a></li>
+        </ul>
+      </div>
+      
+      <!-- Accordion para ROCKET LEAGUE +FPS -->
+      <button class="accordion">ROCKET LEAGUE +FPS</button>
+      <div class="panel">
+        <ul>
+          <li><a href="https://cuty.io/ROCKETFPSAJ" target="_blank">Descargar Rocket League +FPS</a></li>
+        </ul>
+      </div>
+      
+      <!-- Accordion para CALL OF DUTY BLACK OPS 2 +FPS -->
+      <button class="accordion">CALL OF DUTY BLACK OPS 2 +FPS</button>
+      <div class="panel">
+        <ul>
+          <li><a href="https://cuty.io/CODBO2FPS" target="_blank">Descargar COD Black Ops 2 +FPS</a></li>
+        </ul>
+      </div>
+      
+      <!-- Accordion para CALL OF DUTY MW3 +FPS -->
+      <button class="accordion">CALL OF DUTY MW3 +FPS</button>
+      <div class="panel">
+        <ul>
+          <li><a href="https://cuty.io/CODMW3FPS" target="_blank">Descargar COD MW3 +FPS</a></li>
+        </ul>
+      </div>
+      
+      <!-- Accordion para GTA V +FPS -->
+      <button class="accordion">GTA V +FPS</button>
+      <div class="panel">
+        <ul>
+          <li><a href="https://cuty.io/GTAVFPSAJ" target="_blank">Descargar GTA V +FPS</a></li>
+        </ul>
+      </div>
+      
+      <!-- Accordion para CAMBIAR RESOLUCION DE PANTALLA EN ANDROID +FPS -->
+      <button class="accordion">CAMBIAR RESOLUCION DE PANTALLA EN ANDROID +FPS</button>
+      <div class="panel">
+        <ul>
+          <li><a href="https://www.tiktok.com/@ajk.al/video/7273274423484976390" target="_blank">Ver Video Tutorial</a></li>
+          <li><a href="https://cuty.io/ANDROIDFPS" target="_blank">Descargar Archivo Resolución +FPS</a></li>
+        </ul>
+      </div>
+      
     </section>
   </main>
   
@@ -229,12 +296,12 @@
   </footer>
   
   <script>
-    // Script para el comportamiento del Accordion
+    // Script para el comportamiento de cada accordion
     const accordions = document.getElementsByClassName("accordion");
     for (let i = 0; i < accordions.length; i++) {
       accordions[i].addEventListener("click", function() {
         this.classList.toggle("active-accordion");
-        let panel = this.nextElementSibling;
+        const panel = this.nextElementSibling;
         if (panel.style.maxHeight) {
           panel.style.maxHeight = null;
         } else {
