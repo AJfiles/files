@@ -2,40 +2,60 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Archivos y Recursos de AJ</title>
   <style>
+    /* ============================
+       VARIABLES Y MODOS DE COLOR
+    ============================ */
     :root {
-      --bg-color: #1e1e1e;
-      --text-color: #f1f1f1;
-      --primary-color: #007bff;
-      --hover-color: #66b3ff;
-      --header-bg: #222;
-      --button-bg: #007bff;
-      --button-hover: #0056b3;
+      /* Modo Oscuro por defecto */
+      --bg-color: #1e1e1e;          /* Fondo principal */
+      --text-color: #f1f1f1;        /* Color de texto */
+      --header-bg: #222;            /* Fondo del header */
+      --button-bg: #007bff;         /* Color principal de botones */
+      --button-hover: #0056b3;      /* Hover de botones */
+      --accordion-bg: #2c2c2c;      /* Fondo de los accordions */
+      --accordion-hover: #444;      /* Hover de los accordions */
+      --panel-bg: #333;             /* Fondo del panel desplegado */
+      --border-color: #444;         /* Color de bordes */
+      --primary-color: #007bff;     /* Color principal para enlaces */
+      --hover-color: #66b3ff;       /* Hover de enlaces */
       --ripple-color: rgba(255,255,255,0.3);
+      --footer-border: #444;
     }
-    /* Modo claro */
+
     body.light-mode {
-      --bg-color: #f1f1f1;
-      --text-color: #333;
-      --header-bg: #ddd;
-      --button-bg: #0056b3;
-      --button-hover: #003d80;
+      /* Modo Claro */
+      --bg-color: #fafafa;          
+      --text-color: #333;           
+      --header-bg: #e6e6e6;         
+      --button-bg: #0066cc;         
+      --button-hover: #004b99;      
+      --accordion-bg: #f1f1f1;      
+      --accordion-hover: #ddd;      
+      --panel-bg: #f8f8f8;          
+      --border-color: #ccc;         
+      --primary-color: #0066cc;     
+      --hover-color: #003d80;       
+      --footer-border: #ccc;
     }
-    /* Estilos globales */
+
+    /* ============================
+       ESTILOS GLOBALES
+    ============================ */
     * { box-sizing: border-box; }
     body {
       font-family: Arial, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
-      margin: 0;
-      padding: 0;
+      margin: 0; 
+      padding: 0; 
       display: flex;
       flex-direction: column;
       align-items: center;
-      position: relative;
       transition: background-color 0.3s, color 0.3s;
+      position: relative;
     }
     header {
       background-color: var(--header-bg);
@@ -49,7 +69,7 @@
       font-size: 2.5em;
       color: var(--text-color);
     }
-    /* Botón de cambio de tema en header */
+    /* Botón de cambiar tema */
     .theme-toggle {
       position: absolute;
       right: 20px;
@@ -66,32 +86,60 @@
     .theme-toggle:hover {
       background-color: var(--button-hover);
     }
-    /* Imagen de encabezado */
-    .header-image {
-      width: 100%;
-      max-height: 300px;
-      object-fit: cover;
-    }
+
+    /* Redes Sociales */
     .social-links {
       margin: 20px 0;
       display: flex;
       justify-content: center;
       gap: 15px;
+      flex-wrap: wrap;
     }
     .social-links a {
       text-decoration: none;
-      color: #fff;
+      color: #fff; 
       background-color: #333;
       padding: 10px 15px;
       border-radius: 5px;
       transition: background-color 0.3s;
       display: flex;
       align-items: center;
-      gap: 5px;
     }
     .social-links a:hover {
       background-color: var(--button-bg);
     }
+
+    /* Accordion TikTok */
+    .tiktok-accordion {
+      background-color: #333;
+      color: #fff;
+      cursor: pointer;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    .tiktok-accordion:hover {
+      background-color: var(--button-bg);
+    }
+    .tiktok-panel {
+      display: none;
+      margin-top: 5px;
+    }
+    .tiktok-panel a {
+      display: block;
+      text-decoration: none;
+      color: #fff;
+      background-color: var(--accordion-bg);
+      padding: 10px 15px;
+      margin-bottom: 5px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    .tiktok-panel a:hover {
+      background-color: var(--accordion-hover);
+    }
+
     main {
       width: 90%;
       max-width: 900px;
@@ -100,56 +148,30 @@
     h2.section-title {
       text-align: center;
       color: var(--primary-color);
-      border-bottom: 1px solid #444;
+      border-bottom: 1px solid var(--border-color);
       padding-bottom: 10px;
       margin-bottom: 20px;
     }
-    /* Animación distinta para títulos */
-    .pulse-title {
-      animation: pulse 2s infinite;
-    }
-    .vibrate-title {
-      animation: vibrate 0.5s infinite;
-    }
+
+    /* Animación Pulse en ambos títulos */
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.05); }
     }
-    @keyframes vibrate {
-      0% { transform: translateX(0); }
-      25% { transform: translateX(-3px); }
-      50% { transform: translateX(3px); }
-      75% { transform: translateX(-3px); }
-      100% { transform: translateX(0); }
+    .pulse-title {
+      animation: pulse 2s infinite;
     }
+
     section {
       margin-bottom: 40px;
     }
     a { text-decoration: none; }
     
-    /* Estilos para enlaces y accordions */
-    .file-links,
-    .accordion, .panel {
-      width: 100%;
-    }
-    .file-links ul {
-      list-style: none;
-      padding: 0;
-    }
-    .file-links ul li {
-      margin: 10px 0;
-    }
-    .file-links ul li a {
-      color: var(--primary-color);
-      transition: color 0.3s;
-    }
-    .file-links ul li a:hover {
-      color: var(--hover-color);
-    }
-    
-    /* Accordion con efecto ripple */
+    /* ==============
+       Accordions
+    =============== */
     .accordion {
-      background-color: #2c2c2c;
+      background-color: var(--accordion-bg);
       color: var(--text-color);
       cursor: pointer;
       padding: 15px;
@@ -158,17 +180,16 @@
       text-align: left;
       outline: none;
       font-size: 18px;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s;
       margin-bottom: 5px;
       position: relative;
-      overflow: hidden;
+      overflow: hidden; 
     }
-    .accordion:hover,
-    .active-accordion {
-      background-color: #444;
+    .accordion:hover {
+      background-color: var(--accordion-hover);
     }
     .accordion:active::after {
-      content: "";
+      content: '';
       position: absolute;
       width: 100px;
       height: 100px;
@@ -184,8 +205,11 @@
         opacity: 0;
       }
     }
+    .active-accordion {
+      background-color: var(--accordion-hover);
+    }
     .panel {
-      background-color: #333;
+      background-color: var(--panel-bg);
       overflow: hidden;
       transition: max-height 0.3s ease-out;
       max-height: 0;
@@ -206,17 +230,7 @@
     .panel ul li a:hover {
       color: var(--hover-color);
     }
-    
-    footer {
-      background-color: var(--bg-color);
-      width: 100%;
-      padding: 15px 0;
-      text-align: center;
-      font-size: 0.9em;
-      border-top: 1px solid #444;
-      margin-top: 40px;
-    }
-    
+
     /* Botón grande para Video Explicativo */
     .large-button {
       display: block;
@@ -233,7 +247,7 @@
     .large-button:hover {
       background-color: var(--button-hover);
     }
-    
+
     /* Botón Volver Arriba */
     #backToTop {
       position: fixed;
@@ -247,30 +261,50 @@
       cursor: pointer;
       opacity: 0.7;
       transition: opacity 0.3s;
+      z-index: 999;
     }
     #backToTop:hover {
       opacity: 1;
     }
+
+    footer {
+      background-color: var(--bg-color);
+      width: 100%;
+      padding: 15px 0;
+      text-align: center;
+      font-size: 0.9em;
+      border-top: 1px solid var(--footer-border);
+      margin-top: 40px;
+    }
+
   </style>
 </head>
 <body>
+
   <header>
-    <img src="https://via.placeholder.com/1200x300?text=Encabezado+de+AJ" alt="Encabezado de AJ" class="header-image">
     <h1>Archivos y Recursos de AJ</h1>
     <button class="theme-toggle" onclick="toggleTheme()">Modo Claro</button>
   </header>
-  
+
+  <!-- Redes Sociales -->
   <div class="social-links">
-    <a href="https://www.tiktok.com/@ajk.al" target="_blank">TikTok 🇨🇴</a>
-    <a href="https://www.tiktok.com/@soyy_aj" target="_blank">TikTok 🇺🇸</a>
+    <!-- Creamos un solo botón TIKTOK que despliega las otras cuentas -->
+    <button class="tiktok-accordion" onclick="toggleTikTok()">TIKTOK</button>
+    <div class="tiktok-panel" id="tiktokPanel">
+      <a href="https://www.tiktok.com/@ajk.al" target="_blank">Colombia 🇨🇴</a>
+      <a href="https://www.tiktok.com/@soyy_aj" target="_blank">Estados Unidos 🇺🇸</a>
+      <a href="https://www.tiktok.com/@aj.jugando" target="_blank">Juegos 🎮</a>
+    </div>
+
+    <!-- Otras redes como enlaces directos -->
     <a href="https://www.youtube.com/@Oficial-AJ" target="_blank">YouTube</a>
     <a href="https://discord.com/invite/v6sXsaHhpu" target="_blank">Discord</a>
     <a href="https://www.whatsapp.com/channel/0029Vb78y6d6GcGLSt1Xw834" target="_blank">WhatsApp</a>
-    <a href="https://www.tiktok.com/@aj.jugando" target="_blank">TikTok 🎮</a>
   </div>
-  
+
   <main>
-    <!-- Acortador de Archivos -->
+
+    <!-- Sección Acortador -->
     <section>
       <h2 class="section-title">Como Pasar El Acortador De Mis Archivos</h2>
       <div style="text-align: center;">
@@ -283,19 +317,19 @@
         <ul>
           <li>
             Ojo con las descargas maliciosas, la mayoría (si no es que todas) son por MediaFire, no a páginas +18 o similares, ni descargas con contraseñas.  
-            Todo está abierto, por favor ver el video de como pasar el acortador.
+            Todo está abierto, por favor ver el video de cómo pasar el acortador.
             <br><br>
             Solo dejo 1 Acortador porque así apoyas mi contenido sin pedir directamente donaciones. Muchas gracias y espero disfrutes mis archivos y trabajos, ¡Gracias!
           </li>
         </ul>
       </div>
     </section>
-    
+
     <!-- JUEGOS OPTIMZADOS -->
     <section>
       <h2 class="section-title pulse-title">JUEGOS OPTIMZADOS</h2>
       
-      <!-- Accordion para Minecraft -->
+      <!-- Minecraft -->
       <button class="accordion">Minecraft</button>
       <div class="panel">
         <ul>
@@ -306,72 +340,72 @@
           <li><a href="https://cutyion.com/BEDROCKPCFPS" target="_blank">Minecraft Bedrock (PC) +FPS</a></li>
         </ul>
       </div>
-      
-      <!-- Accordion para SHEDULE I OPTIMIZACION +FPS -->
+
+      <!-- SHEDULE I OPTIMIZACION +FPS -->
       <button class="accordion">SHEDULE I OPTIMIZACION +FPS</button>
       <div class="panel">
         <ul>
           <li><a href="https://cutyion.com/ScheduleAJ" target="_blank">Descargar SHEDULE I OPTIMIZACION +FPS</a></li>
         </ul>
       </div>
-      
-      <!-- Accordion para WATCHDOGS 2 OPTIMIZACION +FPS -->
+
+      <!-- WATCHDOGS 2 OPTIMIZACION +FPS -->
       <button class="accordion">WATCHDOGS 2 OPTIMIZACION +FPS</button>
       <div class="panel">
         <ul>
           <li><a href="https://cutyion.com/WD2FPS" target="_blank">Descargar WATCHDOGS 2 +FPS</a></li>
         </ul>
       </div>
-      
-      <!-- Accordion para OPTIMIZACION DEFINITIVA FORTNITE -->
+
+      <!-- FORTNITE -->
       <button class="accordion">OPTIMIZACION DEFINITIVA FORTNITE</button>
       <div class="panel">
         <ul>
           <li><a href="https://cutyion.com/FortniteFPS" target="_blank">Descargar Fortnite +FPS</a></li>
         </ul>
       </div>
-      
-      <!-- Accordion para DRAGON BALL SPARKING ZERO +FPS -->
+
+      <!-- DRAGON BALL SPARKING ZERO +FPS -->
       <button class="accordion">DRAGON BALL SPARKING ZERO +FPS</button>
       <div class="panel">
         <ul>
           <li><a href="https://cutyion.com/DragonBallAJ" target="_blank">Descargar Dragon Ball +FPS</a></li>
         </ul>
       </div>
-      
-      <!-- Accordion para PES-2017 OPTI +FPS -->
+
+      <!-- PES-2017 OPTI +FPS -->
       <button class="accordion">PES-2017 OPTI +FPS</button>
       <div class="panel">
         <ul>
           <li><a href="https://cuty.io/PES2017AJ" target="_blank">Descargar PES 2017 +FPS</a></li>
         </ul>
       </div>
-      
-      <!-- Accordion para ROCKET LEAGUE +FPS -->
+
+      <!-- ROCKET LEAGUE +FPS -->
       <button class="accordion">ROCKET LEAGUE +FPS</button>
       <div class="panel">
         <ul>
           <li><a href="https://cuty.io/ROCKETFPSAJ" target="_blank">Descargar Rocket League +FPS</a></li>
         </ul>
       </div>
-      
-      <!-- Accordion para CALL OF DUTY BLACK OPS 2 +FPS -->
+
+      <!-- COD Black Ops 2 -->
       <button class="accordion">CALL OF DUTY BLACK OPS 2 +FPS</button>
       <div class="panel">
         <ul>
           <li><a href="https://cuty.io/CODBO2FPS" target="_blank">Descargar COD Black Ops 2 +FPS</a></li>
         </ul>
       </div>
-      
-      <!-- Accordion para CALL OF DUTY MW3 +FPS -->
+
+      <!-- COD MW3 -->
       <button class="accordion">CALL OF DUTY MW3 +FPS</button>
       <div class="panel">
         <ul>
           <li><a href="https://cuty.io/CODMW3FPS" target="_blank">Descargar COD MW3 +FPS</a></li>
         </ul>
       </div>
-      
-      <!-- Accordion para GTA V +FPS -->
+
+      <!-- GTA V -->
       <button class="accordion">GTA V +FPS</button>
       <div class="panel">
         <ul>
@@ -379,20 +413,20 @@
         </ul>
       </div>
     </section>
-    
+
     <!-- ARCHIVOS ANDROID -->
     <section>
-      <h2 class="section-title vibrate-title">ARCHIVOS ANDROID</h2>
-      
-      <!-- Accordion para HACKS DE FREEFIRE (ROOT MAGISK) -->
+      <h2 class="section-title pulse-title">ARCHIVOS ANDROID</h2>
+
+      <!-- FREEFIRE (ROOT MAGISK) -->
       <button class="accordion">HACKS DE FREEFIRE (ROOT MAGISK)</button>
       <div class="panel">
         <ul>
           <li><a href="https://cutyion.com/FreefireH" target="_blank">Descargar Hacks Freefire</a></li>
         </ul>
       </div>
-      
-      <!-- Accordion para CAMBIAR RESOLUCION DE PANTALLA EN ANDROID +FPS -->
+
+      <!-- CAMBIAR RESOLUCION DE PANTALLA EN ANDROID +FPS -->
       <button class="accordion">CAMBIAR RESOLUCION DE PANTALLA EN ANDROID +FPS</button>
       <div class="panel">
         <ul>
@@ -400,8 +434,8 @@
           <li><a href="https://cuty.io/ANDROIDFPS" target="_blank">Descargar Archivo Resolución +FPS</a></li>
         </ul>
       </div>
-      
-      <!-- Accordion para WIFI DE PC A ANDROID DIRECTO -->
+
+      <!-- WIFI DE PC A ANDROID DIRECTO -->
       <button class="accordion">WIFI DE PC A ANDROID DIRECTO</button>
       <div class="panel">
         <ul>
@@ -409,8 +443,8 @@
         </ul>
       </div>
     </section>
-    
-    <!-- Sistema Operativo -->
+
+    <!-- SISTEMA OPERATIVO -->
     <section>
       <h2 class="section-title">Sistema Operativo que uso (WinterOS)</h2>
       <button class="accordion">Ver ISOs para descargar</button>
@@ -424,41 +458,51 @@
       </div>
     </section>
   </main>
-  
+
   <footer>
     <p>Hecho con ❤️ por AJ</p>
   </footer>
-  
+
   <button id="backToTop" onclick="scrollToTop()">Volver Arriba</button>
-  
+
   <script>
-    // Accordion functionality
-    const accordions = document.getElementsByClassName("accordion");
+    // ---------- ACCORDION GLOBAL ----------
+    const accordions = document.getElementsByClassName('accordion');
     for (let i = 0; i < accordions.length; i++) {
-      accordions[i].addEventListener("click", function() {
-        this.classList.toggle("active-accordion");
+      accordions[i].addEventListener('click', function() {
+        this.classList.toggle('active-accordion');
         const panel = this.nextElementSibling;
         if (panel.style.maxHeight) {
           panel.style.maxHeight = null;
         } else {
-          panel.style.maxHeight = panel.scrollHeight + "px";
+          panel.style.maxHeight = panel.scrollHeight + 'px';
         }
       });
     }
-    
-    // Back-to-top function
+
+    // ---------- BOTÓN VOLVER ARRIBA ----------
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    
-    // Theme toggle function
+
+    // ---------- TOGGLE THEME ----------
     function toggleTheme() {
       document.body.classList.toggle('light-mode');
       const btn = document.querySelector('.theme-toggle');
-      if(document.body.classList.contains('light-mode')){
+      if (document.body.classList.contains('light-mode')) {
         btn.textContent = 'Modo Oscuro';
       } else {
         btn.textContent = 'Modo Claro';
+      }
+    }
+
+    // ---------- TIKTOK ACCORDION ----------
+    function toggleTikTok() {
+      const panel = document.getElementById('tiktokPanel');
+      if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+      } else {
+        panel.style.display = 'block';
       }
     }
   </script>
