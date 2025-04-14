@@ -23,23 +23,22 @@
       --hover-color: #66b3ff;       /* Hover de enlaces */
       --footer-border: #444;
     }
-
     body.light-mode {
-      /* Modo Claro */
-      --bg-color: #fafafa;          
-      --text-color: #333;           
-      --header-bg: #e6e6e6;         
-      --button-bg: #0066cc;         
-      --button-hover: #004b99;      
-      --accordion-bg: #f1f1f1;      
-      --accordion-hover: #ddd;      
-      --panel-bg: #f8f8f8;          
-      --border-color: #ccc;         
-      --primary-color: #0066cc;     
-      --hover-color: #003d80;       
-      --footer-border: #ccc;
+      /* Modo Claro Mejorado */
+      --bg-color: #ffffff;
+      --text-color: #222;
+      --header-bg: #f7f7f7;
+      --button-bg: #0088cc;
+      --button-hover: #006699;
+      --accordion-bg: #f1f1f1;
+      --accordion-hover: #e0e0e0;
+      --panel-bg: #fafafa;
+      --border-color: #ddd;
+      --primary-color: #0088cc;
+      --hover-color: #005577;
+      --footer-border: #ddd;
     }
-
+    
     /* ============================
        ESTILOS GLOBALES
     ============================ */
@@ -59,7 +58,7 @@
     header {
       background-color: var(--header-bg);
       width: 100%;
-      padding: 20px 0 60px 0; /* Ajustar para dar espacio al botón */
+      padding: 20px 0 60px 0; /* Ajusta para dejar espacio al botón de tema */
       text-align: center;
       position: relative;
     }
@@ -75,11 +74,11 @@
       color: var(--text-color);
       animation: bounceTitle 2s infinite;
     }
-    /* Botón de cambiar tema */
+    /* Botón de cambiar tema, más abajo */
     .theme-toggle {
       position: absolute;
       right: 20px;
-      top: 80px; /* Lo bajamos para no tapar la J */
+      top: 80px; /* Lo bajamos para que no tape la "J" */
       padding: 8px 12px;
       font-size: 14px;
       border: none;
@@ -123,11 +122,14 @@
       border: none;
       padding: 10px 15px;
       border-radius: 5px;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s, transform 0.2s;
       position: relative;
     }
     .tiktok-accordion:hover {
       background-color: var(--button-bg);
+    }
+    .tiktok-accordion:active {
+      transform: scale(0.95);
     }
     .tiktok-panel {
       display: none;
@@ -168,7 +170,7 @@
       margin-bottom: 20px;
     }
 
-    /* Animación Pulse para los subtítulos */
+    /* Animación Pulse para títulos de secciones */
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.05); }
@@ -197,6 +199,7 @@
       font-size: 18px;
       transition: background-color 0.3s;
       margin-bottom: 5px;
+      /* Quitamos el efecto ripple */
     }
     .accordion:hover {
       background-color: var(--accordion-hover);
@@ -272,7 +275,6 @@
       border-top: 1px solid var(--footer-border);
       margin-top: 40px;
     }
-
   </style>
 </head>
 <body>
@@ -284,15 +286,14 @@
 
   <!-- Redes Sociales -->
   <div class="social-links">
-    <!-- Creamos un solo botón TIKTOK que despliega las otras cuentas -->
+    <!-- Botón TikTok con acordeón -->
     <button class="tiktok-accordion" onclick="toggleTikTok()">TIKTOK</button>
     <div class="tiktok-panel" id="tiktokPanel">
       <a href="https://www.tiktok.com/@ajk.al" target="_blank">TikTok 🇨🇴</a>
       <a href="https://www.tiktok.com/@soyy_aj" target="_blank">TikTok 🇺🇸</a>
       <a href="https://www.tiktok.com/@aj.jugando" target="_blank">TikTok 🎮</a>
     </div>
-
-    <!-- Otras redes como enlaces directos -->
+    <!-- Otros enlaces directos -->
     <a href="https://www.youtube.com/@Oficial-AJ" target="_blank">YouTube</a>
     <a href="https://discord.com/invite/v6sXsaHhpu" target="_blank">Discord</a>
     <a href="https://www.whatsapp.com/channel/0029Vb78y6d6GcGLSt1Xw834" target="_blank">WhatsApp</a>
@@ -312,7 +313,7 @@
       <div class="panel">
         <ul>
           <li>
-            Ojo con las descargas maliciosas, la mayoría (si no es que todas) son por MediaFire, no a páginas +18 o similares, ni descargas con contraseñas.  
+            Ojo con las descargas maliciosas, la mayoría (si no es que todas) son por MediaFire, no a páginas +18 o similares, ni descargas con contraseñas.
             Todo está abierto, por favor ver el video de cómo pasar el acortador.
             <br><br>
             Solo dejo 1 Acortador porque así apoyas mi contenido sin pedir directamente donaciones. Muchas gracias y espero disfrutes mis archivos y trabajos, ¡Gracias!
@@ -321,9 +322,9 @@
       </div>
     </section>
 
-    <!-- JUEGOS OPTIMZADOS -->
+    <!-- JUEGOS OPTIMIZADOS -->
     <section>
-      <h2 class="section-title pulse-title">JUEGOS OPTIMZADOS</h2>
+      <h2 class="section-title pulse-title">JUEGOS OPTIMIZADOS</h2>
       
       <!-- Minecraft -->
       <button class="accordion">Minecraft</button>
@@ -353,7 +354,7 @@
         </ul>
       </div>
 
-      <!-- FORTNITE -->
+      <!-- OPTIMIZACION DEFINITIVA FORTNITE -->
       <button class="accordion">OPTIMIZACION DEFINITIVA FORTNITE</button>
       <div class="panel">
         <ul>
@@ -385,7 +386,7 @@
         </ul>
       </div>
 
-      <!-- COD Black Ops 2 -->
+      <!-- CALL OF DUTY BLACK OPS 2 +FPS -->
       <button class="accordion">CALL OF DUTY BLACK OPS 2 +FPS</button>
       <div class="panel">
         <ul>
@@ -393,7 +394,7 @@
         </ul>
       </div>
 
-      <!-- COD MW3 -->
+      <!-- CALL OF DUTY MW3 +FPS -->
       <button class="accordion">CALL OF DUTY MW3 +FPS</button>
       <div class="panel">
         <ul>
@@ -401,7 +402,7 @@
         </ul>
       </div>
 
-      <!-- GTA V -->
+      <!-- GTA V +FPS -->
       <button class="accordion">GTA V +FPS</button>
       <div class="panel">
         <ul>
@@ -414,7 +415,7 @@
     <section>
       <h2 class="section-title pulse-title">ARCHIVOS ANDROID</h2>
 
-      <!-- FREEFIRE (ROOT MAGISK) -->
+      <!-- HACKS DE FREEFIRE (ROOT MAGISK) -->
       <button class="accordion">HACKS DE FREEFIRE (ROOT MAGISK)</button>
       <div class="panel">
         <ul>
@@ -440,7 +441,7 @@
       </div>
     </section>
 
-    <!-- SISTEMA OPERATIVO (pulse) -->
+    <!-- SISTEMA OPERATIVO -->
     <section>
       <h2 class="section-title pulse-title">Sistema Operativo que uso (WinterOS)</h2>
       <button class="accordion">Ver ISOs para descargar</button>
