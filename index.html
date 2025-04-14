@@ -5,30 +5,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Archivos y Recursos de AJ</title>
   <style>
-    /* =======================
-       Estilos Generales
-    ========================== */
+    :root {
+      --bg-color: #1e1e1e;
+      --text-color: #f1f1f1;
+      --primary-color: #007bff;
+      --hover-color: #66b3ff;
+      --header-bg: #222;
+      --button-bg: #007bff;
+      --button-hover: #0056b3;
+      --ripple-color: rgba(255,255,255,0.3);
+    }
+    /* Modo claro */
+    body.light-mode {
+      --bg-color: #f1f1f1;
+      --text-color: #333;
+      --header-bg: #ddd;
+      --button-bg: #0056b3;
+      --button-hover: #003d80;
+    }
+    /* Estilos globales */
     * { box-sizing: border-box; }
     body {
       font-family: Arial, sans-serif;
-      background-color: #1e1e1e;
-      color: #f1f1f1;
+      background-color: var(--bg-color);
+      color: var(--text-color);
       margin: 0;
       padding: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
+      transition: background-color 0.3s, color 0.3s;
     }
     header {
-      background-color: #222;
+      background-color: var(--header-bg);
       width: 100%;
       padding: 20px 0;
       text-align: center;
+      position: relative;
     }
     header h1 {
       margin: 0;
       font-size: 2.5em;
+      color: var(--text-color);
+    }
+    /* Botón de cambio de tema en header */
+    .theme-toggle {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      padding: 8px 12px;
+      font-size: 14px;
+      border: none;
+      border-radius: 4px;
+      background-color: var(--button-bg);
       color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .theme-toggle:hover {
+      background-color: var(--button-hover);
+    }
+    /* Imagen de encabezado */
+    .header-image {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
     }
     .social-links {
       margin: 20px 0;
@@ -43,9 +85,12 @@
       padding: 10px 15px;
       border-radius: 5px;
       transition: background-color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
     .social-links a:hover {
-      background-color: #007bff;
+      background-color: var(--button-bg);
     }
     main {
       width: 90%;
@@ -54,27 +99,35 @@
     }
     h2.section-title {
       text-align: center;
-      color: #007bff;
+      color: var(--primary-color);
       border-bottom: 1px solid #444;
       padding-bottom: 10px;
       margin-bottom: 20px;
     }
-    /* Agregamos animación a títulos llamativos */
-    .animated-title {
-      animation: slideIn 2s ease-out infinite alternate;
+    /* Animación distinta para títulos */
+    .pulse-title {
+      animation: pulse 2s infinite;
     }
-    @keyframes slideIn {
-      from { transform: translateX(-10px); }
-      to { transform: translateX(10px); }
+    .vibrate-title {
+      animation: vibrate 0.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    @keyframes vibrate {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-3px); }
+      50% { transform: translateX(3px); }
+      75% { transform: translateX(-3px); }
+      100% { transform: translateX(0); }
     }
     section {
       margin-bottom: 40px;
     }
     a { text-decoration: none; }
     
-    /* =======================
-       Estilos para archivos (no redes sociales)
-    ========================== */
+    /* Estilos para enlaces y accordions */
     .file-links,
     .accordion, .panel {
       width: 100%;
@@ -87,19 +140,17 @@
       margin: 10px 0;
     }
     .file-links ul li a {
-      color: #007bff;
+      color: var(--primary-color);
       transition: color 0.3s;
     }
     .file-links ul li a:hover {
-      color: #66b3ff;
+      color: var(--hover-color);
     }
     
-    /* =======================
-       Accordion para desplegar contenido
-    ========================== */
+    /* Accordion con efecto ripple */
     .accordion {
       background-color: #2c2c2c;
-      color: #f1f1f1;
+      color: var(--text-color);
       cursor: pointer;
       padding: 15px;
       width: 100%;
@@ -109,10 +160,29 @@
       font-size: 18px;
       transition: background-color 0.3s ease;
       margin-bottom: 5px;
+      position: relative;
+      overflow: hidden;
     }
     .accordion:hover,
     .active-accordion {
       background-color: #444;
+    }
+    .accordion:active::after {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: var(--ripple-color);
+      border-radius: 50%;
+      transform: scale(0);
+      animation: ripple 0.6s linear;
+      pointer-events: none;
+    }
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
     }
     .panel {
       background-color: #333;
@@ -130,15 +200,15 @@
       margin: 10px 0;
     }
     .panel ul li a {
-      color: #007bff;
+      color: var(--primary-color);
       transition: color 0.3s;
     }
     .panel ul li a:hover {
-      color: #66b3ff;
+      color: var(--hover-color);
     }
     
     footer {
-      background-color: #1e1e1e;
+      background-color: var(--bg-color);
       width: 100%;
       padding: 15px 0;
       text-align: center;
@@ -147,15 +217,13 @@
       margin-top: 40px;
     }
     
-    /* =======================
-       Estilos para el botón grande del Video Explicativo
-    ========================== */
+    /* Botón grande para Video Explicativo */
     .large-button {
       display: block;
       margin: 0 auto 15px auto;
       padding: 15px 30px;
       font-size: 20px;
-      background-color: #007bff;
+      background-color: var(--button-bg);
       color: #fff;
       border: none;
       border-radius: 5px;
@@ -163,20 +231,42 @@
       transition: background-color 0.3s;
     }
     .large-button:hover {
-      background-color: #0056b3;
+      background-color: var(--button-hover);
+    }
+    
+    /* Botón Volver Arriba */
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #800080;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+    #backToTop:hover {
+      opacity: 1;
     }
   </style>
 </head>
 <body>
   <header>
+    <img src="https://via.placeholder.com/1200x300?text=Encabezado+de+AJ" alt="Encabezado de AJ" class="header-image">
     <h1>Archivos y Recursos de AJ</h1>
+    <button class="theme-toggle" onclick="toggleTheme()">Modo Claro</button>
   </header>
   
   <div class="social-links">
     <a href="https://www.tiktok.com/@ajk.al" target="_blank">TikTok 🇨🇴</a>
+    <a href="https://www.tiktok.com/@soyy_aj" target="_blank">TikTok 🇺🇸</a>
     <a href="https://www.youtube.com/@Oficial-AJ" target="_blank">YouTube</a>
     <a href="https://discord.com/invite/v6sXsaHhpu" target="_blank">Discord</a>
     <a href="https://www.whatsapp.com/channel/0029Vb78y6d6GcGLSt1Xw834" target="_blank">WhatsApp</a>
+    <a href="https://www.tiktok.com/@aj.jugando" target="_blank">TikTok 🎮</a>
   </div>
   
   <main>
@@ -188,7 +278,6 @@
           Ver Video Explicativo
         </button>
       </div>
-      <!-- Accordion para VER IMPORTANTE -->
       <button class="accordion">VER IMPORTANTE</button>
       <div class="panel">
         <ul>
@@ -204,7 +293,7 @@
     
     <!-- JUEGOS OPTIMZADOS -->
     <section>
-      <h2 class="section-title animated-title">JUEGOS OPTIMZADOS</h2>
+      <h2 class="section-title pulse-title">JUEGOS OPTIMZADOS</h2>
       
       <!-- Accordion para Minecraft -->
       <button class="accordion">Minecraft</button>
@@ -293,7 +382,7 @@
     
     <!-- ARCHIVOS ANDROID -->
     <section>
-      <h2 class="section-title animated-title">ARCHIVOS ANDROID</h2>
+      <h2 class="section-title vibrate-title">ARCHIVOS ANDROID</h2>
       
       <!-- Accordion para HACKS DE FREEFIRE (ROOT MAGISK) -->
       <button class="accordion">HACKS DE FREEFIRE (ROOT MAGISK)</button>
@@ -312,7 +401,7 @@
         </ul>
       </div>
       
-      <!-- Accordion para WIFI DE PC A ANDROID DIRECTO (movido de Juegos Optimzados) -->
+      <!-- Accordion para WIFI DE PC A ANDROID DIRECTO -->
       <button class="accordion">WIFI DE PC A ANDROID DIRECTO</button>
       <div class="panel">
         <ul>
@@ -340,8 +429,10 @@
     <p>Hecho con ❤️ por AJ</p>
   </footer>
   
+  <button id="backToTop" onclick="scrollToTop()">Volver Arriba</button>
+  
   <script>
-    // Script para que cada accordion funcione de forma independiente
+    // Accordion functionality
     const accordions = document.getElementsByClassName("accordion");
     for (let i = 0; i < accordions.length; i++) {
       accordions[i].addEventListener("click", function() {
@@ -353,6 +444,22 @@
           panel.style.maxHeight = panel.scrollHeight + "px";
         }
       });
+    }
+    
+    // Back-to-top function
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    // Theme toggle function
+    function toggleTheme() {
+      document.body.classList.toggle('light-mode');
+      const btn = document.querySelector('.theme-toggle');
+      if(document.body.classList.contains('light-mode')){
+        btn.textContent = 'Modo Oscuro';
+      } else {
+        btn.textContent = 'Modo Claro';
+      }
     }
   </script>
 </body>
