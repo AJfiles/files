@@ -92,7 +92,7 @@
       background-color: var(--button-hover);
     }
     
-    /* Redes Sociales */
+    /* Redes Sociales: Todos los botones con el mismo estilo */
     .social-links {
       margin: 20px 0;
       display: flex;
@@ -100,37 +100,32 @@
       gap: 15px;
       flex-wrap: wrap;
     }
-    .social-links a {
+    .social-links a,
+    .tiktok-accordion {
       text-decoration: none;
       color: #fff; 
       background-color: #333;
       padding: 10px 15px;
       border-radius: 5px;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s, transform 0.2s;
       display: flex;
       align-items: center;
     }
-    .social-links a:hover {
+    .social-links a:hover,
+    .tiktok-accordion:hover {
       background-color: var(--button-bg);
     }
-    /* Acordeón para TikTok ajustado en modo claro: fondo gris */
-    .tiktok-accordion {
-      background-color: #333;
-      color: #fff;
-      cursor: pointer;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      transition: background-color 0.3s, transform 0.2s;
-      position: relative;
-    }
+    /* Para modo claro, aplicar fondo gris a todos los botones de redes */
+    body.light-mode .social-links a,
     body.light-mode .tiktok-accordion {
       background-color: #aaa;
       color: #222;
     }
-    .tiktok-accordion:hover {
+    body.light-mode .social-links a:hover,
+    body.light-mode .tiktok-accordion:hover {
       background-color: var(--button-bg);
     }
+    /* Acordeón TikTok: añadir animación al presionar */
     .tiktok-accordion:active {
       transform: scale(0.95);
     }
@@ -190,9 +185,7 @@
     }
     a { text-decoration: none; }
     
-    /* ==============
-       Accordions (sin efecto ripple)
-    =============== */
+    /* Accordions sin efecto ripple */
     .accordion {
       background-color: var(--accordion-bg);
       color: var(--text-color);
@@ -588,7 +581,7 @@
       form.style.display = form.style.display === 'block' ? 'none' : 'block';
     }
     
-    // Cargar comentarios desde localStorage
+    // Cargar comentarios desde localStorage al cargar la página
     function loadComments() {
       const comments = JSON.parse(localStorage.getItem('comments')) || [];
       const commentsList = document.getElementById('commentsList');
@@ -622,7 +615,6 @@
     // Eliminar un comentario (pide contraseña)
     function deleteComment(index) {
       const password = prompt('Ingresa la contraseña para eliminar este comentario:');
-      // Define aquí tu contraseña; por ejemplo: "admin123"
       if (password === 'admin123') {
         const comments = JSON.parse(localStorage.getItem('comments')) || [];
         comments.splice(index, 1);
@@ -633,8 +625,8 @@
       }
     }
     
-    // Inicializamos la carga de comentarios
-    loadComments();
+    // Cargar comentarios al inicio
+    window.onload = loadComments;
   </script>
 </body>
 </html>
