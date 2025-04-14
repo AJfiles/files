@@ -92,7 +92,7 @@
       background-color: var(--button-hover);
     }
     
-    /* Redes Sociales: Todos los botones con el mismo estilo */
+    /* Redes Sociales */
     .social-links {
       margin: 20px 0;
       display: flex;
@@ -100,35 +100,28 @@
       gap: 15px;
       flex-wrap: wrap;
     }
+    /* Aquí unificamos el estilo para todos los botones de redes sociales */
     .social-links a,
     .tiktok-accordion {
       text-decoration: none;
       color: #fff; 
-      background-color: #333;
+      background-color: var(--button-bg);
       padding: 10px 15px;
       border-radius: 5px;
       transition: background-color 0.3s, transform 0.2s;
       display: flex;
       align-items: center;
+      border: none;
     }
     .social-links a:hover,
     .tiktok-accordion:hover {
-      background-color: var(--button-bg);
+      background-color: var(--button-hover);
     }
-    /* Para modo claro, aplicar fondo gris a todos los botones de redes */
-    body.light-mode .social-links a,
-    body.light-mode .tiktok-accordion {
-      background-color: #aaa;
-      color: #222;
-    }
-    body.light-mode .social-links a:hover,
-    body.light-mode .tiktok-accordion:hover {
-      background-color: var(--button-bg);
-    }
-    /* Acordeón TikTok: añadir animación al presionar */
     .tiktok-accordion:active {
       transform: scale(0.95);
     }
+    
+    /* Acordeón para TikTok (igual que los demás en ambos modos) */
     .tiktok-panel {
       display: none;
       margin-top: 5px;
@@ -151,14 +144,10 @@
       border-radius: 5px;
       transition: background-color 0.3s;
     }
-    body.light-mode .tiktok-panel a {
-      color: #222;
-      background-color: #ddd;
-    }
     .tiktok-panel a:hover {
       background-color: var(--accordion-hover);
     }
-    
+
     main {
       width: 90%;
       max-width: 900px;
@@ -185,7 +174,9 @@
     }
     a { text-decoration: none; }
     
-    /* Accordions sin efecto ripple */
+    /* ==============
+       Accordions (sin efecto ripple)
+    =============== */
     .accordion {
       background-color: var(--accordion-bg);
       color: var(--text-color);
@@ -272,67 +263,6 @@
       font-size: 0.9em;
       border-top: 1px solid var(--footer-border);
       margin-top: 40px;
-    }
-
-    /* ========================================================
-       Sección Comentarios (Simulación con localStorage)
-    ======================================================== */
-    #commentSection {
-      width: 90%;
-      max-width: 900px;
-      background-color: var(--panel-bg);
-      padding: 15px;
-      border-radius: 5px;
-      margin: 20px 0;
-    }
-    #commentSection h3 {
-      color: var(--primary-color);
-      margin-bottom: 10px;
-    }
-    #commentForm {
-      display: none;
-      margin-bottom: 15px;
-    }
-    #commentForm input, #commentForm textarea {
-      width: 100%;
-      padding: 8px;
-      margin: 5px 0;
-      border: 1px solid var(--border-color);
-      border-radius: 3px;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-    }
-    #commentForm button {
-      padding: 10px 15px;
-      background-color: var(--button-bg);
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    #commentForm button:hover {
-      background-color: var(--button-hover);
-    }
-    .comment {
-      border-bottom: 1px solid var(--border-color);
-      padding: 8px 0;
-      position: relative;
-    }
-    .comment p {
-      margin: 5px 0;
-    }
-    .delete-btn {
-      position: absolute;
-      right: 5px;
-      top: 5px;
-      background-color: red;
-      color: #fff;
-      border: none;
-      border-radius: 3px;
-      padding: 2px 5px;
-      cursor: pointer;
-      font-size: 12px;
-      display: none;
     }
   </style>
 </head>
@@ -512,19 +442,6 @@
         </ul>
       </div>
     </section>
-
-    <!-- Sección de Comentarios -->
-    <section id="commentSection">
-      <h3>Deja tu Comentario</h3>
-      <button onclick="toggleCommentForm()">Dejar Comentario</button>
-      <div id="commentForm">
-        <input type="text" id="username" placeholder="Usuario (opcional, por defecto Anónimo)" />
-        <textarea id="commentText" rows="3" placeholder="Escribe tu comentario aquí"></textarea>
-        <button onclick="postComment()">Publicar</button>
-      </div>
-      <div id="commentsList"></div>
-    </section>
-
   </main>
 
   <footer>
@@ -573,60 +490,6 @@
         panel.classList.add('show');
       }
     }
-
-    // ---------- SECCIÓN DE COMENTARIOS ----------
-    // Funciones para mostrar/ocultar el formulario de comentarios
-    function toggleCommentForm() {
-      const form = document.getElementById('commentForm');
-      form.style.display = form.style.display === 'block' ? 'none' : 'block';
-    }
-    
-    // Cargar comentarios desde localStorage al cargar la página
-    function loadComments() {
-      const comments = JSON.parse(localStorage.getItem('comments')) || [];
-      const commentsList = document.getElementById('commentsList');
-      commentsList.innerHTML = '';
-      comments.forEach((comment, index) => {
-        const div = document.createElement('div');
-        div.classList.add('comment');
-        div.innerHTML = `<strong>${comment.username}</strong>: <p>${comment.text}</p> <button class="delete-btn" onclick="deleteComment(${index})">Eliminar</button>`;
-        commentsList.appendChild(div);
-      });
-    }
-    
-    // Publicar un nuevo comentario
-    function postComment() {
-      const usernameInput = document.getElementById('username');
-      const commentText = document.getElementById('commentText');
-      const username = usernameInput.value.trim() || 'Anónimo';
-      const text = commentText.value.trim();
-      if (text === '') {
-        alert('Por favor, escribe un comentario.');
-        return;
-      }
-      const comments = JSON.parse(localStorage.getItem('comments')) || [];
-      comments.push({ username, text });
-      localStorage.setItem('comments', JSON.stringify(comments));
-      usernameInput.value = '';
-      commentText.value = '';
-      loadComments();
-    }
-    
-    // Eliminar un comentario (pide contraseña)
-    function deleteComment(index) {
-      const password = prompt('Ingresa la contraseña para eliminar este comentario:');
-      if (password === 'admin123') {
-        const comments = JSON.parse(localStorage.getItem('comments')) || [];
-        comments.splice(index, 1);
-        localStorage.setItem('comments', JSON.stringify(comments));
-        loadComments();
-      } else {
-        alert('Contraseña incorrecta.');
-      }
-    }
-    
-    // Cargar comentarios al inicio
-    window.onload = loadComments;
   </script>
 </body>
 </html>
