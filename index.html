@@ -58,7 +58,7 @@
     header {
       background-color: var(--header-bg);
       width: 100%;
-      padding: 20px 0 60px 0; /* Ajusta para dejar espacio al botón de tema */
+      padding: 20px 0 60px 0;
       text-align: center;
       position: relative;
     }
@@ -74,11 +74,11 @@
       color: var(--text-color);
       animation: bounceTitle 2s infinite;
     }
-    /* Botón de cambiar tema, más abajo */
+    /* Botón de cambiar tema, posicionado un poco más abajo */
     .theme-toggle {
       position: absolute;
       right: 20px;
-      top: 80px; /* Lo bajamos para que no tape la "J" */
+      top: 80px;
       padding: 8px 12px;
       font-size: 14px;
       border: none;
@@ -91,7 +91,7 @@
     .theme-toggle:hover {
       background-color: var(--button-hover);
     }
-
+    
     /* Redes Sociales */
     .social-links {
       margin: 20px 0;
@@ -113,8 +113,7 @@
     .social-links a:hover {
       background-color: var(--button-bg);
     }
-
-    /* Accordion TikTok */
+    /* Acordeón para TikTok ajustado en modo claro: fondo gris */
     .tiktok-accordion {
       background-color: #333;
       color: #fff;
@@ -124,6 +123,10 @@
       border-radius: 5px;
       transition: background-color 0.3s, transform 0.2s;
       position: relative;
+    }
+    body.light-mode .tiktok-accordion {
+      background-color: #aaa;
+      color: #222;
     }
     .tiktok-accordion:hover {
       background-color: var(--button-bg);
@@ -153,10 +156,14 @@
       border-radius: 5px;
       transition: background-color 0.3s;
     }
+    body.light-mode .tiktok-panel a {
+      color: #222;
+      background-color: #ddd;
+    }
     .tiktok-panel a:hover {
       background-color: var(--accordion-hover);
     }
-
+    
     main {
       width: 90%;
       max-width: 900px;
@@ -169,7 +176,6 @@
       padding-bottom: 10px;
       margin-bottom: 20px;
     }
-
     /* Animación Pulse para títulos de secciones */
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
@@ -178,14 +184,14 @@
     .pulse-title {
       animation: pulse 2s infinite;
     }
-
+    
     section {
       margin-bottom: 40px;
     }
     a { text-decoration: none; }
     
     /* ==============
-       Accordions
+       Accordions (sin efecto ripple)
     =============== */
     .accordion {
       background-color: var(--accordion-bg);
@@ -199,7 +205,6 @@
       font-size: 18px;
       transition: background-color 0.3s;
       margin-bottom: 5px;
-      /* Quitamos el efecto ripple */
     }
     .accordion:hover {
       background-color: var(--accordion-hover);
@@ -229,7 +234,7 @@
     .panel ul li a:hover {
       color: var(--hover-color);
     }
-
+    
     /* Botón grande para Video Explicativo */
     .large-button {
       display: block;
@@ -246,7 +251,7 @@
     .large-button:hover {
       background-color: var(--button-hover);
     }
-
+    
     /* Botón Volver Arriba */
     #backToTop {
       position: fixed;
@@ -265,7 +270,7 @@
     #backToTop:hover {
       opacity: 1;
     }
-
+    
     footer {
       background-color: var(--bg-color);
       width: 100%;
@@ -274,6 +279,67 @@
       font-size: 0.9em;
       border-top: 1px solid var(--footer-border);
       margin-top: 40px;
+    }
+
+    /* ========================================================
+       Sección Comentarios (Simulación con localStorage)
+    ======================================================== */
+    #commentSection {
+      width: 90%;
+      max-width: 900px;
+      background-color: var(--panel-bg);
+      padding: 15px;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+    #commentSection h3 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    #commentForm {
+      display: none;
+      margin-bottom: 15px;
+    }
+    #commentForm input, #commentForm textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+      border: 1px solid var(--border-color);
+      border-radius: 3px;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+    #commentForm button {
+      padding: 10px 15px;
+      background-color: var(--button-bg);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #commentForm button:hover {
+      background-color: var(--button-hover);
+    }
+    .comment {
+      border-bottom: 1px solid var(--border-color);
+      padding: 8px 0;
+      position: relative;
+    }
+    .comment p {
+      margin: 5px 0;
+    }
+    .delete-btn {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      background-color: red;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      padding: 2px 5px;
+      cursor: pointer;
+      font-size: 12px;
+      display: none;
     }
   </style>
 </head>
@@ -300,8 +366,7 @@
   </div>
 
   <main>
-
-    <!-- Sección Acortador (pulse) -->
+    <!-- Sección Acortador -->
     <section>
       <h2 class="section-title pulse-title">Como Pasar El Acortador De Mis Archivos</h2>
       <div style="text-align: center;">
@@ -454,6 +519,19 @@
         </ul>
       </div>
     </section>
+
+    <!-- Sección de Comentarios -->
+    <section id="commentSection">
+      <h3>Deja tu Comentario</h3>
+      <button onclick="toggleCommentForm()">Dejar Comentario</button>
+      <div id="commentForm">
+        <input type="text" id="username" placeholder="Usuario (opcional, por defecto Anónimo)" />
+        <textarea id="commentText" rows="3" placeholder="Escribe tu comentario aquí"></textarea>
+        <button onclick="postComment()">Publicar</button>
+      </div>
+      <div id="commentsList"></div>
+    </section>
+
   </main>
 
   <footer>
@@ -502,6 +580,61 @@
         panel.classList.add('show');
       }
     }
+
+    // ---------- SECCIÓN DE COMENTARIOS ----------
+    // Funciones para mostrar/ocultar el formulario de comentarios
+    function toggleCommentForm() {
+      const form = document.getElementById('commentForm');
+      form.style.display = form.style.display === 'block' ? 'none' : 'block';
+    }
+    
+    // Cargar comentarios desde localStorage
+    function loadComments() {
+      const comments = JSON.parse(localStorage.getItem('comments')) || [];
+      const commentsList = document.getElementById('commentsList');
+      commentsList.innerHTML = '';
+      comments.forEach((comment, index) => {
+        const div = document.createElement('div');
+        div.classList.add('comment');
+        div.innerHTML = `<strong>${comment.username}</strong>: <p>${comment.text}</p> <button class="delete-btn" onclick="deleteComment(${index})">Eliminar</button>`;
+        commentsList.appendChild(div);
+      });
+    }
+    
+    // Publicar un nuevo comentario
+    function postComment() {
+      const usernameInput = document.getElementById('username');
+      const commentText = document.getElementById('commentText');
+      const username = usernameInput.value.trim() || 'Anónimo';
+      const text = commentText.value.trim();
+      if (text === '') {
+        alert('Por favor, escribe un comentario.');
+        return;
+      }
+      const comments = JSON.parse(localStorage.getItem('comments')) || [];
+      comments.push({ username, text });
+      localStorage.setItem('comments', JSON.stringify(comments));
+      usernameInput.value = '';
+      commentText.value = '';
+      loadComments();
+    }
+    
+    // Eliminar un comentario (pide contraseña)
+    function deleteComment(index) {
+      const password = prompt('Ingresa la contraseña para eliminar este comentario:');
+      // Define aquí tu contraseña; por ejemplo: "admin123"
+      if (password === 'admin123') {
+        const comments = JSON.parse(localStorage.getItem('comments')) || [];
+        comments.splice(index, 1);
+        localStorage.setItem('comments', JSON.stringify(comments));
+        loadComments();
+      } else {
+        alert('Contraseña incorrecta.');
+      }
+    }
+    
+    // Inicializamos la carga de comentarios
+    loadComments();
   </script>
 </body>
 </html>
