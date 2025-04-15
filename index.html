@@ -36,7 +36,7 @@
       --footer-border: #ddd;
     }
     
-    /* Nueva clase para la imagen con efecto rebote */
+    /* Efecto de rebote para imágenes */
     .bounce-image {
       animation: bounceImage 2s infinite;
     }
@@ -53,14 +53,15 @@
       font-family: Arial, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
-      margin: 0; 
-      padding: 0; 
+      margin: 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       transition: background-color 0.3s, color 0.3s;
       position: relative;
     }
+    
     /* FPS COUNTER (fondo verde) */
     #fpsCounter {
       position: fixed;
@@ -73,6 +74,7 @@
       font-size: 14px;
       z-index: 1000;
     }
+    
     header {
       background-color: var(--header-bg);
       width: 100%;
@@ -210,8 +212,11 @@
       overflow: hidden;
       transition: max-height 0.3s ease-out;
       max-height: 0;
-      /* Se añadió padding vertical extra para bajar el contenido */
-      padding: 20px 15px 15px 15px;
+      /* Se agregó un padding-top para bajar el contenido */
+      padding-top: 10px;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-bottom: 15px;
     }
     .panel ul {
       list-style: none;
@@ -611,7 +616,7 @@
       </div>
       <button class="accordion">CALL OF DUTY MW3 +FPS</button>
       <div class="panel">
-        <!-- Imagen para COD MW3 -->
+        <!-- Imagen para CoD MW3 -->
         <div style="text-align: center; margin: 20px 0 10px 0;">
           <img src="CoDmw3.png" alt="COD MW3" class="bounce-image" style="max-width: 200px;">
         </div>
@@ -639,7 +644,7 @@
         <ul>
           <li><a href="https://cutyion.com/FreefireH" target="_blank">Descargar Hacks Freefire</a></li>
         </ul>
-      </button>
+      </div>
       <button class="accordion">CAMBIAR RESOLUCION DE PANTALLA EN ANDROID +FPS</button>
       <div class="panel">
         <ul>
