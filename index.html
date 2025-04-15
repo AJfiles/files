@@ -207,7 +207,7 @@
     .active-accordion {
       background-color: var(--accordion-hover);
     }
-    /* Inicialmente, panels cerrados sin padding vertical */
+    /* Inicialmente, los paneles se muestran sin padding vertical */
     .panel {
       background-color: var(--panel-bg);
       overflow: hidden;
@@ -215,7 +215,7 @@
       max-height: 0;
       padding: 0 15px;
     }
-    /* Cuando se abre, se agrega padding vertical */
+    /* Cuando se abre, se añade un padding vertical */
     .panel.open {
       padding: 10px 15px 15px 15px;
     }
@@ -285,8 +285,7 @@
     .video-modal-overlay {
       position: fixed;
       top: 0; left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       background-color: rgba(0,0,0,0.8);
       display: none;
       justify-content: center;
@@ -329,8 +328,7 @@
     .modal-paypal-overlay {
       position: fixed;
       top: 0; left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       background-color: rgba(0, 0, 0, 0.6);
       display: none;
       justify-content: center;
@@ -362,8 +360,7 @@
     .modal-overlay {
       position: fixed;
       top: 0; left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       background-color: rgba(0, 0, 0, 0.6);
       display: none;
       justify-content: center;
@@ -395,8 +392,7 @@
     .about-modal-overlay {
       position: fixed;
       top: 0; left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       background-color: rgba(0,0,0,0.6);
       display: none;
       justify-content: center;
@@ -666,6 +662,14 @@
           <li><a href="https://cuty.io/PCAANDROID" target="_blank">Descargar WiFi PC a Android</a></li>
         </ul>
       </div>
+      
+      <!-- Nuevo acordeón para OPTIMIZACION .BAT ANDROID -->
+      <button class="accordion">OPTIMIZACION .BAT ANDROID (CAMBIO DE RESOLUCION + OPTIMIZACIONES)</button>
+      <div class="panel">
+        <ul>
+          <li><a href="https://cutyion.com/OPTIANDROID" target="_blank">Descargar OPTIMIZACION .BAT ANDROID</a></li>
+        </ul>
+      </div>
     </section>
 
     <!-- SISTEMA OPERATIVO -->
@@ -751,6 +755,7 @@
     const accordions = document.getElementsByClassName('accordion');
     for (let i = 0; i < accordions.length; i++) {
       accordions[i].addEventListener('click', function() {
+        // Cierra los demás acordeones
         for (let j = 0; j < accordions.length; j++) {
           if (accordions[j] !== this) {
             accordions[j].classList.remove('active-accordion');
@@ -759,6 +764,7 @@
             otherPanel.classList.remove('open');
           }
         }
+        // Alterna el acordeón actual
         this.classList.toggle('active-accordion');
         const panel = this.nextElementSibling;
         if (panel.style.maxHeight) {
