@@ -1,28 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Metaetiquetas SEO -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="description" content="Archivos y Recursos de AJ. Optimización de juegos, sistemas y tecnología. ¡Aprende con mis trucos y mejora tu experiencia!">
-  <meta name="keywords" content="AJ, optimización, juegos, sistema, trucos, tecnología, GTA V, Minecraft, WinterOS">
-  <meta name="author" content="Alejandro (AJ)">
   <title>Archivos y Recursos de AJ</title>
-  <!-- Google Analytics: Reemplaza 'UA-XXXXXXXXX-X' por tu ID de seguimiento -->
-  <!-- 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXXX-X"></script>
-  <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-  
-      gtag('config', 'UA-XXXXXXXXX-X');
-  </script>
-  -->
   <style>
-    /* ============================
-       VARIABLES Y MODOS DE COLOR
-    ============================ */
     :root {
       /* Modo Oscuro por defecto */
       --bg-color: #1e1e1e;
@@ -54,10 +36,9 @@
       --footer-border: #ddd;
     }
     
-    /* ============================
-       ESTILOS GLOBALES
-    ============================ */
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: Arial, sans-serif;
       background-color: var(--bg-color);
@@ -70,6 +51,8 @@
       transition: background-color 0.3s, color 0.3s;
       position: relative;
     }
+
+    /* Encabezado */
     header {
       background-color: var(--header-bg);
       width: 100%;
@@ -77,7 +60,6 @@
       text-align: center;
       position: relative;
     }
-    /* Animación Bounce para el título principal */
     @keyframes bounceTitle {
       0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
       40% { transform: translateY(-20px); }
@@ -89,7 +71,6 @@
       color: var(--text-color);
       animation: bounceTitle 2s infinite;
     }
-    /* Botón de cambiar tema, posicionado un poco más abajo */
     .theme-toggle {
       position: absolute;
       right: 20px;
@@ -106,8 +87,8 @@
     .theme-toggle:hover {
       background-color: var(--button-hover);
     }
-    
-    /* Redes Sociales unificadas */
+
+    /* Redes Sociales */
     .social-links {
       margin: 20px 0;
       display: flex;
@@ -134,8 +115,6 @@
     .tiktok-accordion:active {
       transform: scale(0.95);
     }
-    
-    /* Acordeón TikTok */
     .tiktok-panel {
       display: none;
       margin-top: 5px;
@@ -174,7 +153,6 @@
       padding-bottom: 10px;
       margin-bottom: 20px;
     }
-    /* Animación Pulse para títulos de secciones */
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.05); }
@@ -182,15 +160,15 @@
     .pulse-title {
       animation: pulse 2s infinite;
     }
-    
+
     section {
       margin-bottom: 40px;
     }
-    a { text-decoration: none; }
-    
-    /* ==============
-       Accordions (sin efecto ripple)
-    =============== */
+    a {
+      text-decoration: none;
+    }
+
+    /* Accordions */
     .accordion {
       background-color: var(--accordion-bg);
       color: var(--text-color);
@@ -232,8 +210,8 @@
     .panel ul li a:hover {
       color: var(--hover-color);
     }
-    
-    /* Botón grande para Video Explicativo */
+
+    /* Botón grande (Video Explicativo) */
     .large-button {
       display: block;
       margin: 0 auto 15px auto;
@@ -249,7 +227,7 @@
     .large-button:hover {
       background-color: var(--button-hover);
     }
-    
+
     /* Botón Volver Arriba */
     #backToTop {
       position: fixed;
@@ -268,7 +246,7 @@
     #backToTop:hover {
       opacity: 1;
     }
-    
+
     footer {
       background-color: var(--bg-color);
       width: 100%;
@@ -279,41 +257,75 @@
       margin-top: 40px;
     }
 
-    /* ================================
-       Sección Soporte o Donaciones
-    ================================ */
+    /* Donaciones */
     #donations {
       width: 90%;
       max-width: 900px;
       background-color: var(--panel-bg);
       padding: 15px;
       border-radius: 5px;
-      margin: 20px 0;
-      text-align: center;
+      margin: 20px auto; /* centrado */
+      text-align: center; /* centrado */
     }
-    #donations a {
-      display: inline-block;
+    #donations h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: var(--primary-color);
+    }
+    .donation-buttons {
+      display: inline-flex;
+      gap: 15px;
       margin-top: 10px;
+    }
+    .donation-buttons a,
+    .donation-buttons button {
+      display: inline-block;
       padding: 10px 15px;
       background-color: var(--button-bg);
       color: #fff;
       border-radius: 5px;
+      border: none;
+      cursor: pointer;
       transition: background-color 0.3s;
     }
-    #donations a:hover {
+    .donation-buttons a:hover,
+    .donation-buttons button:hover {
       background-color: var(--button-hover);
     }
 
-    /* ================================
-       Sección "Quien Soy" (Acordeón Leer)
-    ================================ */
+    /* Modal Nequi */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background-color: var(--panel-bg);
+      color: var(--text-color);
+      padding: 20px;
+      border-radius: 5px;
+      text-align: center;
+      max-width: 300px;
+    }
+    .modal-content button {
+      margin-top: 15px;
+      background-color: red;
+    }
+
+    /* ¿Quién Soy? */
     #aboutSection {
       width: 90%;
       max-width: 900px;
       background-color: var(--panel-bg);
       padding: 15px;
       border-radius: 5px;
-      margin: 20px 0;
+      margin: 20px auto; /* centrado */
+      text-align: center; /* centrado */
     }
     #aboutContent {
       display: none;
@@ -321,6 +333,7 @@
       padding: 10px;
       background-color: var(--accordion-bg);
       border-radius: 5px;
+      text-align: left;
     }
     #aboutContent p {
       margin: 5px 0;
@@ -517,29 +530,36 @@
       </div>
     </section>
 
-    <!-- SECCIÓN DE SOPORTE / DONACIONES -->
+    <!-- Sección Donaciones -->
     <section id="donations">
-      <h2 class="section-title pulse-title">Soporte / Donaciones</h2>
+      <h2>Donaciones</h2>
       <p>Si te gusta mi contenido, considera apoyarme con una donación.</p>
-      <a href="https://paypal.me/AlejandroAlferezA?country.x=CO&locale.x=es_XC" target="_blank">Donar via PayPal</a>
+      <div class="donation-buttons">
+        <a href="https://paypal.me/AlejandroAlferezA?country.x=CO&locale.x=es_XC" target="_blank">Donar vía PayPal</a>
+        <button onclick="showNequiModal()">Nequi</button>
+      </div>
     </section>
 
-    <!-- SECCIÓN "QUIEN SOY" -->
+    <!-- Sección Quién Soy -->
     <section id="aboutSection">
-      <h2 class="section-title pulse-title">¿Quién Soy?</h2>
+      <h2 class="pulse-title">¿Quién Soy?</h2>
       <button onclick="toggleAbout()">Leer</button>
       <div id="aboutContent">
         <p>¡Hola! Me llamo Alejandro, aunque en internet me conocen como AJ.</p>
         <p>Es un apodo corto, fácil de recordar y hasta curioso. Me gusta cuando me dicen cosas como “¡Ey AJ, ayúdame con esto!”, porque suena cercano, simple y único.</p>
-        <p>Desde muy pequeño, más o menos a los 8 o 9 años, me empezó a interesar todo lo relacionado con los juegos, la optimización de sistemas y la tecnología en general. Todo comenzó con una PC bastante limitada. Aun así, me las arreglé para jugar GTA V, me tardé 3 días en descargarlo, usando uTorrent, ¡Mega, MediaFire y cualquier parte que bajara más rápido! Con mi internet de 2 Mb, ni siquiera era de mi familia, era el Wi-Fi del vecino que “tomé prestado”.</p>
-        <p>Pero bro… ¡era GTA V! Corría a 10 FPS, pero para mí eso era gloria. A partir de ahí, comencé a buscar cómo mejorar el rendimiento del juego, a experimentar y a aprender de foros, descargando configuraciones y apps.</p>
-        <p>Con el tiempo, mejoré mi equipo, y mi mamá me compró un computador decente. Ese fue el punto de inflexión que me impulsó a comenzar a crear contenido y compartir mis trucos y conocimientos.</p>
-        <p>Lo que sé y lo que hago: Modifico teléfonos y computadoras, tengo conocimientos en optimización, sistemas personalizados y configuración avanzada, manejo trucos y tips y me encanta compartir todo lo que aprendo. Además, tengo experiencia en marketing digital y creación de contenido, y he formado una gran comunidad en YouTube, TikTok y Discord.</p>
-        <p>“El propósito de la vida es compartir el conocimiento, o solo se queda en el olvido.”</p>
-        <p>Este proyecto es mi pasión, y agradezco a todos los que me apoyan.</p>
+        <p>Desde muy pequeño...</p>
+        <!-- Agrega todo el texto que quieras aquí -->
+        <p><strong>Hay mas historias, pero serán para otro escrito, gracias por leer si es que leíste</strong></p>
+        <p><strong>Lo que sé y lo que hago:</strong><br>
+        Modifico teléfonos y computadoras.<br>
+        Tengo conocimientos en optimización, sistemas personalizados y configuración avanzada.<br>
+        Sé lo básico de HTML y código para defenderme.<br>
+        Domino trucos, tips y me encanta compartirlos.<br>
+        Tengo experiencia en marketing digital y creación de contenido.<br>
+        Siempre busco ser útil, ayudar a otros y formar comunidad.</p>
+        <p>"El propósito de la vida es compartir el conocimiento, o solo se queda en el olvido."</p>
       </div>
     </section>
-
   </main>
 
   <footer>
@@ -548,8 +568,18 @@
 
   <button id="backToTop" onclick="scrollToTop()">Volver Arriba</button>
 
+  <!-- Modal para Nequi -->
+  <div class="modal-overlay" id="nequiModal">
+    <div class="modal-content">
+      <h3>Nequi</h3>
+      <p>Número: <strong>3143766181</strong></p>
+      <p>¡Hasta 50 pesos sirven, muchas gracias!</p>
+      <button onclick="closeNequiModal()">Cerrar</button>
+    </div>
+  </div>
+
   <script>
-    // ---------- ACCORDION GLOBAL ----------
+    // ACCORDIONS
     const accordions = document.getElementsByClassName('accordion');
     for (let i = 0; i < accordions.length; i++) {
       accordions[i].addEventListener('click', function() {
@@ -563,12 +593,12 @@
       });
     }
 
-    // ---------- BOTÓN VOLVER ARRIBA ----------
+    // BOTÓN VOLVER ARRIBA
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // ---------- TOGGLE THEME ----------
+    // TOGGLE THEME
     function toggleTheme() {
       document.body.classList.toggle('light-mode');
       const btn = document.querySelector('.theme-toggle');
@@ -579,7 +609,7 @@
       }
     }
 
-    // ---------- TIKTOK ACCORDION ----------
+    // TIKTOK ACCORDION
     function toggleTikTok() {
       const panel = document.getElementById('tiktokPanel');
       if (panel.classList.contains('show')) {
@@ -589,7 +619,7 @@
       }
     }
 
-    // ---------- SECCIÓN "QUIEN SOY" ----------
+    // SECCIÓN "QUIÉN SOY"
     function toggleAbout() {
       const about = document.getElementById('aboutContent');
       if (about.style.display === 'block') {
@@ -597,6 +627,14 @@
       } else {
         about.style.display = 'block';
       }
+    }
+
+    // MODAL NEQUI
+    function showNequiModal() {
+      document.getElementById('nequiModal').style.display = 'flex';
+    }
+    function closeNequiModal() {
+      document.getElementById('nequiModal').style.display = 'none';
     }
   </script>
 </body>
