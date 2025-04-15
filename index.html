@@ -1,26 +1,41 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- Metaetiquetas SEO -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Archivos y Recursos de AJ. Optimización de juegos, sistemas y tecnología. ¡Aprende con mis trucos y mejora tu experiencia!">
+  <meta name="keywords" content="AJ, optimización, juegos, sistema, trucos, tecnología, GTA V, Minecraft, WinterOS">
+  <meta name="author" content="Alejandro (AJ)">
   <title>Archivos y Recursos de AJ</title>
+  <!-- Google Analytics: Reemplaza 'UA-XXXXXXXXX-X' por tu ID de seguimiento -->
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXXX-X"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+  
+      gtag('config', 'UA-XXXXXXXXX-X');
+  </script>
+  -->
   <style>
     /* ============================
        VARIABLES Y MODOS DE COLOR
     ============================ */
     :root {
       /* Modo Oscuro por defecto */
-      --bg-color: #1e1e1e;          /* Fondo principal */
-      --text-color: #f1f1f1;        /* Color de texto */
-      --header-bg: #222;            /* Fondo del header */
-      --button-bg: #007bff;         /* Color principal de botones */
-      --button-hover: #0056b3;      /* Hover de botones */
-      --accordion-bg: #2c2c2c;      /* Fondo de los accordions */
-      --accordion-hover: #444;      /* Hover de los accordions */
-      --panel-bg: #333;             /* Fondo del panel desplegado */
-      --border-color: #444;         /* Color de bordes */
-      --primary-color: #007bff;     /* Color principal para enlaces */
-      --hover-color: #66b3ff;       /* Hover de enlaces */
+      --bg-color: #1e1e1e;
+      --text-color: #f1f1f1;
+      --header-bg: #222;
+      --button-bg: #007bff;
+      --button-hover: #0056b3;
+      --accordion-bg: #2c2c2c;
+      --accordion-hover: #444;
+      --panel-bg: #333;
+      --border-color: #444;
+      --primary-color: #007bff;
+      --hover-color: #66b3ff;
       --footer-border: #444;
     }
     body.light-mode {
@@ -92,7 +107,7 @@
       background-color: var(--button-hover);
     }
     
-    /* Redes Sociales */
+    /* Redes Sociales unificadas */
     .social-links {
       margin: 20px 0;
       display: flex;
@@ -100,11 +115,10 @@
       gap: 15px;
       flex-wrap: wrap;
     }
-    /* Aquí unificamos el estilo para todos los botones de redes sociales */
     .social-links a,
     .tiktok-accordion {
       text-decoration: none;
-      color: #fff; 
+      color: #fff;
       background-color: var(--button-bg);
       padding: 10px 15px;
       border-radius: 5px;
@@ -121,7 +135,7 @@
       transform: scale(0.95);
     }
     
-    /* Acordeón para TikTok (igual que los demás en ambos modos) */
+    /* Acordeón TikTok */
     .tiktok-panel {
       display: none;
       margin-top: 5px;
@@ -263,6 +277,66 @@
       font-size: 0.9em;
       border-top: 1px solid var(--footer-border);
       margin-top: 40px;
+    }
+
+    /* ================================
+       Sección Soporte o Donaciones
+    ================================ */
+    #donations {
+      width: 90%;
+      max-width: 900px;
+      background-color: var(--panel-bg);
+      padding: 15px;
+      border-radius: 5px;
+      margin: 20px 0;
+      text-align: center;
+    }
+    #donations a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 15px;
+      background-color: var(--button-bg);
+      color: #fff;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    #donations a:hover {
+      background-color: var(--button-hover);
+    }
+
+    /* ================================
+       Sección "Quien Soy" (Acordeón Leer)
+    ================================ */
+    #aboutSection {
+      width: 90%;
+      max-width: 900px;
+      background-color: var(--panel-bg);
+      padding: 15px;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+    #aboutContent {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      background-color: var(--accordion-bg);
+      border-radius: 5px;
+    }
+    #aboutContent p {
+      margin: 5px 0;
+      line-height: 1.5em;
+    }
+    #aboutSection button {
+      padding: 10px 15px;
+      background-color: var(--button-bg);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    #aboutSection button:hover {
+      background-color: var(--button-hover);
     }
   </style>
 </head>
@@ -442,6 +516,30 @@
         </ul>
       </div>
     </section>
+
+    <!-- SECCIÓN DE SOPORTE / DONACIONES -->
+    <section id="donations">
+      <h2 class="section-title pulse-title">Soporte / Donaciones</h2>
+      <p>Si te gusta mi contenido, considera apoyarme con una donación.</p>
+      <a href="https://paypal.me/AlejandroAlferezA?country.x=CO&locale.x=es_XC" target="_blank">Donar via PayPal</a>
+    </section>
+
+    <!-- SECCIÓN "QUIEN SOY" -->
+    <section id="aboutSection">
+      <h2 class="section-title pulse-title">¿Quién Soy?</h2>
+      <button onclick="toggleAbout()">Leer</button>
+      <div id="aboutContent">
+        <p>¡Hola! Me llamo Alejandro, aunque en internet me conocen como AJ.</p>
+        <p>Es un apodo corto, fácil de recordar y hasta curioso. Me gusta cuando me dicen cosas como “¡Ey AJ, ayúdame con esto!”, porque suena cercano, simple y único.</p>
+        <p>Desde muy pequeño, más o menos a los 8 o 9 años, me empezó a interesar todo lo relacionado con los juegos, la optimización de sistemas y la tecnología en general. Todo comenzó con una PC bastante limitada. Aun así, me las arreglé para jugar GTA V, me tardé 3 días en descargarlo, usando uTorrent, ¡Mega, MediaFire y cualquier parte que bajara más rápido! Con mi internet de 2 Mb, ni siquiera era de mi familia, era el Wi-Fi del vecino que “tomé prestado”.</p>
+        <p>Pero bro… ¡era GTA V! Corría a 10 FPS, pero para mí eso era gloria. A partir de ahí, comencé a buscar cómo mejorar el rendimiento del juego, a experimentar y a aprender de foros, descargando configuraciones y apps.</p>
+        <p>Con el tiempo, mejoré mi equipo, y mi mamá me compró un computador decente. Ese fue el punto de inflexión que me impulsó a comenzar a crear contenido y compartir mis trucos y conocimientos.</p>
+        <p>Lo que sé y lo que hago: Modifico teléfonos y computadoras, tengo conocimientos en optimización, sistemas personalizados y configuración avanzada, manejo trucos y tips y me encanta compartir todo lo que aprendo. Además, tengo experiencia en marketing digital y creación de contenido, y he formado una gran comunidad en YouTube, TikTok y Discord.</p>
+        <p>“El propósito de la vida es compartir el conocimiento, o solo se queda en el olvido.”</p>
+        <p>Este proyecto es mi pasión, y agradezco a todos los que me apoyan.</p>
+      </div>
+    </section>
+
   </main>
 
   <footer>
@@ -488,6 +586,16 @@
         panel.classList.remove('show');
       } else {
         panel.classList.add('show');
+      }
+    }
+
+    // ---------- SECCIÓN "QUIEN SOY" ----------
+    function toggleAbout() {
+      const about = document.getElementById('aboutContent');
+      if (about.style.display === 'block') {
+        about.style.display = 'none';
+      } else {
+        about.style.display = 'block';
       }
     }
   </script>
