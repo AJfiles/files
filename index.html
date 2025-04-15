@@ -21,7 +21,7 @@
       --footer-border: #444;
     }
     body.light-mode {
-      /* Modo Claro Mejorado */
+      /* Modo Claro */
       --bg-color: #ffffff;
       --text-color: #222;
       --header-bg: #f7f7f7;
@@ -39,31 +39,35 @@
     /* ============================
        ESTILOS GLOBALES
     ============================ */
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: Arial, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
-      margin: 0; 
-      padding: 0; 
+      margin: 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       transition: background-color 0.3s, color 0.3s;
       position: relative;
     }
-    /* FPS COUNTER (fondo verde) */
+    
+    /* FPS Counter (fondo verde) */
     #fpsCounter {
       position: fixed;
       top: 10px;
       left: 10px;
-      background-color: green;
+      background-color: green; /* color de fondo del contador */
       color: #fff;
       padding: 5px 8px;
       border-radius: 4px;
       font-size: 14px;
       z-index: 1000;
     }
+
     header {
       background-color: var(--header-bg);
       width: 100%;
@@ -98,7 +102,7 @@
     .theme-toggle:hover {
       background-color: var(--button-hover);
     }
-    
+
     /* Redes Sociales */
     .social-links {
       margin: 20px 0;
@@ -174,9 +178,11 @@
     section {
       margin-bottom: 40px;
     }
-    a { text-decoration: none; }
+    a {
+      text-decoration: none;
+    }
     
-    /* Accordions: Solo se abre uno a la vez */
+    /* Acordeones: Solo se abre uno a la vez */
     .accordion {
       background-color: var(--accordion-bg);
       color: var(--text-color);
@@ -264,8 +270,8 @@
       border-top: 1px solid var(--footer-border);
       margin-top: 40px;
     }
-    
-    /* Modal Video: Ajustado para Vimeo */
+
+    /* Modal Video (Vimeo) */
     .video-modal-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -280,14 +286,14 @@
       background-color: var(--panel-bg);
       padding: 10px;
       border-radius: 5px;
-      max-width: 400px;
-      max-height: 60vh;
+      max-width: 700px; /* Más grande */
+      max-height: 80vh;
       animation: bounce 0.5s;
       position: relative;
     }
     .video-modal-content iframe {
       width: 100%;
-      height: 100%;
+      height: 80vh; /* Ajustar para que se vea más grande */
       border: none;
       border-radius: 5px;
     }
@@ -403,7 +409,7 @@
       color: var(--text-color);
     }
     
-    /* Sección Donaciones (centrada) */
+    /* Sección Donaciones (centrado) */
     #donations {
       width: 90%;
       max-width: 900px;
@@ -582,12 +588,16 @@
     <!-- ARCHIVOS ANDROID -->
     <section>
       <h2 class="section-title pulse-title">ARCHIVOS ANDROID</h2>
+
+      <!-- 1) Hacks de FreeFire -->
       <button class="accordion">HACKS DE FREEFIRE (ROOT MAGISK)</button>
       <div class="panel">
         <ul>
           <li><a href="https://cutyion.com/FreefireH" target="_blank">Descargar Hacks Freefire</a></li>
         </ul>
-      </button>
+      </div>
+
+      <!-- 2) Cambiar Resolución de Pantalla -->
       <button class="accordion">CAMBIAR RESOLUCION DE PANTALLA EN ANDROID +FPS</button>
       <div class="panel">
         <ul>
@@ -595,6 +605,8 @@
           <li><a href="https://cuty.io/ANDROIDFPS" target="_blank">Descargar Archivo Resolución +FPS</a></li>
         </ul>
       </div>
+
+      <!-- 3) WiFi de PC a Android -->
       <button class="accordion">WIFI DE PC A ANDROID DIRECTO</button>
       <div class="panel">
         <ul>
@@ -640,11 +652,12 @@
 
   <button id="backToTop" onclick="scrollToTop()">Volver Arriba</button>
 
-  <!-- Modal Video: Vimeo -->
+  <!-- Modal Video (Vimeo con mayor tamaño) -->
   <div class="video-modal-overlay" id="videoModal">
     <div class="video-modal-content">
       <button class="close-btn" onclick="closeVideoModal()">×</button>
-      <iframe src="https://player.vimeo.com/video/1074788174" allow="autoplay; fullscreen" allowfullscreen></iframe>
+      <iframe src="https://player.vimeo.com/video/1074788174" 
+              allow="autoplay; fullscreen" allowfullscreen></iframe>
     </div>
   </div>
 
@@ -682,10 +695,11 @@
   </div>
 
   <script>
-    // ---------- ACCORDIONS: Solo uno abierto a la vez ----------
+    // ---------- ACCORDIONS: Solo se abre uno a la vez ----------
     const accordions = document.getElementsByClassName('accordion');
     for (let i = 0; i < accordions.length; i++) {
       accordions[i].addEventListener('click', function() {
+        // Cierra los otros
         for (let j = 0; j < accordions.length; j++) {
           if (accordions[j] !== this) {
             accordions[j].classList.remove('active-accordion');
@@ -693,6 +707,7 @@
             otherPanel.style.maxHeight = null;
           }
         }
+        // Alterna el actual
         this.classList.toggle('active-accordion');
         const panel = this.nextElementSibling;
         if (panel.style.maxHeight) {
@@ -702,12 +717,12 @@
         }
       });
     }
-    
+
     // ---------- BOTÓN VOLVER ARRIBA ----------
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    
+
     // ---------- TOGGLE THEME ----------
     function toggleTheme() {
       document.body.classList.toggle('light-mode');
@@ -718,7 +733,7 @@
         btn.textContent = 'Modo Claro';
       }
     }
-    
+
     // ---------- TIKTOK ACCORDION ----------
     function toggleTikTok() {
       const panel = document.getElementById('tiktokPanel');
@@ -728,7 +743,7 @@
         panel.classList.add('show');
       }
     }
-    
+
     // ---------- MODAL VIDEO ----------
     function showVideoModal() {
       document.getElementById('videoModal').style.display = 'flex';
@@ -736,7 +751,7 @@
     function closeVideoModal() {
       document.getElementById('videoModal').style.display = 'none';
     }
-    
+
     // ---------- MODAL PAYPAL ----------
     function showPaypalModal() {
       document.getElementById('paypalModal').style.display = 'flex';
@@ -744,7 +759,7 @@
     function closePaypalModal() {
       document.getElementById('paypalModal').style.display = 'none';
     }
-    
+
     // ---------- MODAL NEQUI ----------
     function showNequiModal() {
       document.getElementById('nequiModal').style.display = 'flex';
@@ -752,7 +767,7 @@
     function closeNequiModal() {
       document.getElementById('nequiModal').style.display = 'none';
     }
-    
+
     // ---------- MODAL "QUIÉN SOY" ----------
     function showAboutModal() {
       document.getElementById('aboutModal').style.display = 'flex';
@@ -760,7 +775,7 @@
     function closeAboutModal() {
       document.getElementById('aboutModal').style.display = 'none';
     }
-    
+
     // ---------- FPS COUNTER ----------
     function updateFPS() {
       const fps = Math.floor(Math.random() * (900 - 600 + 1)) + 600;
