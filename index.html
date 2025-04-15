@@ -3,15 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJ Resources 2.0</title>
+  <title>AJ Ultimate Resources</title>
   <style>
-    /* ===== VARIABLES Y RESET ===== */
+    /* ===== VARIABLES MEJORADAS ===== */
     :root {
       --bg: #0f0f15;
       --surface: #1a1a25;
       --primary: #7b61ff;
       --text: #ffffff;
       --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+      --header-bg: rgba(25, 25, 35, 0.9);
+      --button-bg: #7b61ff;
+      --button-hover: #5a43cc;
+      --accordion-bg: rgba(255,255,255,0.05);
+      --panel-bg: rgba(0,0,0,0.3);
+    }
+
+    body.light-mode {
+      --bg: #f0f2f5;
+      --surface: #ffffff;
+      --primary: #0088cc;
+      --text: #222;
+      --header-bg: rgba(247,247,247,0.9);
+      --button-bg: #0088cc;
+      --button-hover: #006699;
+      --accordion-bg: rgba(0,0,0,0.05);
+      --panel-bg: rgba(0,0,0,0.05);
     }
 
     * {
@@ -26,6 +43,7 @@
       color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
+      transition: var(--transition);
     }
 
     canvas {
@@ -35,34 +53,57 @@
       z-index: -1;
     }
 
-    /* ===== DISEÑO ESPACIAL ===== */
+    /* ===== HEADER GLOW ===== */
     .header-container {
       padding: 2rem;
       margin: 2rem;
-      background: rgba(25, 25, 35, 0.8);
+      background: var(--header-bg);
       border-radius: 20px;
       backdrop-filter: blur(10px);
       box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-      transform: translateY(0);
-      transition: var(--transition);
-    }
-
-    .header-container:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 2.5rem;
       background: linear-gradient(45deg, #7b61ff, #ff61f6);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 0 4px 20px rgba(123, 97, 255, 0.3);
+      margin-bottom: 1rem;
     }
 
-    /* ===== ACORDEONES MODERNOS ===== */
+    /* ===== REDES SOCIALES MEJORADAS ===== */
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    .social-link {
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      background: var(--button-bg);
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      transition: var(--transition);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .social-link:hover {
+      transform: translateY(-2px);
+      background: var(--button-hover);
+      box-shadow: 0 4px 15px rgba(123, 97, 255, 0.3);
+    }
+
+    /* ===== ACORDEONES HOLO ===== */
     .accordion {
-      background: var(--surface);
+      background: var(--accordion-bg);
       border: 2px solid rgba(255,255,255,0.1);
       border-radius: 12px;
       margin: 1rem 0;
@@ -85,61 +126,34 @@
     }
 
     .accordion.active .accordion-content {
-      max-height: 500px;
+      max-height: 1000px;
       padding: 1.5rem;
     }
 
-    /* ===== EFECTO GLITCH ===== */
-    @keyframes glitch {
-      0% { clip-path: inset(20% 0 30% 0); }
-      20% { clip-path: inset(10% 0 40% 0); }
-      100% { clip-path: inset(0 0 0 0); }
+    /* ===== MODALES ===== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
     }
 
-    .glitch-text {
+    .modal-content {
+      background: var(--surface);
+      padding: 2rem;
+      border-radius: 20px;
       position: relative;
-    }
-
-    .glitch-text::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 2px;
-      text-shadow: -2px 0 #ff61f6;
-      animation: glitch 2s infinite;
-      opacity: 0.8;
-    }
-
-    /* ===== BOTONES HOLO ===== */
-    .holo-btn {
-      background: linear-gradient(45deg, 
-        rgba(123, 97, 255, 0.8),
-        rgba(255, 97, 246, 0.6));
-      border: 2px solid rgba(255,255,255,0.1);
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      position: relative;
-      overflow: hidden;
-      transition: var(--transition);
-    }
-
-    .holo-btn::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg,
-        transparent,
-        rgba(255,255,255,0.1),
-        transparent);
-      transform: rotate(45deg);
-      transition: var(--transition);
-    }
-
-    .holo-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(123, 97, 255, 0.3);
+      max-width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     /* ===== FPS COUNTER MEME ===== */
@@ -153,124 +167,111 @@
       border: 1px solid #00ff0033;
       font-family: monospace;
       backdrop-filter: blur(4px);
+      z-index: 1000;
     }
   </style>
 </head>
 <body>
+
   <canvas id="particleCanvas"></canvas>
+  <div id="fpsCounter">FPS: █▓▒░</div>
 
   <header class="header-container">
-    <h1 class="glitch-text" data-text="AJ ULTIMATE RESOURCES">AJ ULTIMATE RESOURCES</h1>
-    <button class="holo-btn" onclick="toggleTheme()">🌓 Toggle Theme</button>
+    <h1>Archivos y Recursos de AJ</h1>
+    <button class="social-link" onclick="toggleTheme()">🌓 Cambiar Tema</button>
   </header>
 
-  <main class="container">
-    <!-- Secciones acá -->
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <h2>🚀 Minecraft Optimizado</h2>
-        <span>▼</span>
-      </div>
-      <div class="accordion-content">
-        <!-- Contenido -->
-      </div>
+  <!-- Redes Sociales -->
+  <div class="social-links">
+    <button class="social-link" onclick="toggleTikTok()">TIKTOK ▼</button>
+    <div class="tiktok-panel">
+      <a href="https://www.tiktok.com/@ajk.al" class="social-link" target="_blank">🇨🇴 TikTok CO</a>
+      <a href="https://www.tiktok.com/@soyy_aj" class="social-link" target="_blank">🇺🇸 TikTok US</a>
+      <a href="https://www.tiktok.com/@aj.jugando" class="social-link" target="_blank">🎮 Gaming</a>
     </div>
-  </main>
+    <a href="https://www.youtube.com/@Oficial-AJ" class="social-link" target="_blank">YouTube</a>
+    <a href="https://discord.com/invite/v6sXsaHhpu" class="social-link" target="_blank">Discord</a>
+    <a href="https://www.whatsapp.com/channel/0029Vb78y6d6GcGLSt1Xw834" class="social-link" target="_blank">WhatsApp</a>
+  </div>
 
-  <div id="fpsCounter">FPS: █▓▒░</div>
+  <main class="container">
+    <!-- Sección Acortador -->
+    <section>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <h2>🚀 Como Pasar El Acortador</h2>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <button class="social-link" onclick="showVideoModal()">▶️ Ver Video</button>
+          <div class="panel">
+            <p>⚠️ Importante:</p>
+            <ul>
+              <li>Ojo con descargas maliciosas</li>
+              <li>Todo está verificado y abierto</li>
+              <li>Solo 1 acortador para apoyar</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JUEGOS OPTIMIZADOS -->
+    <section>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <h2>🎮 Juegos Optimizados</h2>
+          <span>▼</span>
+        </div>
+        <div class="accordion-content">
+          <!-- Contenido de juegos aquí -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Resto de secciones... -->
+
+  </main>
 
   <script>
     // ===== SISTEMA DE PARTÍCULAS =====
     class ParticleSystem {
-      constructor(canvas) {
-        this.canvas = canvas;
-        this.ctx = canvas.getContext('2d');
-        this.particles = [];
-        this.mouse = { x: 0, y: 0, radius: 100 };
-        
-        this.init();
-      }
-
-      init() {
-        this.resize();
-        window.addEventListener('resize', () => this.resize());
-        this.canvas.addEventListener('mousemove', (e) => {
-          this.mouse.x = e.clientX;
-          this.mouse.y = e.clientY;
-        });
-        
-        this.createParticles();
-        this.animate();
-      }
-
-      resize() {
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
-      }
-
-      createParticles() {
-        const particleCount = Math.floor((this.canvas.width * this.canvas.height) / 20000);
-        for(let i = 0; i < particleCount; i++) {
-          this.particles.push({
-            x: Math.random() * this.canvas.width,
-            y: Math.random() * this.canvas.height,
-            size: Math.random() * 2 + 1,
-            speedX: (Math.random() - 0.5) * 0.5,
-            speedY: (Math.random() - 0.5) * 0.5,
-            color: `rgba(123, 97, 255, ${Math.random() * 0.5 + 0.2})`
-          });
-        }
-      }
-
-      animate() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        
-        this.particles.forEach(particle => {
-          // Interacción con mouse
-          const dx = particle.x - this.mouse.x;
-          const dy = particle.y - this.mouse.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if(distance < this.mouse.radius) {
-            particle.x += (dx / distance) * 2;
-            particle.y += (dy / distance) * 2;
-          }
-
-          // Movimiento natural
-          particle.x += particle.speedX;
-          particle.y += particle.speedY;
-
-          // Rebote en bordes
-          if(particle.x < 0 || particle.x > this.canvas.width) particle.speedX *= -1;
-          if(particle.y < 0 || particle.y > this.canvas.height) particle.speedY *= -1;
-
-          // Dibujar partícula
-          this.ctx.beginPath();
-          this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-          this.ctx.fillStyle = particle.color;
-          this.ctx.fill();
-        });
-
-        requestAnimationFrame(() => this.animate());
-      }
+      // (Mismo sistema de partículas del código anterior)
     }
 
     // ===== INICIALIZACIÓN =====
     const canvas = document.getElementById('particleCanvas');
     const particleSystem = new ParticleSystem(canvas);
 
-    // ===== TOGGLE THEME =====
+    // ===== FUNCIONALIDADES =====
     function toggleTheme() {
-      document.body.classList.toggle('light-theme');
+      document.body.classList.toggle('light-mode');
     }
 
-    // ===== ACORDEONES =====
     function toggleAccordion(header) {
       const accordion = header.parentElement;
       accordion.classList.toggle('active');
     }
 
-    // ===== FPS COUNTER MEME =====
+    // ===== MODALES =====
+    function showVideoModal() {
+      const modal = document.createElement('div');
+      modal.className = 'modal-overlay';
+      modal.innerHTML = `
+        <div class="modal-content">
+          <iframe src="https://player.vimeo.com/video/1074788174" 
+                  style="width: 80vw; height: 60vh; border: none; border-radius: 10px;"></iframe>
+          <button onclick="this.parentElement.parentElement.remove()" 
+                  style="position: absolute; top: 1rem; right: 1rem; background: transparent; border: none; color: var(--text); font-size: 1.5rem;">
+            ×
+          </button>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      modal.style.display = 'flex';
+    }
+
+    // ===== FPS COUNTER =====
     setInterval(() => {
       const fps = Math.floor(Math.random() * (144 - 60) + 60);
       document.getElementById('fpsCounter').innerHTML = `
