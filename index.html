@@ -2,786 +2,282 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Archivos y Recursos de AJ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJ Resources 2.0</title>
   <style>
+    /* ===== VARIABLES Y RESET ===== */
     :root {
-      /* Modo Oscuro por defecto */
-      --bg-color: #1e1e1e;
-      --text-color: #f1f1f1;
-      --header-bg: #222;
-      --button-bg: #007bff;
-      --button-hover: #0056b3;
-      --accordion-bg: #2c2c2c;
-      --accordion-hover: #444;
-      --panel-bg: #333;
-      --border-color: #444;
-      --primary-color: #007bff;
-      --hover-color: #66b3ff;
-      --footer-border: #444;
+      --bg: #0f0f15;
+      --surface: #1a1a25;
+      --primary: #7b61ff;
+      --text: #ffffff;
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
     }
-    body.light-mode {
-      /* Modo Claro */
-      --bg-color: #ffffff;
-      --text-color: #222;
-      --header-bg: #f7f7f7;
-      --button-bg: #0088cc;
-      --button-hover: #006699;
-      --accordion-bg: #f1f1f1;
-      --accordion-hover: #e0e0e0;
-      --panel-bg: #fafafa;
-      --border-color: #ddd;
-      --primary-color: #0088cc;
-      --hover-color: #005577;
-      --footer-border: #ddd;
-    }
-    
-    /* ============================
-       ESTILOS GLOBALES
-    ============================ */
+
     * {
-      box-sizing: border-box;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    /* ===== DISEÑO ESPACIAL ===== */
+    .header-container {
+      padding: 2rem;
+      margin: 2rem;
+      background: rgba(25, 25, 35, 0.8);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      transform: translateY(0);
+      transition: var(--transition);
+    }
+
+    .header-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      font-size: 3rem;
+      background: linear-gradient(45deg, #7b61ff, #ff61f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 4px 20px rgba(123, 97, 255, 0.3);
+    }
+
+    /* ===== ACORDEONES MODERNOS ===== */
+    .accordion {
+      background: var(--surface);
+      border: 2px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      margin: 1rem 0;
+      transition: var(--transition);
+    }
+
+    .accordion-header {
+      padding: 1.5rem;
+      cursor: pointer;
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+      padding: 0 1.5rem;
+    }
+
+    .accordion.active .accordion-content {
+      max-height: 500px;
+      padding: 1.5rem;
+    }
+
+    /* ===== EFECTO GLITCH ===== */
+    @keyframes glitch {
+      0% { clip-path: inset(20% 0 30% 0); }
+      20% { clip-path: inset(10% 0 40% 0); }
+      100% { clip-path: inset(0 0 0 0); }
+    }
+
+    .glitch-text {
       position: relative;
     }
-    
-    /* FPS Counter (fondo verde) */
+
+    .glitch-text::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 2px;
+      text-shadow: -2px 0 #ff61f6;
+      animation: glitch 2s infinite;
+      opacity: 0.8;
+    }
+
+    /* ===== BOTONES HOLO ===== */
+    .holo-btn {
+      background: linear-gradient(45deg, 
+        rgba(123, 97, 255, 0.8),
+        rgba(255, 97, 246, 0.6));
+      border: 2px solid rgba(255,255,255,0.1);
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .holo-btn::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg,
+        transparent,
+        rgba(255,255,255,0.1),
+        transparent);
+      transform: rotate(45deg);
+      transition: var(--transition);
+    }
+
+    .holo-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(123, 97, 255, 0.3);
+    }
+
+    /* ===== FPS COUNTER MEME ===== */
     #fpsCounter {
       position: fixed;
-      top: 10px;
-      left: 10px;
-      background-color: green; /* color de fondo del contador */
-      color: #fff;
-      padding: 5px 8px;
-      border-radius: 4px;
-      font-size: 14px;
-      z-index: 1000;
-    }
-
-    header {
-      background-color: var(--header-bg);
-      width: 100%;
-      padding: 20px 0 60px 0;
-      text-align: center;
-      position: relative;
-    }
-    @keyframes bounceTitle {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-20px); }
-      60% { transform: translateY(-10px); }
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5em;
-      color: var(--text-color);
-      animation: bounceTitle 2s infinite;
-    }
-    .theme-toggle {
-      position: absolute;
-      right: 20px;
-      top: 80px;
-      padding: 8px 12px;
-      font-size: 14px;
-      border: none;
-      border-radius: 4px;
-      background-color: var(--button-bg);
-      color: #fff;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .theme-toggle:hover {
-      background-color: var(--button-hover);
-    }
-
-    /* Redes Sociales */
-    .social-links {
-      margin: 20px 0;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-    .social-links a,
-    .tiktok-accordion {
-      text-decoration: none;
-      color: #fff;
-      background-color: var(--button-bg);
-      padding: 10px 15px;
-      border-radius: 5px;
-      transition: background-color 0.3s, transform 0.2s;
-      display: flex;
-      align-items: center;
-      border: none;
-    }
-    .social-links a:hover,
-    .tiktok-accordion:hover {
-      background-color: var(--button-hover);
-    }
-    .tiktok-accordion:active {
-      transform: scale(0.95);
-    }
-    .tiktok-panel {
-      display: none;
-      margin-top: 5px;
-      opacity: 0;
-      transform: translateY(-5px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    .tiktok-panel.show {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .tiktok-panel a {
-      display: block;
-      text-decoration: none;
-      color: #fff;
-      background-color: var(--accordion-bg);
-      padding: 10px 15px;
-      margin-bottom: 5px;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-    .tiktok-panel a:hover {
-      background-color: var(--accordion-hover);
-    }
-
-    main {
-      width: 90%;
-      max-width: 900px;
-      margin: 20px;
-    }
-    h2.section-title {
-      text-align: center;
-      color: var(--primary-color);
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 10px;
-      margin-bottom: 20px;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-    .pulse-title {
-      animation: pulse 2s infinite;
-    }
-    section {
-      margin-bottom: 40px;
-    }
-    a {
-      text-decoration: none;
-    }
-    
-    /* Acordeones: Solo se abre uno a la vez */
-    .accordion {
-      background-color: var(--accordion-bg);
-      color: var(--text-color);
-      cursor: pointer;
-      padding: 15px;
-      width: 100%;
-      border: none;
-      text-align: left;
-      outline: none;
-      font-size: 18px;
-      transition: background-color 0.3s;
-      margin-bottom: 5px;
-    }
-    .accordion:hover {
-      background-color: var(--accordion-hover);
-    }
-    .active-accordion {
-      background-color: var(--accordion-hover);
-    }
-    .panel {
-      background-color: var(--panel-bg);
-      overflow: hidden;
-      transition: max-height 0.3s ease-out;
-      max-height: 0;
-      padding-left: 15px;
-    }
-    .panel ul {
-      list-style: none;
-      padding: 0 15px 15px;
-      margin: 0;
-    }
-    .panel ul li {
-      margin: 10px 0;
-    }
-    .panel ul li a {
-      color: var(--primary-color);
-      transition: color 0.3s;
-    }
-    .panel ul li a:hover {
-      color: var(--hover-color);
-    }
-
-    /* Botón grande para Video Explicativo */
-    .large-button {
-      display: block;
-      margin: 0 auto 15px auto;
-      padding: 15px 30px;
-      font-size: 20px;
-      background-color: var(--button-bg);
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .large-button:hover {
-      background-color: var(--button-hover);
-    }
-    
-    /* Botón Volver Arriba */
-    #backToTop {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #800080;
-      color: #fff;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      opacity: 0.7;
-      transition: opacity 0.3s;
-      z-index: 999;
-    }
-    #backToTop:hover {
-      opacity: 1;
-    }
-    
-    footer {
-      background-color: var(--bg-color);
-      width: 100%;
-      padding: 15px 0;
-      text-align: center;
-      font-size: 0.9em;
-      border-top: 1px solid var(--footer-border);
-      margin-top: 40px;
-    }
-
-    /* Modal Video (Vimeo) */
-    .video-modal-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.8);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .video-modal-content {
-      background-color: var(--panel-bg);
-      padding: 10px;
-      border-radius: 5px;
-      max-width: 700px; /* Más grande */
-      max-height: 80vh;
-      animation: bounce 0.5s;
-      position: relative;
-    }
-    .video-modal-content iframe {
-      width: 100%;
-      height: 80vh; /* Ajustar para que se vea más grande */
-      border: none;
-      border-radius: 5px;
-    }
-    .video-modal-content .close-btn {
-      position: absolute;
-      top: 5px;
-      right: 8px;
-      background: none;
-      border: none;
-      font-size: 18px;
-      cursor: pointer;
-      color: var(--text-color);
-    }
-    
-    @keyframes bounce {
-      0% { transform: scale(0.8); }
-      60% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-    
-    /* Modal PayPal */
-    .modal-paypal-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .modal-paypal-content {
-      background-color: var(--panel-bg);
-      color: var(--text-color);
-      padding: 20px;
-      border-radius: 5px;
-      text-align: center;
-      max-width: 300px;
-      animation: bounce 0.5s;
-      position: relative;
-    }
-    .modal-paypal-content .close-btn {
-      position: absolute;
-      top: 5px;
-      right: 8px;
-      background: none;
-      border: none;
-      font-size: 18px;
-      cursor: pointer;
-      color: var(--text-color);
-    }
-    
-    /* Modal Nequi */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .modal-content {
-      background-color: var(--panel-bg);
-      color: var(--text-color);
-      padding: 20px;
-      border-radius: 5px;
-      text-align: center;
-      max-width: 300px;
-      animation: bounce 0.5s;
-      position: relative;
-    }
-    .modal-content .close-btn {
-      position: absolute;
-      top: 5px;
-      right: 8px;
-      background: none;
-      border: none;
-      font-size: 18px;
-      cursor: pointer;
-      color: var(--text-color);
-    }
-    
-    /* Modal "Quién Soy" */
-    .about-modal-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.6);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .about-modal-content {
-      background-color: var(--panel-bg);
-      padding: 20px;
-      border-radius: 5px;
-      max-width: 500px;
-      animation: bounce 0.5s;
-      position: relative;
-      text-align: left;
-    }
-    .about-modal-content .close-btn {
-      position: absolute;
-      top: 5px;
-      right: 8px;
-      background: none;
-      border: none;
-      font-size: 18px;
-      cursor: pointer;
-      color: var(--text-color);
-    }
-    
-    /* Sección Donaciones (centrado) */
-    #donations {
-      width: 90%;
-      max-width: 900px;
-      background-color: var(--panel-bg);
-      padding: 15px;
-      border-radius: 5px;
-      margin: 20px auto;
-      text-align: center;
-    }
-    #donations h2 {
-      text-align: center;
-      margin-bottom: 15px;
-      color: var(--primary-color);
-    }
-    .donation-buttons {
-      display: inline-flex;
-      gap: 15px;
-      margin-top: 10px;
-    }
-    .donation-buttons a,
-    .donation-buttons button {
-      display: inline-block;
-      padding: 10px 15px;
-      background-color: var(--button-bg);
-      color: #fff;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .donation-buttons a:hover,
-    .donation-buttons button:hover {
-      background-color: var(--button-hover);
-    }
-    
-    /* Sección "Quién Soy" (centrada) */
-    #aboutSection {
-      width: 90%;
-      max-width: 900px;
-      background-color: var(--panel-bg);
-      padding: 15px;
-      border-radius: 5px;
-      margin: 20px auto;
-      text-align: center;
-    }
-    #aboutSection button {
-      padding: 10px 15px;
-      background-color: var(--button-bg);
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    #aboutSection button:hover {
-      background-color: var(--button-hover);
+      top: 1rem;
+      left: 1rem;
+      background: rgba(0,255,0,0.15);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      border: 1px solid #00ff0033;
+      font-family: monospace;
+      backdrop-filter: blur(4px);
     }
   </style>
 </head>
 <body>
+  <canvas id="particleCanvas"></canvas>
 
-  <!-- FPS COUNTER -->
-  <div id="fpsCounter">FPS: 0</div>
-
-  <header>
-    <h1>Archivos y Recursos de AJ</h1>
-    <button class="theme-toggle" onclick="toggleTheme()">Modo Claro</button>
+  <header class="header-container">
+    <h1 class="glitch-text" data-text="AJ ULTIMATE RESOURCES">AJ ULTIMATE RESOURCES</h1>
+    <button class="holo-btn" onclick="toggleTheme()">🌓 Toggle Theme</button>
   </header>
 
-  <!-- Redes Sociales -->
-  <div class="social-links">
-    <button class="tiktok-accordion" onclick="toggleTikTok()">TIKTOK</button>
-    <div class="tiktok-panel" id="tiktokPanel">
-      <a href="https://www.tiktok.com/@ajk.al" target="_blank">TikTok 🇨🇴</a>
-      <a href="https://www.tiktok.com/@soyy_aj" target="_blank">TikTok 🇺🇸</a>
-      <a href="https://www.tiktok.com/@aj.jugando" target="_blank">TikTok 🎮</a>
+  <main class="container">
+    <!-- Secciones acá -->
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">
+        <h2>🚀 Minecraft Optimizado</h2>
+        <span>▼</span>
+      </div>
+      <div class="accordion-content">
+        <!-- Contenido -->
+      </div>
     </div>
-    <a href="https://www.youtube.com/@Oficial-AJ" target="_blank">YouTube</a>
-    <a href="https://discord.com/invite/v6sXsaHhpu" target="_blank">Discord</a>
-    <a href="https://www.whatsapp.com/channel/0029Vb78y6d6GcGLSt1Xw834" target="_blank">WhatsApp</a>
-  </div>
-
-  <main>
-    <!-- Sección Acortador -->
-    <section>
-      <h2 class="section-title pulse-title">Como Pasar El Acortador De Mis Archivos</h2>
-      <div style="text-align: center;">
-        <button class="large-button" onclick="showVideoModal()">Ver Video Explicativo</button>
-      </div>
-      <button class="accordion">VER IMPORTANTE</button>
-      <div class="panel">
-        <ul>
-          <li>
-            Ojo con las descargas maliciosas, la mayoría (si no es que todas) son por MediaFire, no a páginas +18 o similares, ni descargas con contraseñas.
-            Todo está abierto, por favor ver el video de cómo pasar el acortador.
-            <br><br>
-            Solo dejo 1 Acortador porque así apoyas mi contenido sin pedir directamente donaciones.
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- JUEGOS OPTIMIZADOS -->
-    <section>
-      <h2 class="section-title pulse-title">JUEGOS OPTIMIZADOS</h2>
-      <button class="accordion">Minecraft</button>
-      <div class="panel">
-        <p style="margin: 10px 0; font-weight: bold;">Version Java:</p>
-        <ul>
-          <li><a href="https://cutyion.com/MC1215AJ" target="_blank">Minecraft 1.21.5 +FPS</a></li>
-          <li><a href="https://cutyion.com/MC1214AJ" target="_blank">Minecraft 1.21.4 +FPS</a></li>
-          <li><a href="https://cutyion.com/MC1211" target="_blank">Minecraft 1.21.1 +FPS</a></li>
-        </ul>
-        <p style="margin: 10px 0; font-weight: bold;">Version Bedrock:</p>
-        <ul>
-          <li><a href="https://cutyion.com/AJBEDROCKFPS" target="_blank">Minecraft Bedrock +FPS</a></li>
-          <li><a href="https://cutyion.com/BEDROCKPCFPS" target="_blank">Minecraft Bedrock (PC) +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">SHEDULE I OPTIMIZACION +FPS</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://cutyion.com/ScheduleAJ" target="_blank">Descargar SHEDULE I OPTIMIZACION +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">WATCHDOGS 2 OPTIMIZACION +FPS</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://cutyion.com/WD2FPS" target="_blank">Descargar WATCHDOGS 2 +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">OPTIMIZACION DEFINITIVA FORTNITE</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://cutyion.com/FortniteFPS" target="_blank">Descargar Fortnite +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">DRAGON BALL SPARKING ZERO +FPS</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://cutyion.com/DragonBallAJ" target="_blank">Descargar Dragon Ball +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">PES-2017 OPTI +FPS</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://cuty.io/PES2017AJ" target="_blank">Descargar PES 2017 +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">ROCKET LEAGUE +FPS</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://cuty.io/ROCKETFPSAJ" target="_blank">Descargar Rocket League +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">CALL OF DUTY BLACK OPS 2 +FPS</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://cuty.io/CODBO2FPS" target="_blank">Descargar COD Black Ops 2 +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">CALL OF DUTY MW3 +FPS</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://cuty.io/CODMW3FPS" target="_blank">Descargar COD MW3 +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">GTA V +FPS</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://cuty.io/GTAVFPSAJ" target="_blank">Descargar GTA V +FPS</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ARCHIVOS ANDROID -->
-    <section>
-      <h2 class="section-title pulse-title">ARCHIVOS ANDROID</h2>
-
-      <!-- 1) Hacks de FreeFire -->
-      <button class="accordion">HACKS DE FREEFIRE (ROOT MAGISK)</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://cutyion.com/FreefireH" target="_blank">Descargar Hacks Freefire</a></li>
-        </ul>
-      </div>
-
-      <!-- 2) Cambiar Resolución de Pantalla -->
-      <button class="accordion">CAMBIAR RESOLUCION DE PANTALLA EN ANDROID +FPS</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://www.tiktok.com/@ajk.al/video/7273274423484976390" target="_blank">Ver Video Tutorial</a></li>
-          <li><a href="https://cuty.io/ANDROIDFPS" target="_blank">Descargar Archivo Resolución +FPS</a></li>
-        </ul>
-      </div>
-
-      <!-- 3) WiFi de PC a Android -->
-      <button class="accordion">WIFI DE PC A ANDROID DIRECTO</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://cuty.io/PCAANDROID" target="_blank">Descargar WiFi PC a Android</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- SISTEMA OPERATIVO -->
-    <section>
-      <h2 class="section-title pulse-title">Sistema Operativo que uso (WinterOS)</h2>
-      <button class="accordion">Ver ISOs para descargar</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://cutyion.com/Win10Win" target="_blank">WinterOS Rev14 - Windows 10 +FPS (ISO)</a></li>
-          <li><a href="https://cutyion.com/Win10LT" target="_blank">WinterOS Rev14 - Windows 10 LTSC +FPS (ISO)</a></li>
-          <li><a href="https://cutyion.com/Win11WinterO" target="_blank">WinterOS Rev14 - Windows 11 +FPS (ISO)</a></li>
-          <li><a href="https://cutyion.com/Win11LTS" target="_blank">WinterOS Rev14 - Windows 11 LTSC +FPS (ISO)</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- DONACIONES -->
-    <section id="donations">
-      <h2 class="section-title pulse-title">Donaciones</h2>
-      <p>Si te gusta mi contenido, considera apoyarme con una donación.</p>
-      <div class="donation-buttons">
-        <button onclick="showPaypalModal()">PayPal</button>
-        <button onclick="showNequiModal()">Nequi</button>
-      </div>
-    </section>
-
-    <!-- SECCIÓN "QUIÉN SOY" -->
-    <section id="aboutSection">
-      <h2 class="section-title pulse-title">¿Quién Soy?</h2>
-      <button onclick="showAboutModal()">Leer</button>
-    </section>
   </main>
 
-  <footer>
-    <p>Hecho con ❤️ por AJ</p>
-  </footer>
-
-  <button id="backToTop" onclick="scrollToTop()">Volver Arriba</button>
-
-  <!-- Modal Video (Vimeo con mayor tamaño) -->
-  <div class="video-modal-overlay" id="videoModal">
-    <div class="video-modal-content">
-      <button class="close-btn" onclick="closeVideoModal()">×</button>
-      <iframe src="https://player.vimeo.com/video/1074788174" 
-              allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-  </div>
-
-  <!-- Modal PayPal -->
-  <div class="modal-paypal-overlay" id="paypalModal">
-    <div class="modal-paypal-content">
-      <button class="close-btn" onclick="closePaypalModal()">×</button>
-      <h3>PayPal</h3>
-      <p>Hasta 0.20 son bien venidos</p>
-      <a href="https://www.paypal.com/paypalme/AlejandroAlferezA?country.x=CO&locale.x=es_XC" target="_blank">Donar vía PayPal</a>
-    </div>
-  </div>
-
-  <!-- Modal Nequi -->
-  <div class="modal-overlay" id="nequiModal">
-    <div class="modal-content">
-      <button class="close-btn" onclick="closeNequiModal()">×</button>
-      <h3>Nequi</h3>
-      <p>Número: <strong>3143766181</strong></p>
-      <p>¡Hasta 50 pesos sirven, muchas gracias!</p>
-    </div>
-  </div>
-
-  <!-- Modal "Quién Soy" -->
-  <div class="about-modal-overlay" id="aboutModal">
-    <div class="about-modal-content">
-      <button class="close-btn" onclick="closeAboutModal()">×</button>
-      <h3>¿Quién Soy?</h3>
-      <p>¡Hola! Me llamo Alejandro, aunque en internet me conocen como AJ.</p>
-      <p>Es un apodo corto, fácil de recordar y hasta curioso. Me gusta cuando me dicen “¡Ey AJ, ayúdame con esto!”, porque suena cercano, simple y único.</p>
-      <p>Desde muy pequeño, me interesé por los juegos, la optimización de sistemas y la tecnología. A pesar de tener una PC limitada, logré jugar a GTA V descargándolo en varias partes, usando todo lo que podía. Esto fue el comienzo de mi pasión por la optimización y el contenido tecnológico.</p>
-      <p>Hoy en día, modifico teléfonos y computadoras, optimizo juegos, tengo conocimientos en sistemas personalizados y me encanta compartir trucos y tips. Además, tengo experiencia en marketing digital y he construido una comunidad en YouTube, TikTok y Discord.</p>
-      <p>"El propósito de la vida es compartir el conocimiento, o solo se queda en el olvido."</p>
-    </div>
-  </div>
+  <div id="fpsCounter">FPS: █▓▒░</div>
 
   <script>
-    // ---------- ACCORDIONS: Solo se abre uno a la vez ----------
-    const accordions = document.getElementsByClassName('accordion');
-    for (let i = 0; i < accordions.length; i++) {
-      accordions[i].addEventListener('click', function() {
-        // Cierra los otros
-        for (let j = 0; j < accordions.length; j++) {
-          if (accordions[j] !== this) {
-            accordions[j].classList.remove('active-accordion');
-            const otherPanel = accordions[j].nextElementSibling;
-            otherPanel.style.maxHeight = null;
+    // ===== SISTEMA DE PARTÍCULAS =====
+    class ParticleSystem {
+      constructor(canvas) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.particles = [];
+        this.mouse = { x: 0, y: 0, radius: 100 };
+        
+        this.init();
+      }
+
+      init() {
+        this.resize();
+        window.addEventListener('resize', () => this.resize());
+        this.canvas.addEventListener('mousemove', (e) => {
+          this.mouse.x = e.clientX;
+          this.mouse.y = e.clientY;
+        });
+        
+        this.createParticles();
+        this.animate();
+      }
+
+      resize() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+      }
+
+      createParticles() {
+        const particleCount = Math.floor((this.canvas.width * this.canvas.height) / 20000);
+        for(let i = 0; i < particleCount; i++) {
+          this.particles.push({
+            x: Math.random() * this.canvas.width,
+            y: Math.random() * this.canvas.height,
+            size: Math.random() * 2 + 1,
+            speedX: (Math.random() - 0.5) * 0.5,
+            speedY: (Math.random() - 0.5) * 0.5,
+            color: `rgba(123, 97, 255, ${Math.random() * 0.5 + 0.2})`
+          });
+        }
+      }
+
+      animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        this.particles.forEach(particle => {
+          // Interacción con mouse
+          const dx = particle.x - this.mouse.x;
+          const dy = particle.y - this.mouse.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if(distance < this.mouse.radius) {
+            particle.x += (dx / distance) * 2;
+            particle.y += (dy / distance) * 2;
           }
-        }
-        // Alterna el actual
-        this.classList.toggle('active-accordion');
-        const panel = this.nextElementSibling;
-        if (panel.style.maxHeight) {
-          panel.style.maxHeight = null;
-        } else {
-          panel.style.maxHeight = panel.scrollHeight + 'px';
-        }
-      });
+
+          // Movimiento natural
+          particle.x += particle.speedX;
+          particle.y += particle.speedY;
+
+          // Rebote en bordes
+          if(particle.x < 0 || particle.x > this.canvas.width) particle.speedX *= -1;
+          if(particle.y < 0 || particle.y > this.canvas.height) particle.speedY *= -1;
+
+          // Dibujar partícula
+          this.ctx.beginPath();
+          this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+          this.ctx.fillStyle = particle.color;
+          this.ctx.fill();
+        });
+
+        requestAnimationFrame(() => this.animate());
+      }
     }
 
-    // ---------- BOTÓN VOLVER ARRIBA ----------
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    // ===== INICIALIZACIÓN =====
+    const canvas = document.getElementById('particleCanvas');
+    const particleSystem = new ParticleSystem(canvas);
 
-    // ---------- TOGGLE THEME ----------
+    // ===== TOGGLE THEME =====
     function toggleTheme() {
-      document.body.classList.toggle('light-mode');
-      const btn = document.querySelector('.theme-toggle');
-      if (document.body.classList.contains('light-mode')) {
-        btn.textContent = 'Modo Oscuro';
-      } else {
-        btn.textContent = 'Modo Claro';
-      }
+      document.body.classList.toggle('light-theme');
     }
 
-    // ---------- TIKTOK ACCORDION ----------
-    function toggleTikTok() {
-      const panel = document.getElementById('tiktokPanel');
-      if (panel.classList.contains('show')) {
-        panel.classList.remove('show');
-      } else {
-        panel.classList.add('show');
-      }
+    // ===== ACORDEONES =====
+    function toggleAccordion(header) {
+      const accordion = header.parentElement;
+      accordion.classList.toggle('active');
     }
 
-    // ---------- MODAL VIDEO ----------
-    function showVideoModal() {
-      document.getElementById('videoModal').style.display = 'flex';
-    }
-    function closeVideoModal() {
-      document.getElementById('videoModal').style.display = 'none';
-    }
-
-    // ---------- MODAL PAYPAL ----------
-    function showPaypalModal() {
-      document.getElementById('paypalModal').style.display = 'flex';
-    }
-    function closePaypalModal() {
-      document.getElementById('paypalModal').style.display = 'none';
-    }
-
-    // ---------- MODAL NEQUI ----------
-    function showNequiModal() {
-      document.getElementById('nequiModal').style.display = 'flex';
-    }
-    function closeNequiModal() {
-      document.getElementById('nequiModal').style.display = 'none';
-    }
-
-    // ---------- MODAL "QUIÉN SOY" ----------
-    function showAboutModal() {
-      document.getElementById('aboutModal').style.display = 'flex';
-    }
-    function closeAboutModal() {
-      document.getElementById('aboutModal').style.display = 'none';
-    }
-
-    // ---------- FPS COUNTER ----------
-    function updateFPS() {
-      const fps = Math.floor(Math.random() * (900 - 600 + 1)) + 600;
-      document.getElementById('fpsCounter').textContent = "FPS: " + fps;
-    }
-    setInterval(updateFPS, 100);
+    // ===== FPS COUNTER MEME =====
+    setInterval(() => {
+      const fps = Math.floor(Math.random() * (144 - 60) + 60);
+      document.getElementById('fpsCounter').innerHTML = `
+        FPS: ${'█'.repeat(fps / 10).padEnd(14, '░')}
+        <span style="color: hsl(${fps * 2}, 70%, 60%)">${fps}</span>
+      `;
+    }, 100);
   </script>
 </body>
 </html>
