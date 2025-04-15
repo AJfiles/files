@@ -44,8 +44,8 @@
       font-family: Arial, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
-      margin: 0; 
-      padding: 0; 
+      margin: 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -151,7 +151,7 @@
     .tiktok-panel a:hover {
       background-color: var(--accordion-hover);
     }
-
+    
     main {
       width: 90%;
       max-width: 900px;
@@ -511,6 +511,10 @@
       <h2 class="section-title pulse-title">JUEGOS OPTIMIZADOS</h2>
       <button class="accordion">Minecraft</button>
       <div class="panel">
+        <!-- Imagen centrada en el acordeón -->
+        <div style="text-align: center; margin-bottom: 10px;">
+          <img src="Minecraft_Java_%26_Bedrock_Edition_for_PC_square_key_art.png" alt="Minecraft Java & Bedrock" style="max-width: 200px;">
+        </div>
         <p style="margin: 10px 0; font-weight: bold;">Version Java:</p>
         <ul>
           <li><a href="https://cutyion.com/MC1215AJ" target="_blank">Minecraft 1.21.5 +FPS</a></li>
@@ -565,13 +569,13 @@
         <ul>
           <li><a href="https://cuty.io/CODBO2FPS" target="_blank">Descargar COD Black Ops 2 +FPS</a></li>
         </ul>
-      </button>
+      </div>
       <button class="accordion">CALL OF DUTY MW3 +FPS</button>
       <div class="panel">
         <ul>
           <li><a href="https://cuty.io/CODMW3FPS" target="_blank">Descargar COD MW3 +FPS</a></li>
         </ul>
-      </button>
+      </div>
       <button class="accordion">GTA V +FPS</button>
       <div class="panel">
         <ul>
@@ -583,14 +587,12 @@
     <!-- ARCHIVOS ANDROID -->
     <section>
       <h2 class="section-title pulse-title">ARCHIVOS ANDROID</h2>
-      
       <button class="accordion">HACKS DE FREEFIRE (ROOT MAGISK)</button>
       <div class="panel">
         <ul>
           <li><a href="https://cutyion.com/FreefireH" target="_blank">Descargar Hacks Freefire</a></li>
         </ul>
       </div>
-      
       <button class="accordion">CAMBIAR RESOLUCION DE PANTALLA EN ANDROID +FPS</button>
       <div class="panel">
         <ul>
@@ -598,7 +600,6 @@
           <li><a href="https://cuty.io/ANDROIDFPS" target="_blank">Descargar Archivo Resolución +FPS</a></li>
         </ul>
       </div>
-      
       <button class="accordion">WIFI DE PC A ANDROID DIRECTO</button>
       <div class="panel">
         <ul>
@@ -690,7 +691,6 @@
     const accordions = document.getElementsByClassName('accordion');
     for (let i = 0; i < accordions.length; i++) {
       accordions[i].addEventListener('click', function() {
-        // Cierra los demás acordeones
         for (let j = 0; j < accordions.length; j++) {
           if (accordions[j] !== this) {
             accordions[j].classList.remove('active-accordion');
@@ -698,7 +698,6 @@
             otherPanel.style.maxHeight = null;
           }
         }
-        // Alterna el acordeón actual
         this.classList.toggle('active-accordion');
         const panel = this.nextElementSibling;
         if (panel.style.maxHeight) {
@@ -708,12 +707,12 @@
         }
       });
     }
-
+    
     // ---------- BOTÓN VOLVER ARRIBA ----------
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
+    
     // ---------- TOGGLE THEME ----------
     function toggleTheme() {
       document.body.classList.toggle('light-mode');
@@ -724,7 +723,7 @@
         btn.textContent = 'Modo Claro';
       }
     }
-
+    
     // ---------- TIKTOK ACCORDION ----------
     function toggleTikTok() {
       const panel = document.getElementById('tiktokPanel');
@@ -734,7 +733,7 @@
         panel.classList.add('show');
       }
     }
-
+    
     // ---------- MODAL VIDEO ----------
     function showVideoModal() {
       document.getElementById('videoModal').style.display = 'flex';
@@ -742,7 +741,7 @@
     function closeVideoModal() {
       document.getElementById('videoModal').style.display = 'none';
     }
-
+    
     // ---------- MODAL PAYPAL ----------
     function showPaypalModal() {
       document.getElementById('paypalModal').style.display = 'flex';
@@ -750,7 +749,7 @@
     function closePaypalModal() {
       document.getElementById('paypalModal').style.display = 'none';
     }
-
+    
     // ---------- MODAL NEQUI ----------
     function showNequiModal() {
       document.getElementById('nequiModal').style.display = 'flex';
@@ -758,7 +757,7 @@
     function closeNequiModal() {
       document.getElementById('nequiModal').style.display = 'none';
     }
-
+    
     // ---------- MODAL "QUIÉN SOY" ----------
     function showAboutModal() {
       document.getElementById('aboutModal').style.display = 'flex';
@@ -766,7 +765,7 @@
     function closeAboutModal() {
       document.getElementById('aboutModal').style.display = 'none';
     }
-
+    
     // ---------- FPS COUNTER ----------
     function updateFPS() {
       const fps = Math.floor(Math.random() * (900 - 600 + 1)) + 600;
