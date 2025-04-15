@@ -44,14 +44,15 @@
       font-family: Arial, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
-      margin: 0; padding: 0;
+      margin: 0; 
+      padding: 0; 
       display: flex;
       flex-direction: column;
       align-items: center;
       transition: background-color 0.3s, color 0.3s;
       position: relative;
     }
-    /* FPS Counter (verde) */
+    /* FPS COUNTER (fondo verde) */
     #fpsCounter {
       position: fixed;
       top: 10px;
@@ -97,7 +98,8 @@
     .theme-toggle:hover {
       background-color: var(--button-hover);
     }
-    /* Redes Sociales (todos unificados) */
+    
+    /* Redes Sociales (unificadas) */
     .social-links {
       margin: 20px 0;
       display: flex;
@@ -149,6 +151,7 @@
     .tiktok-panel a:hover {
       background-color: var(--accordion-hover);
     }
+
     main {
       width: 90%;
       max-width: 900px;
@@ -173,7 +176,7 @@
     }
     a { text-decoration: none; }
     
-    /* Accordions: Permitir solo uno abierto */
+    /* Accordions (solo uno abierto a la vez) */
     .accordion {
       background-color: var(--accordion-bg);
       color: var(--text-color);
@@ -216,7 +219,7 @@
       color: var(--hover-color);
     }
 
-    /* Botón grande para Video Explicativo (ahora abre modal video) */
+    /* Botón grande para Video Explicativo */
     .large-button {
       display: block;
       margin: 0 auto 15px auto;
@@ -277,8 +280,8 @@
       background-color: var(--panel-bg);
       padding: 10px;
       border-radius: 5px;
-      max-width: 90%;
-      max-height: 90%;
+      max-width: 600px;
+      max-height: 80vh;
       animation: bounce 0.5s;
       position: relative;
     }
@@ -305,7 +308,71 @@
       100% { transform: scale(1); }
     }
     
-    /* Modal "Quién Soy" (con efecto rebote y close-btn) */
+    /* Modal PayPal */
+    .modal-paypal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal-paypal-content {
+      background-color: var(--panel-bg);
+      color: var(--text-color);
+      padding: 20px;
+      border-radius: 5px;
+      text-align: center;
+      max-width: 300px;
+      animation: bounce 0.5s;
+      position: relative;
+    }
+    .modal-paypal-content .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 8px;
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+    
+    /* Modal Nequi */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background-color: var(--panel-bg);
+      color: var(--text-color);
+      padding: 20px;
+      border-radius: 5px;
+      text-align: center;
+      max-width: 300px;
+      animation: bounce 0.5s;
+      position: relative;
+    }
+    .modal-content .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 8px;
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+    
+    /* Modal "Quién Soy" */
     .about-modal-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -372,38 +439,6 @@
       background-color: var(--button-hover);
     }
     
-    /* Modal PayPal */
-    .modal-paypal-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .modal-paypal-content {
-      background-color: var(--panel-bg);
-      color: var(--text-color);
-      padding: 20px;
-      border-radius: 5px;
-      text-align: center;
-      max-width: 300px;
-      animation: bounce 0.5s;
-      position: relative;
-    }
-    .modal-paypal-content .close-btn {
-      position: absolute;
-      top: 5px;
-      right: 8px;
-      background: none;
-      border: none;
-      font-size: 18px;
-      cursor: pointer;
-      color: var(--text-color);
-    }
-    
     /* Sección "Quién Soy" centrada */
     #aboutSection {
       width: 90%;
@@ -462,7 +497,7 @@
       <div class="panel">
         <ul>
           <li>
-            Ojo con las descargas maliciosas, la mayoría (si no es que todas) son por MediaFire, no a páginas +18 o similares, ni descargas con contraseñas.  
+            Ojo con las descargas maliciosas, la mayoría (si no es que todas) son por MediaFire, no a páginas +18 o similares, ni descargas con contraseñas.
             Todo está abierto, por favor ver el video de cómo pasar el acortador.
             <br><br>
             Solo dejo 1 Acortador porque así apoyas mi contenido sin pedir directamente donaciones.
@@ -474,7 +509,6 @@
     <!-- JUEGOS OPTIMIZADOS -->
     <section>
       <h2 class="section-title pulse-title">JUEGOS OPTIMIZADOS</h2>
-      <!-- Acordeón Minecraft separado en dos grupos -->
       <button class="accordion">Minecraft</button>
       <div class="panel">
         <p style="margin: 10px 0; font-weight: bold;">Version Java:</p>
@@ -489,7 +523,6 @@
           <li><a href="https://cutyion.com/BEDROCKPCFPS" target="_blank">Minecraft Bedrock (PC) +FPS</a></li>
         </ul>
       </div>
-
       <button class="accordion">SHEDULE I OPTIMIZACION +FPS</button>
       <div class="panel">
         <ul>
@@ -554,7 +587,7 @@
         <ul>
           <li><a href="https://cutyion.com/FreefireH" target="_blank">Descargar Hacks Freefire</a></li>
         </ul>
-      </button>
+      </button><!-- ERROR CORREGIDO: se elimina la etiqueta de cierre extra -->
       <button class="accordion">CAMBIAR RESOLUCION DE PANTALLA EN ANDROID +FPS</button>
       <div class="panel">
         <ul>
@@ -611,7 +644,6 @@
   <div class="video-modal-overlay" id="videoModal">
     <div class="video-modal-content">
       <button class="close-btn" onclick="closeVideoModal()">×</button>
-      <!-- Video se carga de tu repositorio; verifica que la ruta sea correcta -->
       <video controls>
         <source src="tanto_para_pc_como_android%20(1080p).mp4" type="video/mp4">
         Tu navegador no soporta el elemento de video.
@@ -625,6 +657,7 @@
       <button class="close-btn" onclick="closePaypalModal()">×</button>
       <h3>PayPal</h3>
       <p>Hasta 0.20 son bien venidos</p>
+      <a href="https://www.paypal.com/paypalme/AlejandroAlferezA?country.x=CO&locale.x=es_XC" target="_blank">Donar vía PayPal</a>
     </div>
   </div>
 
@@ -652,7 +685,7 @@
   </div>
 
   <script>
-    // ---------- ACCORDIONS (solo uno abierto a la vez) ----------
+    // ---------- ACCORDIONS: Solo se abre uno a la vez ----------
     const accordions = document.getElementsByClassName('accordion');
     for (let i = 0; i < accordions.length; i++) {
       accordions[i].addEventListener('click', function() {
@@ -675,7 +708,7 @@
       });
     }
 
-    // ---------- BOTÓN VOLVER ARRIBA ----------
+    // ---------- BOTÓN VOLver ARRIBA ----------
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
