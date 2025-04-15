@@ -21,6 +21,7 @@
       --footer-border: #444;
     }
     body.light-mode {
+      /* Modo Claro Mejorado */
       --bg-color: #ffffff;
       --text-color: #222;
       --header-bg: #f7f7f7;
@@ -34,7 +35,7 @@
       --hover-color: #005577;
       --footer-border: #ddd;
     }
-
+    
     /* ============================
        ESTILOS GLOBALES
     ============================ */
@@ -43,28 +44,25 @@
       font-family: Arial, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       transition: background-color 0.3s, color 0.3s;
       position: relative;
     }
-
-    /* FPS Counter */
+    /* FPS Counter (verde) */
     #fpsCounter {
       position: fixed;
       top: 10px;
       left: 10px;
-      background-color: var(--button-bg);
+      background-color: green;
       color: #fff;
       padding: 5px 8px;
       border-radius: 4px;
       font-size: 14px;
       z-index: 1000;
     }
-
     header {
       background-color: var(--header-bg);
       width: 100%;
@@ -99,8 +97,7 @@
     .theme-toggle:hover {
       background-color: var(--button-hover);
     }
-
-    /* Redes Sociales unificadas */
+    /* Redes Sociales (todos unificados) */
     .social-links {
       margin: 20px 0;
       display: flex;
@@ -152,7 +149,6 @@
     .tiktok-panel a:hover {
       background-color: var(--accordion-hover);
     }
-
     main {
       width: 90%;
       max-width: 900px;
@@ -176,8 +172,8 @@
       margin-bottom: 40px;
     }
     a { text-decoration: none; }
-
-    /* Accordions: permitimos un solo abierto */
+    
+    /* Accordions: Permitir solo uno abierto */
     .accordion {
       background-color: var(--accordion-bg);
       color: var(--text-color);
@@ -220,7 +216,7 @@
       color: var(--hover-color);
     }
 
-    /* Botón grande para Video Explicativo */
+    /* Botón grande para Video Explicativo (ahora abre modal video) */
     .large-button {
       display: block;
       margin: 0 auto 15px auto;
@@ -265,8 +261,82 @@
       border-top: 1px solid var(--footer-border);
       margin-top: 40px;
     }
-
-    /* Donaciones */
+    
+    /* Modal Video */
+    .video-modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .video-modal-content {
+      background-color: var(--panel-bg);
+      padding: 10px;
+      border-radius: 5px;
+      max-width: 90%;
+      max-height: 90%;
+      animation: bounce 0.5s;
+      position: relative;
+    }
+    .video-modal-content video {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 5px;
+    }
+    .video-modal-content .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 8px;
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+    
+    @keyframes bounce {
+      0% { transform: scale(0.8); }
+      60% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    
+    /* Modal "Quién Soy" (con efecto rebote y close-btn) */
+    .about-modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .about-modal-content {
+      background-color: var(--panel-bg);
+      padding: 20px;
+      border-radius: 5px;
+      max-width: 500px;
+      animation: bounce 0.5s;
+      position: relative;
+      text-align: left;
+    }
+    .about-modal-content .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 8px;
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+    
+    /* Sección Donaciones centrada */
     #donations {
       width: 90%;
       max-width: 900px;
@@ -301,9 +371,9 @@
     .donation-buttons button:hover {
       background-color: var(--button-hover);
     }
-
-    /* Modal Nequi */
-    .modal-overlay {
+    
+    /* Modal PayPal */
+    .modal-paypal-overlay {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
@@ -313,7 +383,7 @@
       align-items: center;
       z-index: 1000;
     }
-    .modal-content {
+    .modal-paypal-content {
       background-color: var(--panel-bg);
       color: var(--text-color);
       padding: 20px;
@@ -323,7 +393,7 @@
       animation: bounce 0.5s;
       position: relative;
     }
-    .modal-content .close-btn {
+    .modal-paypal-content .close-btn {
       position: absolute;
       top: 5px;
       right: 8px;
@@ -333,45 +403,8 @@
       cursor: pointer;
       color: var(--text-color);
     }
-    @keyframes bounce {
-      0% { transform: scale(0.8); }
-      60% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-
-    /* Modal "Leer" (Quién Soy) */
-    .about-modal-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .about-modal-content {
-      background-color: var(--panel-bg);
-      color: var(--text-color);
-      padding: 20px;
-      border-radius: 5px;
-      max-width: 500px;
-      animation: bounce 0.5s;
-      position: relative;
-      text-align: left;
-    }
-    .about-modal-content .close-btn {
-      position: absolute;
-      top: 5px;
-      right: 8px;
-      background: none;
-      border: none;
-      font-size: 18px;
-      cursor: pointer;
-      color: var(--text-color);
-    }
-
-    /* Sección "Quién Soy" estilo centrado */
+    
+    /* Sección "Quién Soy" centrada */
     #aboutSection {
       width: 90%;
       max-width: 900px;
@@ -407,14 +440,12 @@
 
   <!-- Redes Sociales -->
   <div class="social-links">
-    <!-- Botón TikTok con acordeón -->
     <button class="tiktok-accordion" onclick="toggleTikTok()">TIKTOK</button>
     <div class="tiktok-panel" id="tiktokPanel">
       <a href="https://www.tiktok.com/@ajk.al" target="_blank">TikTok 🇨🇴</a>
       <a href="https://www.tiktok.com/@soyy_aj" target="_blank">TikTok 🇺🇸</a>
       <a href="https://www.tiktok.com/@aj.jugando" target="_blank">TikTok 🎮</a>
     </div>
-    <!-- Otros enlaces directos -->
     <a href="https://www.youtube.com/@Oficial-AJ" target="_blank">YouTube</a>
     <a href="https://discord.com/invite/v6sXsaHhpu" target="_blank">Discord</a>
     <a href="https://www.whatsapp.com/channel/0029Vb78y6d6GcGLSt1Xw834" target="_blank">WhatsApp</a>
@@ -425,9 +456,7 @@
     <section>
       <h2 class="section-title pulse-title">Como Pasar El Acortador De Mis Archivos</h2>
       <div style="text-align: center;">
-        <button class="large-button" onclick="window.open('https://vimeo.com/1074788174', '_blank')">
-          Ver Video Explicativo
-        </button>
+        <button class="large-button" onclick="showVideoModal()">Ver Video Explicativo</button>
       </div>
       <button class="accordion">VER IMPORTANTE</button>
       <div class="panel">
@@ -445,17 +474,22 @@
     <!-- JUEGOS OPTIMIZADOS -->
     <section>
       <h2 class="section-title pulse-title">JUEGOS OPTIMIZADOS</h2>
-      <!-- Aquí siguen los accordions para cada juego... (igual que antes) -->
+      <!-- Acordeón Minecraft separado en dos grupos -->
       <button class="accordion">Minecraft</button>
       <div class="panel">
+        <p style="margin: 10px 0; font-weight: bold;">Version Java:</p>
         <ul>
-          <li><a href="https://cutyion.com/MC1214AJ" target="_blank">Minecraft 1.21.4 +FPS</a></li>
           <li><a href="https://cutyion.com/MC1215AJ" target="_blank">Minecraft 1.21.5 +FPS</a></li>
+          <li><a href="https://cutyion.com/MC1214AJ" target="_blank">Minecraft 1.21.4 +FPS</a></li>
           <li><a href="https://cutyion.com/MC1211" target="_blank">Minecraft 1.21.1 +FPS</a></li>
+        </ul>
+        <p style="margin: 10px 0; font-weight: bold;">Version Bedrock:</p>
+        <ul>
           <li><a href="https://cutyion.com/AJBEDROCKFPS" target="_blank">Minecraft Bedrock +FPS</a></li>
           <li><a href="https://cutyion.com/BEDROCKPCFPS" target="_blank">Minecraft Bedrock (PC) +FPS</a></li>
         </ul>
       </div>
+
       <button class="accordion">SHEDULE I OPTIMIZACION +FPS</button>
       <div class="panel">
         <ul>
@@ -555,17 +589,16 @@
       <h2 class="section-title pulse-title">Donaciones</h2>
       <p>Si te gusta mi contenido, considera apoyarme con una donación.</p>
       <div class="donation-buttons">
-        <a href="https://paypal.me/AlejandroAlferezA?country.x=CO&locale.x=es_XC" target="_blank">Donar vía PayPal</a>
+        <button onclick="showPaypalModal()">PayPal</button>
         <button onclick="showNequiModal()">Nequi</button>
       </div>
     </section>
 
-    <!-- SECCIÓN QUIÉN SOY -->
+    <!-- SECCIÓN "QUIÉN SOY" -->
     <section id="aboutSection">
       <h2 class="section-title pulse-title">¿Quién Soy?</h2>
       <button onclick="showAboutModal()">Leer</button>
     </section>
-
   </main>
 
   <footer>
@@ -573,6 +606,27 @@
   </footer>
 
   <button id="backToTop" onclick="scrollToTop()">Volver Arriba</button>
+
+  <!-- Modal Video -->
+  <div class="video-modal-overlay" id="videoModal">
+    <div class="video-modal-content">
+      <button class="close-btn" onclick="closeVideoModal()">×</button>
+      <!-- Video se carga de tu repositorio; verifica que la ruta sea correcta -->
+      <video controls>
+        <source src="tanto_para_pc_como_android%20(1080p).mp4" type="video/mp4">
+        Tu navegador no soporta el elemento de video.
+      </video>
+    </div>
+  </div>
+
+  <!-- Modal PayPal -->
+  <div class="modal-paypal-overlay" id="paypalModal">
+    <div class="modal-paypal-content">
+      <button class="close-btn" onclick="closePaypalModal()">×</button>
+      <h3>PayPal</h3>
+      <p>Hasta 0.20 son bien venidos</p>
+    </div>
+  </div>
 
   <!-- Modal Nequi -->
   <div class="modal-overlay" id="nequiModal">
@@ -598,11 +652,11 @@
   </div>
 
   <script>
-    // ---------- ACCORDION GLOBAL: Permitir solo uno abierto ----------
+    // ---------- ACCORDIONS (solo uno abierto a la vez) ----------
     const accordions = document.getElementsByClassName('accordion');
     for (let i = 0; i < accordions.length; i++) {
       accordions[i].addEventListener('click', function() {
-        // Primero cierra todos los otros accordions
+        // Cerrar todos los demás
         for (let j = 0; j < accordions.length; j++) {
           if (accordions[j] !== this) {
             accordions[j].classList.remove('active-accordion');
@@ -610,7 +664,7 @@
             otherPanel.style.maxHeight = null;
           }
         }
-        // Alterna el acordeón actual
+        // Alterna el actual
         this.classList.toggle('active-accordion');
         const panel = this.nextElementSibling;
         if (panel.style.maxHeight) {
@@ -647,6 +701,22 @@
       }
     }
 
+    // ---------- MODAL VIDEO ----------
+    function showVideoModal() {
+      document.getElementById('videoModal').style.display = 'flex';
+    }
+    function closeVideoModal() {
+      document.getElementById('videoModal').style.display = 'none';
+    }
+
+    // ---------- MODAL PAYPAL ----------
+    function showPaypalModal() {
+      document.getElementById('paypalModal').style.display = 'flex';
+    }
+    function closePaypalModal() {
+      document.getElementById('paypalModal').style.display = 'none';
+    }
+
     // ---------- MODAL NEQUI ----------
     function showNequiModal() {
       document.getElementById('nequiModal').style.display = 'flex';
@@ -665,11 +735,10 @@
 
     // ---------- FPS COUNTER ----------
     function updateFPS() {
-      // Genera un número aleatorio entre 600 y 900
       const fps = Math.floor(Math.random() * (900 - 600 + 1)) + 600;
       document.getElementById('fpsCounter').textContent = "FPS: " + fps;
     }
-    setInterval(updateFPS, 100); // Actualiza cada 100 ms
+    setInterval(updateFPS, 100);
   </script>
 </body>
 </html>
