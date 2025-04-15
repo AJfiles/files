@@ -36,6 +36,15 @@
       --footer-border: #ddd;
     }
     
+    /* Nueva clase para la imagen con efecto rebote */
+    .bounce-image {
+      animation: bounceImage 2s infinite;
+    }
+    @keyframes bounceImage {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
     /* ============================
        ESTILOS GLOBALES
     ============================ */
@@ -44,8 +53,8 @@
       font-family: Arial, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
-      margin: 0;
-      padding: 0;
+      margin: 0; 
+      padding: 0; 
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -151,7 +160,7 @@
     .tiktok-panel a:hover {
       background-color: var(--accordion-hover);
     }
-    
+
     main {
       width: 90%;
       max-width: 900px;
@@ -174,7 +183,9 @@
     section {
       margin-bottom: 40px;
     }
-    a { text-decoration: none; }
+    a {
+      text-decoration: none;
+    }
     
     /* Accordions: Solo se abre uno a la vez */
     .accordion {
@@ -511,9 +522,9 @@
       <h2 class="section-title pulse-title">JUEGOS OPTIMIZADOS</h2>
       <button class="accordion">Minecraft</button>
       <div class="panel">
-        <!-- Imagen centrada en el acordeón -->
+        <!-- Imagen para Minecraft -->
         <div style="text-align: center; margin-bottom: 10px;">
-          <img src="Minecraft.png" alt="Minecraft Java & Bedrock" style="max-width: 200px;">
+          <img src="Minecraft.png" alt="Minecraft" class="bounce-image" style="max-width: 200px;">
         </div>
         <p style="margin: 10px 0; font-weight: bold;">Version Java:</p>
         <ul>
@@ -530,78 +541,127 @@
       </div>
       <button class="accordion">SHEDULE I OPTIMIZACION +FPS</button>
       <div class="panel">
+        <!-- Imagen para Schedule -->
+        <div style="text-align: center; margin-bottom: 10px;">
+          <img src="Schedule.png" alt="Schedule" class="bounce-image" style="max-width: 200px;">
+        </div>
         <ul>
           <li><a href="https://cutyion.com/ScheduleAJ" target="_blank">Descargar SHEDULE I OPTIMIZACION +FPS</a></li>
         </ul>
       </div>
       <button class="accordion">WATCHDOGS 2 OPTIMIZACION +FPS</button>
       <div class="panel">
+        <!-- Imagen para WatchDogs2 -->
+        <div style="text-align: center; margin-bottom: 10px;">
+          <img src="WatchDogs2.png" alt="WatchDogs2" class="bounce-image" style="max-width: 200px;">
+        </div>
         <ul>
           <li><a href="https://cutyion.com/WD2FPS" target="_blank">Descargar WATCHDOGS 2 +FPS</a></li>
         </ul>
       </div>
       <button class="accordion">OPTIMIZACION DEFINITIVA FORTNITE</button>
       <div class="panel">
+        <!-- Imagen para Fortnite -->
+        <div style="text-align: center; margin-bottom: 10px;">
+          <img src="Fortnite.png" alt="Fortnite" class="bounce-image" style="max-width: 200px;">
+        </div>
         <ul>
           <li><a href="https://cutyion.com/FortniteFPS" target="_blank">Descargar Fortnite +FPS</a></li>
         </ul>
       </div>
       <button class="accordion">DRAGON BALL SPARKING ZERO +FPS</button>
       <div class="panel">
+        <!-- Imagen para Dragonball -->
+        <div style="text-align: center; margin-bottom: 10px;">
+          <img src="Dragonball.png" alt="Dragon Ball" class="bounce-image" style="max-width: 200px;">
+        </div>
         <ul>
           <li><a href="https://cutyion.com/DragonBallAJ" target="_blank">Descargar Dragon Ball +FPS</a></li>
         </ul>
       </div>
       <button class="accordion">PES-2017 OPTI +FPS</button>
       <div class="panel">
+        <!-- Imagen para PES2017 -->
+        <div style="text-align: center; margin-bottom: 10px;">
+          <img src="pes2017.png" alt="PES 2017" class="bounce-image" style="max-width: 200px;">
+        </div>
         <ul>
           <li><a href="https://cuty.io/PES2017AJ" target="_blank">Descargar PES 2017 +FPS</a></li>
         </ul>
       </div>
       <button class="accordion">ROCKET LEAGUE +FPS</button>
       <div class="panel">
+        <!-- Imagen para Rocket League -->
+        <div style="text-align: center; margin-bottom: 10px;">
+          <img src="rocketLeague.png" alt="Rocket League" class="bounce-image" style="max-width: 200px;">
+        </div>
         <ul>
           <li><a href="https://cuty.io/ROCKETFPSAJ" target="_blank">Descargar Rocket League +FPS</a></li>
         </ul>
       </div>
       <button class="accordion">CALL OF DUTY BLACK OPS 2 +FPS</button>
       <div class="panel">
+        <!-- Imagen para codbo2 -->
+        <div style="text-align: center; margin-bottom: 10px;">
+          <img src="codbo2.png" alt="COD Black Ops 2" class="bounce-image" style="max-width: 200px;">
+        </div>
         <ul>
           <li><a href="https://cuty.io/CODBO2FPS" target="_blank">Descargar COD Black Ops 2 +FPS</a></li>
         </ul>
       </div>
       <button class="accordion">CALL OF DUTY MW3 +FPS</button>
       <div class="panel">
+        <!-- Imagen para CoDmw3 -->
+        <div style="text-align: center; margin-bottom: 10px;">
+          <img src="CoDmw3.png" alt="COD MW3" class="bounce-image" style="max-width: 200px;">
+        </div>
         <ul>
           <li><a href="https://cuty.io/CODMW3FPS" target="_blank">Descargar COD MW3 +FPS</a></li>
         </ul>
       </div>
       <button class="accordion">GTA V +FPS</button>
       <div class="panel">
+        <!-- Imagen para GTA V -->
+        <div style="text-align: center; margin-bottom: 10px;">
+          <img src="gtav.png" alt="GTA V" class="bounce-image" style="max-width: 200px;">
+        </div>
         <ul>
           <li><a href="https://cuty.io/GTAVFPSAJ" target="_blank">Descargar GTA V +FPS</a></li>
         </ul>
       </div>
     </section>
 
-    <!-- ARCHIVOS ANDROID -->
+    <!-- ARCHIVOS ANDROID (sección independiente) -->
     <section>
       <h2 class="section-title pulse-title">ARCHIVOS ANDROID</h2>
+      
       <button class="accordion">HACKS DE FREEFIRE (ROOT MAGISK)</button>
       <div class="panel">
+        <div style="text-align: center; margin-bottom: 10px;">
+          <!-- Podrías agregar otra imagen para este acordeón si tienes una, por ejemplo: Freefire.png -->
+          <!-- <img src="Freefire.png" alt="Freefire" class="bounce-image" style="max-width: 200px;"> -->
+        </div>
         <ul>
           <li><a href="https://cutyion.com/FreefireH" target="_blank">Descargar Hacks Freefire</a></li>
         </ul>
       </div>
+      
       <button class="accordion">CAMBIAR RESOLUCION DE PANTALLA EN ANDROID +FPS</button>
       <div class="panel">
+        <div style="text-align: center; margin-bottom: 10px;">
+          <!-- Puedes añadir una imagen específica si lo deseas, por ejemplo: Resolution.png -->
+        </div>
         <ul>
           <li><a href="https://www.tiktok.com/@ajk.al/video/7273274423484976390" target="_blank">Ver Video Tutorial</a></li>
           <li><a href="https://cuty.io/ANDROIDFPS" target="_blank">Descargar Archivo Resolución +FPS</a></li>
         </ul>
       </div>
+      
       <button class="accordion">WIFI DE PC A ANDROID DIRECTO</button>
       <div class="panel">
+        <div style="text-align: center; margin-bottom: 10px;">
+          <!-- Imagen opcional para WiFi: WiFi.png, si tienes alguna -->
+        </div>
         <ul>
           <li><a href="https://cuty.io/PCAANDROID" target="_blank">Descargar WiFi PC a Android</a></li>
         </ul>
@@ -691,6 +751,7 @@
     const accordions = document.getElementsByClassName('accordion');
     for (let i = 0; i < accordions.length; i++) {
       accordions[i].addEventListener('click', function() {
+        // Cierra los demás acordeones
         for (let j = 0; j < accordions.length; j++) {
           if (accordions[j] !== this) {
             accordions[j].classList.remove('active-accordion');
@@ -698,6 +759,7 @@
             otherPanel.style.maxHeight = null;
           }
         }
+        // Alterna el acordeón actual
         this.classList.toggle('active-accordion');
         const panel = this.nextElementSibling;
         if (panel.style.maxHeight) {
