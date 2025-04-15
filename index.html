@@ -21,7 +21,6 @@
       --footer-border: #444;
     }
     body.light-mode {
-      /* Modo Claro Mejorado */
       --bg-color: #ffffff;
       --text-color: #222;
       --header-bg: #f7f7f7;
@@ -35,16 +34,17 @@
       --hover-color: #005577;
       --footer-border: #ddd;
     }
-    
-    * {
-      box-sizing: border-box;
-    }
+
+    /* ============================
+       ESTILOS GLOBALES
+    ============================ */
+    * { box-sizing: border-box; }
     body {
       font-family: Arial, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-color);
-      margin: 0; 
-      padding: 0; 
+      margin: 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -52,7 +52,19 @@
       position: relative;
     }
 
-    /* Encabezado */
+    /* FPS Counter */
+    #fpsCounter {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background-color: var(--button-bg);
+      color: #fff;
+      padding: 5px 8px;
+      border-radius: 4px;
+      font-size: 14px;
+      z-index: 1000;
+    }
+
     header {
       background-color: var(--header-bg);
       width: 100%;
@@ -88,7 +100,7 @@
       background-color: var(--button-hover);
     }
 
-    /* Redes Sociales */
+    /* Redes Sociales unificadas */
     .social-links {
       margin: 20px 0;
       display: flex;
@@ -160,15 +172,12 @@
     .pulse-title {
       animation: pulse 2s infinite;
     }
-
     section {
       margin-bottom: 40px;
     }
-    a {
-      text-decoration: none;
-    }
+    a { text-decoration: none; }
 
-    /* Accordions */
+    /* Accordions: permitimos un solo abierto */
     .accordion {
       background-color: var(--accordion-bg);
       color: var(--text-color);
@@ -211,7 +220,7 @@
       color: var(--hover-color);
     }
 
-    /* Botón grande (Video Explicativo) */
+    /* Botón grande para Video Explicativo */
     .large-button {
       display: block;
       margin: 0 auto 15px auto;
@@ -227,7 +236,7 @@
     .large-button:hover {
       background-color: var(--button-hover);
     }
-
+    
     /* Botón Volver Arriba */
     #backToTop {
       position: fixed;
@@ -246,7 +255,7 @@
     #backToTop:hover {
       opacity: 1;
     }
-
+    
     footer {
       background-color: var(--bg-color);
       width: 100%;
@@ -264,8 +273,8 @@
       background-color: var(--panel-bg);
       padding: 15px;
       border-radius: 5px;
-      margin: 20px auto; /* centrado */
-      text-align: center; /* centrado */
+      margin: 20px auto;
+      text-align: center;
     }
     #donations h2 {
       text-align: center;
@@ -311,33 +320,66 @@
       border-radius: 5px;
       text-align: center;
       max-width: 300px;
+      animation: bounce 0.5s;
+      position: relative;
     }
-    .modal-content button {
-      margin-top: 15px;
-      background-color: red;
+    .modal-content .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 8px;
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+    @keyframes bounce {
+      0% { transform: scale(0.8); }
+      60% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
 
-    /* ¿Quién Soy? */
+    /* Modal "Leer" (Quién Soy) */
+    .about-modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .about-modal-content {
+      background-color: var(--panel-bg);
+      color: var(--text-color);
+      padding: 20px;
+      border-radius: 5px;
+      max-width: 500px;
+      animation: bounce 0.5s;
+      position: relative;
+      text-align: left;
+    }
+    .about-modal-content .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 8px;
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+
+    /* Sección "Quién Soy" estilo centrado */
     #aboutSection {
       width: 90%;
       max-width: 900px;
       background-color: var(--panel-bg);
       padding: 15px;
       border-radius: 5px;
-      margin: 20px auto; /* centrado */
-      text-align: center; /* centrado */
-    }
-    #aboutContent {
-      display: none;
-      margin-top: 10px;
-      padding: 10px;
-      background-color: var(--accordion-bg);
-      border-radius: 5px;
-      text-align: left;
-    }
-    #aboutContent p {
-      margin: 5px 0;
-      line-height: 1.5em;
+      margin: 20px auto;
+      text-align: center;
     }
     #aboutSection button {
       padding: 10px 15px;
@@ -354,6 +396,9 @@
   </style>
 </head>
 <body>
+
+  <!-- FPS Counter -->
+  <div id="fpsCounter">FPS: 0</div>
 
   <header>
     <h1>Archivos y Recursos de AJ</h1>
@@ -388,10 +433,10 @@
       <div class="panel">
         <ul>
           <li>
-            Ojo con las descargas maliciosas, la mayoría (si no es que todas) son por MediaFire, no a páginas +18 o similares, ni descargas con contraseñas.
+            Ojo con las descargas maliciosas, la mayoría (si no es que todas) son por MediaFire, no a páginas +18 o similares, ni descargas con contraseñas.  
             Todo está abierto, por favor ver el video de cómo pasar el acortador.
             <br><br>
-            Solo dejo 1 Acortador porque así apoyas mi contenido sin pedir directamente donaciones. Muchas gracias y espero disfrutes mis archivos y trabajos, ¡Gracias!
+            Solo dejo 1 Acortador porque así apoyas mi contenido sin pedir directamente donaciones.
           </li>
         </ul>
       </div>
@@ -400,8 +445,7 @@
     <!-- JUEGOS OPTIMIZADOS -->
     <section>
       <h2 class="section-title pulse-title">JUEGOS OPTIMIZADOS</h2>
-      
-      <!-- Minecraft -->
+      <!-- Aquí siguen los accordions para cada juego... (igual que antes) -->
       <button class="accordion">Minecraft</button>
       <div class="panel">
         <ul>
@@ -412,72 +456,54 @@
           <li><a href="https://cutyion.com/BEDROCKPCFPS" target="_blank">Minecraft Bedrock (PC) +FPS</a></li>
         </ul>
       </div>
-
-      <!-- SHEDULE I OPTIMIZACION +FPS -->
       <button class="accordion">SHEDULE I OPTIMIZACION +FPS</button>
       <div class="panel">
         <ul>
           <li><a href="https://cutyion.com/ScheduleAJ" target="_blank">Descargar SHEDULE I OPTIMIZACION +FPS</a></li>
         </ul>
       </div>
-
-      <!-- WATCHDOGS 2 OPTIMIZACION +FPS -->
       <button class="accordion">WATCHDOGS 2 OPTIMIZACION +FPS</button>
       <div class="panel">
         <ul>
           <li><a href="https://cutyion.com/WD2FPS" target="_blank">Descargar WATCHDOGS 2 +FPS</a></li>
         </ul>
       </div>
-
-      <!-- OPTIMIZACION DEFINITIVA FORTNITE -->
       <button class="accordion">OPTIMIZACION DEFINITIVA FORTNITE</button>
       <div class="panel">
         <ul>
           <li><a href="https://cutyion.com/FortniteFPS" target="_blank">Descargar Fortnite +FPS</a></li>
         </ul>
       </div>
-
-      <!-- DRAGON BALL SPARKING ZERO +FPS -->
       <button class="accordion">DRAGON BALL SPARKING ZERO +FPS</button>
       <div class="panel">
         <ul>
           <li><a href="https://cutyion.com/DragonBallAJ" target="_blank">Descargar Dragon Ball +FPS</a></li>
         </ul>
       </div>
-
-      <!-- PES-2017 OPTI +FPS -->
       <button class="accordion">PES-2017 OPTI +FPS</button>
       <div class="panel">
         <ul>
           <li><a href="https://cuty.io/PES2017AJ" target="_blank">Descargar PES 2017 +FPS</a></li>
         </ul>
       </div>
-
-      <!-- ROCKET LEAGUE +FPS -->
       <button class="accordion">ROCKET LEAGUE +FPS</button>
       <div class="panel">
         <ul>
           <li><a href="https://cuty.io/ROCKETFPSAJ" target="_blank">Descargar Rocket League +FPS</a></li>
         </ul>
       </div>
-
-      <!-- CALL OF DUTY BLACK OPS 2 +FPS -->
       <button class="accordion">CALL OF DUTY BLACK OPS 2 +FPS</button>
       <div class="panel">
         <ul>
           <li><a href="https://cuty.io/CODBO2FPS" target="_blank">Descargar COD Black Ops 2 +FPS</a></li>
         </ul>
       </div>
-
-      <!-- CALL OF DUTY MW3 +FPS -->
       <button class="accordion">CALL OF DUTY MW3 +FPS</button>
       <div class="panel">
         <ul>
           <li><a href="https://cuty.io/CODMW3FPS" target="_blank">Descargar COD MW3 +FPS</a></li>
         </ul>
       </div>
-
-      <!-- GTA V +FPS -->
       <button class="accordion">GTA V +FPS</button>
       <div class="panel">
         <ul>
@@ -489,16 +515,12 @@
     <!-- ARCHIVOS ANDROID -->
     <section>
       <h2 class="section-title pulse-title">ARCHIVOS ANDROID</h2>
-
-      <!-- HACKS DE FREEFIRE (ROOT MAGISK) -->
       <button class="accordion">HACKS DE FREEFIRE (ROOT MAGISK)</button>
       <div class="panel">
         <ul>
           <li><a href="https://cutyion.com/FreefireH" target="_blank">Descargar Hacks Freefire</a></li>
         </ul>
-      </div>
-
-      <!-- CAMBIAR RESOLUCION DE PANTALLA EN ANDROID +FPS -->
+      </button>
       <button class="accordion">CAMBIAR RESOLUCION DE PANTALLA EN ANDROID +FPS</button>
       <div class="panel">
         <ul>
@@ -506,8 +528,6 @@
           <li><a href="https://cuty.io/ANDROIDFPS" target="_blank">Descargar Archivo Resolución +FPS</a></li>
         </ul>
       </div>
-
-      <!-- WIFI DE PC A ANDROID DIRECTO -->
       <button class="accordion">WIFI DE PC A ANDROID DIRECTO</button>
       <div class="panel">
         <ul>
@@ -530,9 +550,9 @@
       </div>
     </section>
 
-    <!-- Sección Donaciones -->
+    <!-- DONACIONES -->
     <section id="donations">
-      <h2>Donaciones</h2>
+      <h2 class="section-title pulse-title">Donaciones</h2>
       <p>Si te gusta mi contenido, considera apoyarme con una donación.</p>
       <div class="donation-buttons">
         <a href="https://paypal.me/AlejandroAlferezA?country.x=CO&locale.x=es_XC" target="_blank">Donar vía PayPal</a>
@@ -540,26 +560,12 @@
       </div>
     </section>
 
-    <!-- Sección Quién Soy -->
+    <!-- SECCIÓN QUIÉN SOY -->
     <section id="aboutSection">
-      <h2 class="pulse-title">¿Quién Soy?</h2>
-      <button onclick="toggleAbout()">Leer</button>
-      <div id="aboutContent">
-        <p>¡Hola! Me llamo Alejandro, aunque en internet me conocen como AJ.</p>
-        <p>Es un apodo corto, fácil de recordar y hasta curioso. Me gusta cuando me dicen cosas como “¡Ey AJ, ayúdame con esto!”, porque suena cercano, simple y único.</p>
-        <p>Desde muy pequeño...</p>
-        <!-- Agrega todo el texto que quieras aquí -->
-        <p><strong>Hay mas historias, pero serán para otro escrito, gracias por leer si es que leíste</strong></p>
-        <p><strong>Lo que sé y lo que hago:</strong><br>
-        Modifico teléfonos y computadoras.<br>
-        Tengo conocimientos en optimización, sistemas personalizados y configuración avanzada.<br>
-        Sé lo básico de HTML y código para defenderme.<br>
-        Domino trucos, tips y me encanta compartirlos.<br>
-        Tengo experiencia en marketing digital y creación de contenido.<br>
-        Siempre busco ser útil, ayudar a otros y formar comunidad.</p>
-        <p>"El propósito de la vida es compartir el conocimiento, o solo se queda en el olvido."</p>
-      </div>
+      <h2 class="section-title pulse-title">¿Quién Soy?</h2>
+      <button onclick="showAboutModal()">Leer</button>
     </section>
+
   </main>
 
   <footer>
@@ -568,21 +574,43 @@
 
   <button id="backToTop" onclick="scrollToTop()">Volver Arriba</button>
 
-  <!-- Modal para Nequi -->
+  <!-- Modal Nequi -->
   <div class="modal-overlay" id="nequiModal">
     <div class="modal-content">
+      <button class="close-btn" onclick="closeNequiModal()">×</button>
       <h3>Nequi</h3>
       <p>Número: <strong>3143766181</strong></p>
       <p>¡Hasta 50 pesos sirven, muchas gracias!</p>
-      <button onclick="closeNequiModal()">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- Modal "Quién Soy" -->
+  <div class="about-modal-overlay" id="aboutModal">
+    <div class="about-modal-content">
+      <button class="close-btn" onclick="closeAboutModal()">×</button>
+      <h3>¿Quién Soy?</h3>
+      <p>¡Hola! Me llamo Alejandro, aunque en internet me conocen como AJ.</p>
+      <p>Es un apodo corto, fácil de recordar y hasta curioso. Me gusta cuando me dicen “¡Ey AJ, ayúdame con esto!”, porque suena cercano, simple y único.</p>
+      <p>Desde muy pequeño, me interesé por los juegos, la optimización de sistemas y la tecnología. A pesar de tener una PC limitada, logré jugar a GTA V descargándolo en varias partes, usando todo lo que podía. Esto fue el comienzo de mi pasión por la optimización y el contenido tecnológico.</p>
+      <p>Hoy en día, modifico teléfonos y computadoras, optimizo juegos, tengo conocimientos en sistemas personalizados y me encanta compartir trucos y tips. Además, tengo experiencia en marketing digital y he construido una comunidad en YouTube, TikTok y Discord.</p>
+      <p>"El propósito de la vida es compartir el conocimiento, o solo se queda en el olvido."</p>
     </div>
   </div>
 
   <script>
-    // ACCORDIONS
+    // ---------- ACCORDION GLOBAL: Permitir solo uno abierto ----------
     const accordions = document.getElementsByClassName('accordion');
     for (let i = 0; i < accordions.length; i++) {
       accordions[i].addEventListener('click', function() {
+        // Primero cierra todos los otros accordions
+        for (let j = 0; j < accordions.length; j++) {
+          if (accordions[j] !== this) {
+            accordions[j].classList.remove('active-accordion');
+            const otherPanel = accordions[j].nextElementSibling;
+            otherPanel.style.maxHeight = null;
+          }
+        }
+        // Alterna el acordeón actual
         this.classList.toggle('active-accordion');
         const panel = this.nextElementSibling;
         if (panel.style.maxHeight) {
@@ -593,12 +621,12 @@
       });
     }
 
-    // BOTÓN VOLVER ARRIBA
+    // ---------- BOTÓN VOLVER ARRIBA ----------
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // TOGGLE THEME
+    // ---------- TOGGLE THEME ----------
     function toggleTheme() {
       document.body.classList.toggle('light-mode');
       const btn = document.querySelector('.theme-toggle');
@@ -609,7 +637,7 @@
       }
     }
 
-    // TIKTOK ACCORDION
+    // ---------- TIKTOK ACCORDION ----------
     function toggleTikTok() {
       const panel = document.getElementById('tiktokPanel');
       if (panel.classList.contains('show')) {
@@ -619,23 +647,29 @@
       }
     }
 
-    // SECCIÓN "QUIÉN SOY"
-    function toggleAbout() {
-      const about = document.getElementById('aboutContent');
-      if (about.style.display === 'block') {
-        about.style.display = 'none';
-      } else {
-        about.style.display = 'block';
-      }
-    }
-
-    // MODAL NEQUI
+    // ---------- MODAL NEQUI ----------
     function showNequiModal() {
       document.getElementById('nequiModal').style.display = 'flex';
     }
     function closeNequiModal() {
       document.getElementById('nequiModal').style.display = 'none';
     }
+
+    // ---------- MODAL "QUIÉN SOY" ----------
+    function showAboutModal() {
+      document.getElementById('aboutModal').style.display = 'flex';
+    }
+    function closeAboutModal() {
+      document.getElementById('aboutModal').style.display = 'none';
+    }
+
+    // ---------- FPS COUNTER ----------
+    function updateFPS() {
+      // Genera un número aleatorio entre 600 y 900
+      const fps = Math.floor(Math.random() * (900 - 600 + 1)) + 600;
+      document.getElementById('fpsCounter').textContent = "FPS: " + fps;
+    }
+    setInterval(updateFPS, 100); // Actualiza cada 100 ms
   </script>
 </body>
 </html>
