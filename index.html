@@ -99,7 +99,7 @@
       background-color: var(--button-hover);
     }
     
-    /* Redes Sociales (unificadas) */
+    /* Redes Sociales */
     .social-links {
       margin: 20px 0;
       display: flex;
@@ -265,7 +265,7 @@
       margin-top: 40px;
     }
     
-    /* Modal Video */
+    /* Modal Video: Tamaño ajustado */
     .video-modal-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -280,8 +280,8 @@
       background-color: var(--panel-bg);
       padding: 10px;
       border-radius: 5px;
-      max-width: 600px;
-      max-height: 80vh;
+      max-width: 400px;
+      max-height: 60vh;
       animation: bounce 0.5s;
       position: relative;
     }
@@ -403,7 +403,7 @@
       color: var(--text-color);
     }
     
-    /* Sección Donaciones centrada */
+    /* Sección Donaciones (centrado) */
     #donations {
       width: 90%;
       max-width: 900px;
@@ -587,7 +587,7 @@
         <ul>
           <li><a href="https://cutyion.com/FreefireH" target="_blank">Descargar Hacks Freefire</a></li>
         </ul>
-      </button><!-- ERROR CORREGIDO: se elimina la etiqueta de cierre extra -->
+      </button> <!-- Se elimina etiqueta de cierre extra -->
       <button class="accordion">CAMBIAR RESOLUCION DE PANTALLA EN ANDROID +FPS</button>
       <div class="panel">
         <ul>
@@ -689,7 +689,7 @@
     const accordions = document.getElementsByClassName('accordion');
     for (let i = 0; i < accordions.length; i++) {
       accordions[i].addEventListener('click', function() {
-        // Cerrar todos los demás
+        // Cierra los otros
         for (let j = 0; j < accordions.length; j++) {
           if (accordions[j] !== this) {
             accordions[j].classList.remove('active-accordion');
@@ -708,7 +708,7 @@
       });
     }
 
-    // ---------- BOTÓN VOLver ARRIBA ----------
+    // ---------- BOTÓN VOLVER ARRIBA ----------
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
