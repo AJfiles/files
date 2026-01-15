@@ -39,6 +39,23 @@
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
 
+    <!-- STRUCTURED DATA (SEO INVISIBLE - MEJORA 3) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Recursos de AJ",
+      "operatingSystem": "Windows, Android",
+      "applicationCategory": "UtilitiesApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Colección de optimizaciones, scripts y herramientas para mejorar el rendimiento en juegos (FPS Boost) y sistemas operativos."
+    }
+    </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -105,6 +122,11 @@
             width: 100vw;
         }
 
+        /* SCROLL PROGRESS BAR (MEJORA 2) */
+        #scrollProgress {
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.7);
+        }
+
         #particleCanvas {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -134,13 +156,14 @@
         }
         
         .glass-panel {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
+            background: rgba(30, 41, 59, 0.75); /* Aumenté un poco la opacidad base */
+            backdrop-filter: blur(8px); /* OPTIMIZACIÓN: Bajado de 12px a 8px para mejor rendimiento */
+            -webkit-backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             transition: transform 0.1s ease, box-shadow 0.3s ease;
         }
         body.light-mode .glass-panel {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.85);
             border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
@@ -149,6 +172,7 @@
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s ease-out;
+            will-change: opacity, transform; /* OPTIMIZACIÓN: Hint al navegador */
         }
         .reveal-on-scroll.visible {
             opacity: 1;
@@ -309,6 +333,9 @@
         </div>
     </div>
 
+    <!-- SCROLL PROGRESS BAR (MEJORA 2) -->
+    <div id="scrollProgress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 z-[1000] w-0 transition-all duration-100 ease-out"></div>
+
     <!-- Backgrounds -->
     <div class="grid-bg"></div>
     <canvas id="particleCanvas"></canvas>
@@ -399,7 +426,8 @@
                 <div class="h-24 mb-3 rounded-lg bg-cover bg-center" style="background-image: url('Minecraft.png'); background-color: #064e3b;"></div>
                 <h3 class="font-gaming text-lg md:text-xl font-bold text-white mb-1">Minecraft +FPS</h3>
                 <p class="text-xs text-gray-400 mb-3 line-clamp-2">Cliente optimizado 1.21.5 y versiones anteriores. Java & Bedrock.</p>
-                <button onclick="filterCategory('pc', document.querySelectorAll('.filter-btn')[1]); document.getElementById('gamesSection').scrollIntoView({behavior: 'smooth'});" class="w-full bg-green-600/20 hover:bg-green-600 text-green-400 hover:text-white py-2 rounded-lg text-sm font-bold transition click-sfx">Descargar</button>
+                <!-- Deep Link ID Added to onclick -->
+                <button onclick="navigateTo('minecraft');" class="w-full bg-green-600/20 hover:bg-green-600 text-green-400 hover:text-white py-2 rounded-lg text-sm font-bold transition click-sfx">Descargar</button>
             </div>
 
             <!-- Card 3: Fortnite - RGB BORDER -->
@@ -409,7 +437,8 @@
                 <div class="h-24 mb-3 rounded-lg bg-cover bg-center" style="background-image: url('Fortnite.png'); background-color: #7c2d12;"></div>
                 <h3 class="font-gaming text-lg md:text-xl font-bold text-white mb-1">Fortnite Boost</h3>
                 <p class="text-xs text-gray-400 mb-3 line-clamp-2">Reduce el input lag y aumenta tus cuadros por segundo en PC competitiva.</p>
-                <button onclick="filterCategory('pc', document.querySelectorAll('.filter-btn')[1]); document.getElementById('gamesSection').scrollIntoView({behavior: 'smooth'});" class="w-full bg-orange-600/20 hover:bg-orange-600 text-orange-400 hover:text-white py-2 rounded-lg text-sm font-bold transition click-sfx">Optimizar</button>
+                <!-- Deep Link ID Added to onclick -->
+                <button onclick="navigateTo('fortnite');" class="w-full bg-orange-600/20 hover:bg-orange-600 text-orange-400 hover:text-white py-2 rounded-lg text-sm font-bold transition click-sfx">Optimizar</button>
             </div>
         </section>
 
@@ -448,9 +477,10 @@
                 <div class="h-px bg-slate-700 flex-1"></div>
             </div>
 
+            <!-- Deep Linking Note: IDs added to each accordion item for hash navigation -->
             <div class="flex flex-col gap-3" id="gamesList">
                 <!-- Minecraft -->
-                <div class="accordion-item glass-panel rounded-xl overflow-hidden search-item">
+                <div id="minecraft" class="accordion-item glass-panel rounded-xl overflow-hidden search-item transition-all duration-300">
                     <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left click-sfx" aria-expanded="false">
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-10 rounded-lg bg-green-900/50 flex items-center justify-center text-green-400 border border-green-700/50"><i class="fas fa-cube"></i></div>
@@ -491,7 +521,7 @@
                 </div>
 
                 <!-- Schedule -->
-                <div class="accordion-item glass-panel rounded-xl overflow-hidden search-item">
+                <div id="schedule" class="accordion-item glass-panel rounded-xl overflow-hidden search-item transition-all duration-300">
                     <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left click-sfx" aria-expanded="false">
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-10 rounded-lg bg-red-900/50 flex items-center justify-center text-red-400 border border-red-700/50"><i class="fas fa-calendar-alt"></i></div>
@@ -511,7 +541,7 @@
                 </div>
 
                 <!-- Watch Dogs 2 -->
-                <div class="accordion-item glass-panel rounded-xl overflow-hidden search-item">
+                <div id="wd2" class="accordion-item glass-panel rounded-xl overflow-hidden search-item transition-all duration-300">
                     <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left click-sfx" aria-expanded="false">
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-10 rounded-lg bg-purple-900/50 flex items-center justify-center text-purple-400 border border-purple-700/50"><i class="fas fa-mobile-alt"></i></div>
@@ -528,7 +558,7 @@
                 </div>
 
                 <!-- Fortnite -->
-                <div class="accordion-item glass-panel rounded-xl overflow-hidden search-item">
+                <div id="fortnite" class="accordion-item glass-panel rounded-xl overflow-hidden search-item transition-all duration-300">
                     <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left click-sfx" aria-expanded="false">
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-10 rounded-lg bg-blue-900/50 flex items-center justify-center text-blue-400 border border-blue-700/50"><i class="fas fa-shield-alt"></i></div>
@@ -550,7 +580,7 @@
                 </div>
 
                 <!-- Dragon Ball -->
-                <div class="accordion-item glass-panel rounded-xl overflow-hidden search-item">
+                <div id="dragonball" class="accordion-item glass-panel rounded-xl overflow-hidden search-item transition-all duration-300">
                     <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left click-sfx" aria-expanded="false">
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-10 rounded-lg bg-orange-900/50 flex items-center justify-center text-orange-400 border border-orange-700/50"><i class="fas fa-fire"></i></div>
@@ -567,7 +597,7 @@
                 </div>
 
                 <!-- PES 2017 -->
-                <div class="accordion-item glass-panel rounded-xl overflow-hidden search-item">
+                <div id="pes2017" class="accordion-item glass-panel rounded-xl overflow-hidden search-item transition-all duration-300">
                     <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left click-sfx" aria-expanded="false">
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-10 rounded-lg bg-emerald-900/50 flex items-center justify-center text-emerald-400 border border-emerald-700/50"><i class="fas fa-futbol"></i></div>
@@ -584,7 +614,7 @@
                 </div>
 
                 <!-- Rocket League -->
-                <div class="accordion-item glass-panel rounded-xl overflow-hidden search-item">
+                <div id="rocketleague" class="accordion-item glass-panel rounded-xl overflow-hidden search-item transition-all duration-300">
                     <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left click-sfx" aria-expanded="false">
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-10 rounded-lg bg-sky-900/50 flex items-center justify-center text-sky-400 border border-sky-700/50"><i class="fas fa-car-side"></i></div>
@@ -601,7 +631,7 @@
                 </div>
 
                 <!-- CODS -->
-                <div class="accordion-item glass-panel rounded-xl overflow-hidden search-item">
+                <div id="cod" class="accordion-item glass-panel rounded-xl overflow-hidden search-item transition-all duration-300">
                     <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left click-sfx" aria-expanded="false">
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-10 rounded-lg bg-gray-700/50 flex items-center justify-center text-gray-300 border border-gray-500/50"><i class="fas fa-crosshairs"></i></div>
@@ -628,7 +658,7 @@
                 </div>
 
                  <!-- GTA V -->
-                 <div class="accordion-item glass-panel rounded-xl overflow-hidden search-item">
+                 <div id="gtav" class="accordion-item glass-panel rounded-xl overflow-hidden search-item transition-all duration-300">
                     <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left click-sfx" aria-expanded="false">
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-10 rounded-lg bg-green-800/50 flex items-center justify-center text-green-300 border border-green-600/50"><i class="fas fa-dollar-sign"></i></div>
@@ -656,7 +686,7 @@
 
             <div class="flex flex-col gap-3" id="androidList">
                 <!-- Freefire -->
-                 <div class="accordion-item glass-panel rounded-xl overflow-hidden search-item">
+                 <div id="freefire" class="accordion-item glass-panel rounded-xl overflow-hidden search-item transition-all duration-300">
                     <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left click-sfx" aria-expanded="false">
                         <div class="flex items-center gap-4">
                             <i class="fas fa-mobile-alt text-xl w-6 text-center text-gray-400"></i>
@@ -671,7 +701,7 @@
                     </div>
                 </div>
 
-                <div class="accordion-item glass-panel rounded-xl overflow-hidden search-item">
+                <div id="res-android" class="accordion-item glass-panel rounded-xl overflow-hidden search-item transition-all duration-300">
                     <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left click-sfx" aria-expanded="false">
                         <div class="flex items-center gap-4">
                             <i class="fas fa-expand text-xl w-6 text-center text-gray-400"></i>
@@ -687,7 +717,7 @@
                     </div>
                 </div>
 
-                <div class="accordion-item glass-panel rounded-xl overflow-hidden search-item">
+                <div id="wifi-tool" class="accordion-item glass-panel rounded-xl overflow-hidden search-item transition-all duration-300">
                     <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left click-sfx" aria-expanded="false">
                         <div class="flex items-center gap-4">
                             <i class="fas fa-wifi text-xl w-6 text-center text-gray-400"></i>
@@ -702,7 +732,7 @@
                     </div>
                 </div>
 
-                <div class="accordion-item glass-panel rounded-xl overflow-hidden search-item">
+                <div id="bat-android" class="accordion-item glass-panel rounded-xl overflow-hidden search-item transition-all duration-300">
                     <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left click-sfx" aria-expanded="false">
                         <div class="flex items-center gap-4">
                             <i class="fas fa-terminal text-xl w-6 text-center text-gray-400"></i>
@@ -725,7 +755,7 @@
                 <h2 class="text-xl font-bold mb-4 flex items-center justify-center gap-2">
                     <i class="fab fa-windows text-blue-400"></i> Sistema Operativo (WinterOS)
                 </h2>
-                <div class="accordion-item bg-slate-800/50 rounded-lg overflow-hidden search-item">
+                <div id="winteros" class="accordion-item bg-slate-800/50 rounded-lg overflow-hidden search-item transition-all duration-300">
                     <span class="hidden item-title">WinterOS Windows ISO</span> <!-- Helper text for search -->
                     <button class="accordion-header w-full p-3 text-center hover:bg-slate-700 transition font-medium flex justify-center gap-2 items-center click-sfx" aria-expanded="false">
                         Ver ISOs Disponibles <i class="fas fa-chevron-down transform transition-transform duration-300 text-sm"></i>
@@ -844,6 +874,17 @@
     <button onclick="scrollToTop()" id="backToTop" aria-label="Volver arriba" class="fixed bottom-5 right-5 bg-purple-600 hover:bg-purple-700 text-white w-12 h-12 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 opacity-0 invisible z-50 hover:-translate-y-1 click-sfx">
         <i class="fas fa-arrow-up"></i>
     </button>
+    
+    <!-- COOKIE CONSENT BANNER (MEJORA 4) -->
+    <div id="cookieBanner" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-80 glass-panel p-4 rounded-xl flex flex-col gap-3 z-[150] translate-y-20 opacity-0 transition-all duration-500">
+        <div class="flex items-start gap-3">
+            <i class="fas fa-cookie-bite text-yellow-500 text-xl mt-1"></i>
+            <p class="text-xs text-gray-300">Usamos cookies para mejorar tu experiencia y analizar el tráfico. Al continuar, aceptas su uso.</p>
+        </div>
+        <div class="flex gap-2 justify-end">
+             <button onclick="acceptCookies()" class="bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition click-sfx">Aceptar</button>
+        </div>
+    </div>
 
     <!-- MODALS -->
 
@@ -988,6 +1029,70 @@
         `;
         document.head.appendChild(styleLink);
 
+        // --- DEEP LINKING LOGIC (MEJORA 1) ---
+        function navigateTo(id) {
+            // Check if user clicked from carousel, or we are loading from hash
+            if(window.innerWidth < 768) {
+                // On mobile, just scroll to section to avoid confusion if tabs are hidden
+                filterCategory('all');
+            } else {
+                // Ensure PC tab is active if it's a PC game
+                // Simple heuristic: if it's not android or os, assume PC/All
+                if(['minecraft','fortnite','wd2','dragonball','pes2017','rocketleague','cod','gtav'].includes(id)) {
+                    filterCategory('pc', document.querySelectorAll('.filter-btn')[1]);
+                } else if(['freefire','res-android','wifi-tool','bat-android'].includes(id)) {
+                    filterCategory('android', document.querySelectorAll('.filter-btn')[2]);
+                } else if(['winteros'].includes(id)) {
+                    filterCategory('system', document.querySelectorAll('.filter-btn')[3]);
+                }
+            }
+            
+            setTimeout(() => {
+                const element = document.getElementById(id);
+                if(element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    // Open accordion if closed
+                    const btn = element.querySelector('.accordion-header');
+                    const content = element.querySelector('.accordion-content');
+                    if(content.style.maxHeight === '' || content.style.maxHeight === null) {
+                        toggleAccordion(btn);
+                    }
+                    // Flash effect
+                    element.classList.add('ring-2', 'ring-cyan-400', 'ring-offset-2', 'ring-offset-[#0f172a]');
+                    setTimeout(() => element.classList.remove('ring-2', 'ring-cyan-400', 'ring-offset-2', 'ring-offset-[#0f172a]'), 2000);
+                }
+            }, 100);
+        }
+
+        // --- COOKIE BANNER LOGIC (MEJORA 4) ---
+        function checkCookies() {
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    const banner = document.getElementById('cookieBanner');
+                    banner.classList.remove('translate-y-20', 'opacity-0');
+                }, 2000);
+            }
+        }
+        
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            const banner = document.getElementById('cookieBanner');
+            banner.classList.add('translate-y-20', 'opacity-0');
+            setTimeout(() => banner.remove(), 500);
+        }
+        
+        // --- SCROLL PROGRESS LOGIC (MEJORA 2) ---
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("scrollProgress").style.width = scrolled + "%";
+            
+            // Existing back to top logic
+            document.getElementById('backToTop').classList.toggle('opacity-0', window.scrollY < 300); 
+            document.getElementById('backToTop').classList.toggle('invisible', window.scrollY < 300);
+        });
+
         // --- AUDIO CONTEXT (LAZY LOAD - PROFESSIONAL FIX) ---
         // Solo inicializamos el audio cuando el usuario interactúa por primera vez.
         // Esto evita warnings en la consola y asegura que suene en iOS/Chrome.
@@ -1035,7 +1140,7 @@
             el.addEventListener('click', playClickSound);
         });
 
-        // --- PRELOADER ANIMATION (Zoom Forward) ---
+        // --- PRELOADER & INITIALIZATION ---
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
             const content = document.getElementById('preloaderContent');
@@ -1047,7 +1152,19 @@
                 // Hide Background after zoom starts
                 setTimeout(() => {
                     preloader.style.opacity = '0';
-                    setTimeout(() => { preloader.style.display = 'none'; }, 800);
+                    setTimeout(() => { 
+                        preloader.style.display = 'none'; 
+                        
+                        // CHECK FOR DEEP LINKS (HASH) AFTER LOAD
+                        if(window.location.hash) {
+                            const id = window.location.hash.substring(1);
+                            navigateTo(id);
+                        }
+                        
+                        // CHECK COOKIES
+                        checkCookies();
+                        
+                    }, 800);
                 }, 500); 
             }, 800);
         });
@@ -1084,25 +1201,33 @@
         document.getElementById('year').textContent = new Date().getFullYear();
         
         // --- 3D TILT EFFECT FOR CARDS (PC Only) ---
+        // OPTIMIZATION: Use requestAnimationFrame for smoother performance
+        let isTicking = false;
+        
         document.addEventListener('mousemove', (e) => {
             if (window.innerWidth < 768) return; // Disable on mobile
+            if (isTicking) return;
             
-            document.querySelectorAll('.tilt-card').forEach(card => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                if(x >= 0 && y >= 0 && x <= rect.width && y <= rect.height) {
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    const rotateX = ((y - centerY) / centerY) * -5; // Max -5deg tilt
-                    const rotateY = ((x - centerX) / centerX) * 5;  // Max 5deg tilt
+            window.requestAnimationFrame(() => {
+                document.querySelectorAll('.tilt-card').forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
                     
-                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-                } else {
-                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-                }
+                    if(x >= 0 && y >= 0 && x <= rect.width && y <= rect.height) {
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        const rotateX = ((y - centerY) / centerY) * -5; // Max -5deg tilt
+                        const rotateY = ((x - centerX) / centerX) * 5;  // Max 5deg tilt
+                        
+                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+                    } else {
+                        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+                    }
+                });
+                isTicking = false;
             });
+            isTicking = true;
         });
 
         // --- CATEGORY FILTERS (FIXED: Explicit Target) ---
@@ -1175,7 +1300,7 @@
 
         // --- SHARE FEATURE ---
         function shareWeb() {
-            const url = window.location.href;
+            const url = window.location.href.split('#')[0]; // Share clean URL
             navigator.clipboard.writeText(url).then(() => {
                 showToast("Link de la web copiado 🔗");
             }).catch(err => {
@@ -1294,28 +1419,49 @@
                     this.color = `rgba(${Math.floor(Math.random()*50)}, ${Math.floor(Math.random()*200)+55}, ${Math.floor(Math.random()*255)}, 1)`;
                     this.life = 1.0;
                 }
-                update() { this.x += this.speedX; this.y += this.speedY; this.life -= 0.02; if (this.size > 0.1) this.size -= 0.05; }
-                draw() { ctx.fillStyle = this.color.replace('1)', `${this.life})`); ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
+                update() { 
+                    this.x += this.speedX; 
+                    this.y += this.speedY; 
+                    this.life -= 0.02; 
+                    if (this.size > 0.1) this.size -= 0.05; 
+                }
+                draw() { 
+                    // OPTIMIZATION: Simple round check
+                    ctx.fillStyle = this.color.replace('1)', `${this.life})`); 
+                    ctx.beginPath(); 
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); 
+                    ctx.fill(); 
+                }
             }
 
             function handleParticles() {
                 for (let i = 0; i < particles.length; i++) {
-                    particles[i].update(); particles[i].draw();
-                    if (particles[i].life <= 0) { particles.splice(i, 1); i--; }
+                    particles[i].update(); 
+                    particles[i].draw();
+                    if (particles[i].life <= 0) { 
+                        particles.splice(i, 1); 
+                        i--; 
+                    }
                 }
             }
 
-            function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); handleParticles(); requestAnimationFrame(animate); }
+            function animate() { 
+                ctx.clearRect(0, 0, canvas.width, canvas.height); 
+                handleParticles(); 
+                requestAnimationFrame(animate); 
+            }
             animate();
 
             const addParticles = (x, y) => { 
                 for (let i = 0; i < 2; i++) particles.push(new Particle(x, y)); 
-                if(particles.length > 100) particles.splice(0, particles.length - 100); 
+                // OPTIMIZATION: Reduced max particles from 100 to 60 for better performance
+                if(particles.length > 60) particles.splice(0, particles.length - 60); 
             };
             
             // 2. Throttling Event Listeners
             let isThrottled = false;
-            const throttleDelay = 50; // ms
+            // OPTIMIZATION: Increased throttle delay from 50ms to 100ms
+            const throttleDelay = 100; // ms
 
             const throttledAddParticles = (x, y) => {
                 if (isThrottled) return;
@@ -1347,10 +1493,13 @@
 
             // Toggle current
             if (!isOpened) { 
-                content.style.maxHeight = content.scrollHeight + "px"; 
-                arrow.style.transform = 'rotate(180deg)'; 
-                header.classList.add('bg-white/10'); 
-                header.setAttribute('aria-expanded', 'true');
+                // OPTIMIZATION: Use requestAnimationFrame for smoother height transition start
+                window.requestAnimationFrame(() => {
+                    content.style.maxHeight = content.scrollHeight + "px"; 
+                    arrow.style.transform = 'rotate(180deg)'; 
+                    header.classList.add('bg-white/10'); 
+                    header.setAttribute('aria-expanded', 'true');
+                });
             }
         }
 
@@ -1419,7 +1568,6 @@
         }
 
         // --- Scroll Top & Theme ---
-        window.onscroll = () => { document.getElementById('backToTop').classList.toggle('opacity-0', window.scrollY < 300); document.getElementById('backToTop').classList.toggle('invisible', window.scrollY < 300); };
         function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
         
         function toggleTheme() {
