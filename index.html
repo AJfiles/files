@@ -8,9 +8,6 @@
 </head>
 <body>
 
-  <!-- FPS COUNTER -->
-  <div id="fpsCounter">FPS: 0</div>
-
   <header>
     <h1>Archivos y Recursos de AJ</h1>
     <button class="theme-toggle" onclick="toggleTheme()">Modo Claro</button>
@@ -32,177 +29,182 @@
   <main>
     <!-- Sección Acortador -->
     <section>
-      <h2 class="section-title pulse-title">Como Pasar El Acortador De Mis Archivos</h2>
+      <h2 class="section-title">Como Pasar El Acortador De Mis Archivos</h2>
       <div style="text-align: center;">
         <button class="large-button" onclick="showVideoModal()">Ver Video Explicativo</button>
       </div>
-      <button class="accordion">VER IMPORTANTE</button>
-      <div class="panel">
-        <ul>
-          <li>
-            Ojo con las descargas maliciosas, la mayoría (si no es que todas) son por MediaFire, no a páginas +18 o similares, ni descargas con contraseñas.
-            Todo está abierto, por favor ver el video de cómo pasar el acortador.
-            <br><br>
-            Solo dejo 1 Acortador porque así apoyas mi contenido sin pedir directamente donaciones.
-          </li>
-        </ul>
+      <div class="info-card">
+        <h3>¡IMPORTANTE!</h3>
+        <p>Ojo con las descargas maliciosas, la mayoría (si no es que todas) son por MediaFire, no a páginas +18 o similares, ni descargas con contraseñas. Todo está abierto, por favor ver el video de cómo pasar el acortador.</p>
+        <p>Solo dejo 1 Acortador porque así apoyas mi contenido sin pedir directamente donaciones.</p>
       </div>
     </section>
 
     <!-- JUEGOS OPTIMIZADOS -->
     <section>
-      <h2 class="section-title pulse-title">JUEGOS OPTIMIZADOS</h2>
-      <button class="accordion">Minecraft</button>
-      <div class="panel">
-        <!-- Imagen para Minecraft -->
-        <div style="text-align: center; margin: 20px 0 10px 0;">
-          <img src="Minecraft.png" alt="Minecraft" class="bounce-image" style="max-width: 200px;">
+      <h2 class="section-title">JUEGOS OPTIMIZADOS</h2>
+      <div class="card-grid">
+        <div class="card">
+          <img src="Minecraft.png" alt="Minecraft" loading="lazy">
+          <h3>Minecraft</h3>
+          <button class="card-button" onclick="toggleCardContent(this)">Ver Más</button>
+          <div class="card-content">
+            <p><strong>Version Java:</strong></p>
+            <ul>
+              <li><a href="https://cutyion.com/MC1215AJ" target="_blank">Minecraft 1.21.5 +FPS</a></li>
+              <li><a href="https://cutyion.com/MC1214AJ" target="_blank">Minecraft 1.21.4 +FPS</a></li>
+              <li><a href="https://cutyion.com/MC1211" target="_blank">Minecraft 1.21.1 +FPS</a></li>
+              <li><a href="https://cuty.io/ConfigMC" target="_blank">Configuración Minecraft +FPS</a></li>
+            </ul>
+            <p><strong>Version Bedrock:</strong></p>
+            <ul>
+              <li><a href="https://cutyion.com/AJBEDROCKFPS" target="_blank">Minecraft Bedrock +FPS</a></li>
+              <li><a href="https://cutyion.com/BEDROCKPCFPS" target="_blank">Minecraft Bedrock (PC) +FPS</a></li>
+            </ul>
+          </div>
         </div>
-        <p style="margin: 10px 0; font-weight: bold;">Version Java:</p>
-        <ul>
-          <li><a href="https://cutyion.com/MC1215AJ" target="_blank">Minecraft 1.21.5 +FPS</a></li>
-          <li><a href="https://cutyion.com/MC1214AJ" target="_blank">Minecraft 1.21.4 +FPS</a></li>
-          <li><a href="https://cutyion.com/MC1211" target="_blank">Minecraft 1.21.1 +FPS</a></li>
-          <li><a href="https://cuty.io/ConfigMC" target="_blank">Configuración Minecraft +FPS</a></li>
-        </ul>
-        <p style="margin: 10px 0; font-weight: bold;">Version Bedrock:</p>
-        <ul>
-          <li><a href="https://cutyion.com/AJBEDROCKFPS" target="_blank">Minecraft Bedrock +FPS</a></li>
-          <li><a href="https://cutyion.com/BEDROCKPCFPS" target="_blank">Minecraft Bedrock (PC) +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">SHEDULE I OPTIMIZACION +FPS</button>
-      <div class="panel">
-        <!-- Imagen para Schedule -->
-        <div style="text-align: center; margin: 20px 0 10px 0;">
-          <img src="Schedule.png" alt="Schedule" class="bounce-image" style="max-width: 200px;">
+        <div class="card">
+          <img src="Schedule.png" alt="Schedule" loading="lazy">
+          <h3>SHEDULE I OPTIMIZACION +FPS</h3>
+          <button class="card-button" onclick="toggleCardContent(this)">Ver Más</button>
+          <div class="card-content">
+            <ul>
+              <li><a href="https://cutyion.com/ScheduleAJ" target="_blank">Descargar SHEDULE I OPTIMIZACION +FPS</a></li>
+              <li><a href="https://cuty.io/ScheduleAj" target="_blank">DESCARGAR JUEGO</a></li>
+            </ul>
+          </div>
         </div>
-        <ul>
-          <li><a href="https://cutyion.com/ScheduleAJ" target="_blank">Descargar SHEDULE I OPTIMIZACION +FPS</a></li>
-          <li><a href="https://cuty.io/ScheduleAj" target="_blank">DESCARGAR JUEGO</a></li>
-        </ul>
-      </div>
-      <button class="accordion">WATCHDOGS 2 OPTIMIZACION +FPS</button>
-      <div class="panel">
-        <!-- Imagen para WatchDogs2 -->
-        <div style="text-align: center; margin: 20px 0 10px 0;">
-          <img src="WatchDogs2.png" alt="WatchDogs2" class="bounce-image" style="max-width: 200px;">
+        <div class="card">
+          <img src="WatchDogs2.png" alt="WatchDogs2" loading="lazy">
+          <h3>WATCHDOGS 2 OPTIMIZACION +FPS</h3>
+          <button class="card-button" onclick="toggleCardContent(this)">Ver Más</button>
+          <div class="card-content">
+            <ul>
+              <li><a href="https://cutyion.com/WD2FPS" target="_blank">Descargar WATCHDOGS 2 +FPS</a></li>
+            </ul>
+          </div>
         </div>
-        <ul>
-          <li><a href="https://cutyion.com/WD2FPS" target="_blank">Descargar WATCHDOGS 2 +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">OPTIMIZACION DEFINITIVA FORTNITE</button>
-      <div class="panel">
-        <!-- Imagen para Fortnite -->
-        <div style="text-align: center; margin: 20px 0 10px 0;">
-          <img src="Fortnite.png" alt="Fortnite" class="bounce-image" style="max-width: 200px;">
+        <div class="card">
+          <img src="Fortnite.png" alt="Fortnite" loading="lazy">
+          <h3>OPTIMIZACION DEFINITIVA FORTNITE</h3>
+          <button class="card-button" onclick="toggleCardContent(this)">Ver Más</button>
+          <div class="card-content">
+            <ul>
+              <li><a href="https://cutyion.com/FortniteFPS" target="_blank">Descargar Fortnite +FPS</a></li>
+            </ul>
+          </div>
         </div>
-        <ul>
-          <li><a href="https://cutyion.com/FortniteFPS" target="_blank">Descargar Fortnite +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">DRAGON BALL SPARKING ZERO +FPS</button>
-      <div class="panel">
-        <!-- Imagen para Dragonball -->
-        <div style="text-align: center; margin: 20px 0 10px 0;">
-          <img src="Dragonball.png" alt="Dragon Ball" class="bounce-image" style="max-width: 200px;">
+        <div class="card">
+          <img src="Dragonball.png" alt="Dragon Ball" loading="lazy">
+          <h3>DRAGON BALL SPARKING ZERO +FPS</h3>
+          <button class="card-button" onclick="toggleCardContent(this)">Ver Más</button>
+          <div class="card-content">
+            <ul>
+              <li><a href="https://cutyion.com/DragonBallAJ" target="_blank">Descargar Dragon Ball +FPS</a></li>
+            </ul>
+          </div>
         </div>
-        <ul>
-          <li><a href="https://cutyion.com/DragonBallAJ" target="_blank">Descargar Dragon Ball +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">PES-2017 OPTI +FPS</button>
-      <div class="panel">
-        <!-- Imagen para PES2017 -->
-        <div style="text-align: center; margin: 20px 0 10px 0;">
-          <img src="pes2017.png" alt="PES 2017" class="bounce-image" style="max-width: 200px;">
+        <div class="card">
+          <img src="pes2017.png" alt="PES 2017" loading="lazy">
+          <h3>PES-2017 OPTI +FPS</h3>
+          <button class="card-button" onclick="toggleCardContent(this)">Ver Más</button>
+          <div class="card-content">
+            <ul>
+              <li><a href="https://cuty.io/PES2017AJ" target="_blank">Descargar PES 2017 +FPS</a></li>
+            </ul>
+          </div>
         </div>
-        <ul>
-          <li><a href="https://cuty.io/PES2017AJ" target="_blank">Descargar PES 2017 +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">ROCKET LEAGUE +FPS</button>
-      <div class="panel">
-        <!-- Imagen para Rocket League -->
-        <div style="text-align: center; margin: 20px 0 10px 0;">
-          <img src="rocketLeague.png" alt="Rocket League" class="bounce-image" style="max-width: 200px;">
+        <div class="card">
+          <img src="rocketLeague.png" alt="Rocket League" loading="lazy">
+          <h3>ROCKET LEAGUE +FPS</h3>
+          <button class="card-button" onclick="toggleCardContent(this)">Ver Más</button>
+          <div class="card-content">
+            <ul>
+              <li><a href="https://cuty.io/ROCKETFPSAJ" target="_blank">Descargar Rocket League +FPS</a></li>
+            </ul>
+          </div>
         </div>
-        <ul>
-          <li><a href="https://cuty.io/ROCKETFPSAJ" target="_blank">Descargar Rocket League +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">CALL OF DUTY BLACK OPS 2 +FPS</button>
-      <div class="panel">
-        <!-- Imagen para COD Black Ops 2 -->
-        <div style="text-align: center; margin: 20px 0 10px 0;">
-          <img src="codbo2.png" alt="COD Black Ops 2" class="bounce-image" style="max-width: 200px;">
+        <div class="card">
+          <img src="codbo2.png" alt="COD Black Ops 2" loading="lazy">
+          <h3>CALL OF DUTY BLACK OPS 2 +FPS</h3>
+          <button class="card-button" onclick="toggleCardContent(this)">Ver Más</button>
+          <div class="card-content">
+            <ul>
+              <li><a href="https://cuty.io/CODBO2FPS" target="_blank">Descargar COD Black Ops 2 +FPS</a></li>
+            </ul>
+          </div>
         </div>
-        <ul>
-          <li><a href="https://cuty.io/CODBO2FPS" target="_blank">Descargar COD Black Ops 2 +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">CALL OF DUTY MW3 +FPS</button>
-      <div class="panel">
-        <!-- Imagen para COD MW3 -->
-        <div style="text-align: center; margin: 20px 0 10px 0;">
-          <img src="CoDmw3.png" alt="COD MW3" class="bounce-image" style="max-width: 200px;">
+        <div class="card">
+          <img src="CoDmw3.png" alt="COD MW3" loading="lazy">
+          <h3>CALL OF DUTY MW3 +FPS</h3>
+          <button class="card-button" onclick="toggleCardContent(this)">Ver Más</button>
+          <div class="card-content">
+            <ul>
+              <li><a href="https://cuty.io/CODMW3FPS" target="_blank">Descargar COD MW3 +FPS</a></li>
+            </ul>
+          </div>
         </div>
-        <ul>
-          <li><a href="https://cuty.io/CODMW3FPS" target="_blank">Descargar COD MW3 +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">GTA V +FPS</button>
-      <div class="panel">
-        <!-- Imagen para GTA V -->
-        <div style="text-align: center; margin: 20px 0 10px 0;">
-          <img src="gtav.png" alt="GTA V" class="bounce-image" style="max-width: 200px;">
+        <div class="card">
+          <img src="gtav.png" alt="GTA V" loading="lazy">
+          <h3>GTA V +FPS</h3>
+          <button class="card-button" onclick="toggleCardContent(this)">Ver Más</button>
+          <div class="card-content">
+            <ul>
+              <li><a href="https://cuty.io/GTAVFPSAJ" target="_blank">Descargar GTA V +FPS</a></li>
+            </ul>
+          </div>
         </div>
-        <ul>
-          <li><a href="https://cuty.io/GTAVFPSAJ" target="_blank">Descargar GTA V +FPS</a></li>
-        </ul>
       </div>
     </section>
 
     <!-- ARCHIVOS ANDROID (Sección independiente) -->
     <section>
-      <h2 class="section-title pulse-title">ARCHIVOS ANDROID</h2>
-
-      <button class="accordion">HACKS DE FREEFIRE (ROOT MAGISK)</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://cutyion.com/FreefireH" target="_blank">Descargar Hacks Freefire</a></li>
-        </ul>
-      </div>
-
-      <button class="accordion">CAMBIAR RESOLUCION DE PANTALLA EN ANDROID +FPS</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://www.tiktok.com/@ajk.al/video/7273274423484976390" target="_blank">Ver Video Tutorial</a></li>
-          <li><a href="https://cuty.io/ANDROIDFPS" target="_blank">Descargar Archivo Resolución +FPS</a></li>
-        </ul>
-      </div>
-
-      <button class="accordion">WIFI DE PC A ANDROID DIRECTO</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://cuty.io/PCAANDROID" target="_blank">Descargar WiFi PC a Android</a></li>
-        </ul>
-      </div>
-
-      <button class="accordion">OPTIMIZACION .BAT ANDROID (CAMBIO DE RESOLUCION + OPTIMIZACIONES)</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://cutyion.com/OPTIANDROID" target="_blank">Descargar OPTIMIZACION .BAT ANDROID</a></li>
-        </ul>
+      <h2 class="section-title">ARCHIVOS ANDROID</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>HACKS DE FREEFIRE (ROOT MAGISK)</h3>
+          <button class="card-button" onclick="toggleCardContent(this)">Ver Más</button>
+          <div class="card-content">
+            <ul>
+              <li><a href="https://cutyion.com/FreefireH" target="_blank">Descargar Hacks Freefire</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <h3>CAMBIAR RESOLUCION DE PANTALLA EN ANDROID +FPS</h3>
+          <button class="card-button" onclick="toggleCardContent(this)">Ver Más</button>
+          <div class="card-content">
+            <ul>
+              <li><a href="https://www.tiktok.com/@ajk.al/video/7273274423484976390" target="_blank">Ver Video Tutorial</a></li>
+              <li><a href="https://cuty.io/ANDROIDFPS" target="_blank">Descargar Archivo Resolución +FPS</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <h3>WIFI DE PC A ANDROID DIRECTO</h3>
+          <button class="card-button" onclick="toggleCardContent(this)">Ver Más</button>
+          <div class="card-content">
+            <ul>
+              <li><a href="https://cuty.io/PCAANDROID" target="_blank">Descargar WiFi PC a Android</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <h3>OPTIMIZACION .BAT ANDROID (CAMBIO DE RESOLUCION + OPTIMIZACIONES)</h3>
+          <button class="card-button" onclick="toggleCardContent(this)">Ver Más</button>
+          <div class="card-content">
+            <ul>
+              <li><a href="https://cutyion.com/OPTIANDROID" target="_blank">Descargar OPTIMIZACION .BAT ANDROID</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- SISTEMA OPERATIVO -->
     <section>
-      <h2 class="section-title pulse-title">Sistema Operativo que uso (WinterOS)</h2>
-      <button class="accordion">Ver ISOs para descargar</button>
-      <div class="panel">
+      <h2 class="section-title">Sistema Operativo que uso (WinterOS)</h2>
+      <div class="info-card">
         <ul>
           <li><a href="https://cutyion.com/Win10Win" target="_blank">WinterOS Rev14 - Windows 10 +FPS (ISO)</a></li>
           <li><a href="https://cutyion.com/Win10LT" target="_blank">WinterOS Rev14 - Windows 10 LTSC +FPS (ISO)</a></li>
@@ -214,7 +216,7 @@
 
     <!-- DONACIONES -->
     <section id="donations">
-      <h2 class="section-title pulse-title">Donaciones</h2>
+      <h2 class="section-title">Donaciones</h2>
       <p>Si te gusta mi contenido, considera apoyarme con una donación.</p>
       <div class="donation-buttons">
         <button onclick="showPaypalModal()">PayPal</button>
@@ -224,7 +226,7 @@
 
     <!-- SECCIÓN "QUIÉN SOY" -->
     <section id="aboutSection">
-      <h2 class="section-title pulse-title">¿Quién Soy?</h2>
+      <h2 class="section-title">¿Quién Soy?</h2>
       <button onclick="showAboutModal()">Leer</button>
     </section>
   </main>

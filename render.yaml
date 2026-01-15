@@ -1,0 +1,5 @@
+services:
+  - type: static_site
+    name: aj-files-static-site
+    # Serve files from the root of the repository
+    publishDir: .
