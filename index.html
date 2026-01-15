@@ -750,22 +750,48 @@
             </div>
         </section>
 
-        <!-- ===== SECCIÓN DE COMENTARIOS ===== -->
-        <section id="comentarios" class="glass-panel p-6 rounded-2xl my-8 w-full reveal-on-scroll">
-            <h3 class="text-2xl font-gaming font-bold text-cyan-400 mb-4">💬 Comentarios y Feedback</h3>
-            <p class="text-gray-400 mb-4">¿Te funcionó algún archivo? ¿Tienes problemas? Déjanos tu comentario:</p>
-            
-            <div class="bg-slate-800/50 p-4 rounded-lg mb-4 text-sm text-slate-400 border border-slate-700">
-                <i class="fas fa-info-circle text-blue-400 mr-2"></i>
-                Para comentar necesitas una cuenta de GitHub. Es gratis y rápida de crear.
-                <a href="https://github.com/join" target="_blank" class="text-cyan-400 hover:text-cyan-300 ml-1 underline">Crear cuenta aquí</a>
+        <!-- ===== SECCIÓN DE COMENTARIOS (DISEÑO PERSONALIZADO) ===== -->
+        <section id="comentarios" class="glass-panel p-8 rounded-2xl my-8 w-full reveal-on-scroll border-t-4 border-cyan-500 relative overflow-hidden">
+            <!-- Fondo decorativo sutil -->
+            <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+
+            <!-- 1. Título y Subtítulo -->
+            <div class="text-center mb-8">
+                <h3 class="text-3xl font-gaming font-bold text-white mb-2 flex items-center justify-center gap-2">
+                    <i class="far fa-comments text-cyan-400"></i> Comentarios y Feedback
+                </h3>
+                <p class="text-gray-400 text-sm md:text-base">
+                    ¿Te funcionó algún archivo? ¿Tienes problemas? Déjanos tu comentario:
+                </p>
+            </div>
+
+            <!-- 2. Caja de Aviso IMPORTANTE -->
+            <div class="bg-yellow-900/20 border-l-4 border-yellow-500 p-4 rounded-r-lg mb-6 backdrop-blur-sm">
+                <div class="flex items-start gap-3">
+                    <i class="fas fa-exclamation-triangle text-yellow-500 mt-1"></i>
+                    <div class="text-sm text-yellow-100/90">
+                        <strong class="text-yellow-400 tracking-wide">IMPORTANTE:</strong> Para comentar necesitas una cuenta de GitHub. Es gratis, segura y rápida de crear.
+                        <a href="https://github.com/join" target="_blank" class="inline-flex items-center gap-1 text-white font-bold underline hover:text-cyan-400 transition-colors ml-1">
+                            Crear cuenta aquí <i class="fas fa-external-link-alt text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Indicador de Iniciar Sesión -->
+            <div class="text-center mb-6">
+                <p class="text-slate-400 text-sm flex items-center justify-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    Si ya tienes cuenta, inicia sesión directamente abajo 👇
+                </p>
             </div>
             
-            <!-- Este div es donde Giscus cargará los comentarios -->
-            <div class="giscus"></div>
+            <!-- 4. Caja de Giscus -->
+            <!-- Usamos min-h para evitar saltos bruscos mientras carga -->
+            <div class="giscus min-h-[200px] bg-slate-900/30 rounded-xl p-2 md:p-4"></div>
         </section>
 
-        <!-- ===== SCRIPT DE GISCUS ===== -->
+        <!-- ===== SCRIPT DE GISCUS (Configurado con tema Transparente) ===== -->
         <script src="https://giscus.app/client.js"
                 data-repo="ajfiles/files"
                 data-repo-id="R_kgDOOY9cYg"
@@ -776,12 +802,13 @@
                 data-strict="0"
                 data-reactions-enabled="1"
                 data-emit-metadata="0"
-                data-input-position="bottom"
-                data-theme="transparent_dark" 
+                data-input-position="top" 
+                data-theme="transparent_dark"
                 data-lang="es"
                 crossorigin="anonymous"
                 async>
         </script>
+        <!-- Nota: Cambié data-input-position a "top" para que la caja de escribir salga arriba de los comentarios antiguos, que suele ser más cómodo. Puedes cambiarlo a "bottom" si prefieres. -->
 
     </main>
 
