@@ -1,848 +1,893 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Archivos y Recursos de AJ</title>
-  <style>
-    :root {
-      /* Modo Oscuro por defecto */
-      --bg-color: #1e1e1e;
-      --text-color: #f1f1f1;
-      --header-bg: #222;
-      --button-bg: #007bff;
-      --button-hover: #0056b3;
-      --accordion-bg: #2c2c2c;
-      --accordion-hover: #444;
-      --panel-bg: #333;
-      --border-color: #444;
-      --primary-color: #007bff;
-      --hover-color: #66b3ff;
-      --footer-border: #444;
-    }
-    body.light-mode {
-      /* Modo Claro Mejorado */
-      --bg-color: #ffffff;
-      --text-color: #222;
-      --header-bg: #f7f7f7;
-      --button-bg: #0088cc;
-      --button-hover: #006699;
-      --accordion-bg: #f1f1f1;
-      --accordion-hover: #e0e0e0;
-      --panel-bg: #fafafa;
-      --border-color: #ddd;
-      --primary-color: #0088cc;
-      --hover-color: #005577;
-      --footer-border: #ddd;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    /* Efecto de rebote para imágenes */
-    .bounce-image {
-      animation: bounceImage 2s infinite;
-    }
-    @keyframes bounceImage {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    
-    /* ============================
-       ESTILOS GLOBALES
-    ============================ */
-    * { box-sizing: border-box; }
-    body {
-      font-family: Arial, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: background-color 0.3s, color 0.3s;
-      position: relative;
-    }
-    
-    /* FPS COUNTER (fondo verde) */
-    #fpsCounter {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      background-color: green;
-      color: #fff;
-      padding: 5px 8px;
-      border-radius: 4px;
-      font-size: 14px;
-      z-index: 1000;
-    }
-    
-    header {
-      background-color: var(--header-bg);
-      width: 100%;
-      padding: 20px 0 60px 0;
-      text-align: center;
-      position: relative;
-    }
-    @keyframes bounceTitle {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-20px); }
-      60% { transform: translateY(-10px); }
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5em;
-      color: var(--text-color);
-      animation: bounceTitle 2s infinite;
-    }
-    .theme-toggle {
-      position: absolute;
-      right: 20px;
-      top: 80px;
-      padding: 8px 12px;
-      font-size: 14px;
-      border: none;
-      border-radius: 4px;
-      background-color: var(--button-bg);
-      color: #fff;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .theme-toggle:hover {
-      background-color: var(--button-hover);
-    }
-    
-    /* Redes Sociales */
-    .social-links {
-      margin: 20px 0;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-    .social-links a,
-    .tiktok-accordion {
-      text-decoration: none;
-      color: #fff;
-      background-color: var(--button-bg);
-      padding: 10px 15px;
-      border-radius: 5px;
-      transition: background-color 0.3s, transform 0.2s;
-      display: flex;
-      align-items: center;
-      border: none;
-    }
-    .social-links a:hover,
-    .tiktok-accordion:hover {
-      background-color: var(--button-hover);
-    }
-    .tiktok-accordion:active {
-      transform: scale(0.95);
-    }
-    .tiktok-panel {
-      display: none;
-      margin-top: 5px;
-      opacity: 0;
-      transform: translateY(-5px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    .tiktok-panel.show {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .tiktok-panel a {
-      display: block;
-      text-decoration: none;
-      color: #fff;
-      background-color: var(--accordion-bg);
-      padding: 10px 15px;
-      margin-bottom: 5px;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-    .tiktok-panel a:hover {
-      background-color: var(--accordion-hover);
-    }
-    
-    main {
-      width: 90%;
-      max-width: 900px;
-      margin: 20px;
-    }
-    h2.section-title {
-      text-align: center;
-      color: var(--primary-color);
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 10px;
-      margin-bottom: 20px;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-    .pulse-title {
-      animation: pulse 2s infinite;
-    }
-    section {
-      margin-bottom: 40px;
-    }
-    a { text-decoration: none; }
-    
-    /* Accordions: Solo se abre uno a la vez */
-    .accordion {
-      background-color: var(--accordion-bg);
-      color: var(--text-color);
-      cursor: pointer;
-      padding: 15px;
-      width: 100%;
-      border: none;
-      text-align: left;
-      outline: none;
-      font-size: 18px;
-      transition: background-color 0.3s;
-      margin-bottom: 5px;
-    }
-    .accordion:hover {
-      background-color: var(--accordion-hover);
-    }
-    .active-accordion {
-      background-color: var(--accordion-hover);
-    }
-    /* Paneles inicialmente sin padding vertical */
-    .panel {
-      background-color: var(--panel-bg);
-      overflow: hidden;
-      transition: max-height 0.3s ease-out, padding 0.3s ease-out;
-      max-height: 0;
-      padding: 0 15px;
-    }
-    /* Paneles abiertos con mayor padding */
-    .panel.open {
-      padding: 10px 25px 15px 25px; /* Aumentamos el padding lateral a 25px */
-    }
-    .panel ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .panel ul li {
-      margin: 10px 0;
-    }
-    .panel ul li a {
-      color: var(--primary-color);
-      transition: color 0.3s;
-    }
-    .panel ul li a:hover {
-      color: var(--hover-color);
-    }
+    <!-- SEO Meta Tags solicitados -->
+    <meta name="description" content="Archivos optimizados, juegos +FPS, recursos Android y PC por AJ.">
+    <meta name="keywords" content="AJ, juegos optimizados, FPS, Android, PC, archivos, WinterOS, optimización">
+    <meta name="author" content="AJ">
 
-    /* Botón grande para Video Explicativo */
-    .large-button {
-      display: block;
-      margin: 0 auto 15px auto;
-      padding: 15px 30px;
-      font-size: 20px;
-      background-color: var(--button-bg);
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .large-button:hover {
-      background-color: var(--button-hover);
-    }
+    <title>Archivos y Recursos de AJ</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     
-    /* Botón Volver Arriba */
-    #backToTop {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #800080;
-      color: #fff;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      opacity: 0.7;
-      transition: opacity 0.3s;
-      z-index: 999;
-    }
-    #backToTop:hover {
-      opacity: 1;
-    }
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS (CDN para funcionamiento inmediato en un solo archivo) -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
-    footer {
-      background-color: var(--bg-color);
-      width: 100%;
-      padding: 15px 0;
-      text-align: center;
-      font-size: 0.9em;
-      border-top: 1px solid var(--footer-border);
-      margin-top: 40px;
-    }
-    
-    /* Modal Video: Vimeo con mayor tamaño */
-    .video-modal-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.8);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .video-modal-content {
-      background-color: var(--panel-bg);
-      padding: 10px;
-      border-radius: 5px;
-      max-width: 800px;
-      max-height: 90vh;
-      animation: bounce 0.5s;
-      position: relative;
-    }
-    .video-modal-content iframe {
-      width: 100%;
-      height: 90vh;
-      border: none;
-      border-radius: 5px;
-    }
-    .video-modal-content .close-btn {
-      position: absolute;
-      top: 5px;
-      right: 8px;
-      background: none;
-      border: none;
-      font-size: 18px;
-      cursor: pointer;
-      color: var(--text-color);
-    }
-    
-    @keyframes bounce {
-      0% { transform: scale(0.8); }
-      60% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-    
-    /* Modal PayPal */
-    .modal-paypal-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .modal-paypal-content {
-      background-color: var(--panel-bg);
-      color: var(--text-color);
-      padding: 20px;
-      border-radius: 5px;
-      text-align: center;
-      max-width: 300px;
-      animation: bounce 0.5s;
-      position: relative;
-    }
-    .modal-paypal-content .close-btn {
-      position: absolute;
-      top: 5px;
-      right: 8px;
-      background: none;
-      border: none;
-      font-size: 18px;
-      cursor: pointer;
-      color: var(--text-color);
-    }
-    
-    /* Modal Nequi */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .modal-content {
-      background-color: var(--panel-bg);
-      color: var(--text-color);
-      padding: 20px;
-      border-radius: 5px;
-      text-align: center;
-      max-width: 300px;
-      animation: bounce 0.5s;
-      position: relative;
-    }
-    .modal-content .close-btn {
-      position: absolute;
-      top: 5px;
-      right: 8px;
-      background: none;
-      border: none;
-      font-size: 18px;
-      cursor: pointer;
-      color: var(--text-color);
-    }
-    
-    /* Modal "Quién Soy" */
-    .about-modal-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.6);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .about-modal-content {
-      background-color: var(--panel-bg);
-      padding: 20px;
-      border-radius: 5px;
-      max-width: 500px;
-      animation: bounce 0.5s;
-      position: relative;
-      text-align: left;
-    }
-    .about-modal-content .close-btn {
-      position: absolute;
-      top: 5px;
-      right: 8px;
-      background: none;
-      border: none;
-      font-size: 18px;
-      cursor: pointer;
-      color: var(--text-color);
-    }
-    
-    /* Sección Donaciones (centrada) */
-    #donations {
-      width: 90%;
-      max-width: 900px;
-      background-color: var(--panel-bg);
-      padding: 15px;
-      border-radius: 5px;
-      margin: 20px auto;
-      text-align: center;
-    }
-    #donations h2 {
-      text-align: center;
-      margin-bottom: 15px;
-      color: var(--primary-color);
-    }
-    .donation-buttons {
-      display: inline-flex;
-      gap: 15px;
-      margin-top: 10px;
-    }
-    .donation-buttons a,
-    .donation-buttons button {
-      display: inline-block;
-      padding: 10px 15px;
-      background-color: var(--button-bg);
-      color: #fff;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .donation-buttons a:hover,
-    .donation-buttons button:hover {
-      background-color: var(--button-hover);
-    }
-    
-    /* Sección "Quién Soy" (centrada) */
-    #aboutSection {
-      width: 90%;
-      max-width: 900px;
-      background-color: var(--panel-bg);
-      padding: 15px;
-      border-radius: 5px;
-      margin: 20px auto;
-      text-align: center;
-    }
-    #aboutSection button {
-      padding: 10px 15px;
-      background-color: var(--button-bg);
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    #aboutSection button:hover {
-      background-color: var(--button-hover);
-    }
-  </style>
+    <!-- Configuración de Tailwind -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        gaming: ['Rajdhani', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: {
+                            bg: '#0f172a',
+                            card: '#1e293b',
+                            accent: '#38bdf8'
+                        },
+                        light: {
+                            bg: '#f8fafc',
+                            card: '#ffffff',
+                            accent: '#0ea5e9'
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos personalizados */
+        body {
+            background-color: #0f172a; 
+            overflow-x: hidden;
+            /* Prevenir scroll lateral en móviles */
+            width: 100vw;
+        }
+
+        /* Canvas para partículas */
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Grid pattern sutil (detrás del canvas) */
+        .grid-bg {
+            background-size: 50px 50px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -2;
+        }
+
+        /* Scrollbar personalizado */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #38bdf8;
+        }
+
+        /* Modo claro overrides */
+        body.light-mode {
+            background-color: #f0f4f8;
+            color: #1e293b;
+        }
+        body.light-mode .grid-bg {
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+        }
+        
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        body.light-mode .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+    </style>
 </head>
-<body>
+<body class="text-gray-100 transition-colors duration-300 min-h-screen flex flex-col items-center selection:bg-cyan-500 selection:text-white">
 
-  <!-- FPS COUNTER -->
-  <div id="fpsCounter">FPS: 0</div>
+    <!-- Elementos de fondo -->
+    <div class="grid-bg"></div>
+    <!-- Canvas reemplaza al spotlight CSS -->
+    <canvas id="particleCanvas"></canvas>
 
-  <header>
-    <h1>Archivos y Recursos de AJ</h1>
-    <button class="theme-toggle" onclick="toggleTheme()">Modo Claro</button>
-  </header>
-
-  <!-- Redes Sociales -->
-  <div class="social-links">
-    <button class="tiktok-accordion" onclick="toggleTikTok()">TIKTOK</button>
-    <div class="tiktok-panel" id="tiktokPanel">
-      <a href="https://www.tiktok.com/@ajk.al" target="_blank">TikTok 🇨🇴</a>
-      <a href="https://www.tiktok.com/@soyy_aj" target="_blank">TikTok 🇺🇸</a>
-      <a href="https://www.tiktok.com/@aj.jugando" target="_blank">TikTok 🎮</a>
+    <!-- FPS Counter -->
+    <div id="fpsCounter" class="fixed top-4 left-4 z-50 bg-black/80 text-green-400 font-mono text-sm px-3 py-1 rounded border border-green-500/30 shadow-[0_0_10px_rgba(74,222,128,0.2)] select-none">
+        FPS: 160
     </div>
-    <a href="https://www.youtube.com/@Oficial-AJ" target="_blank">YouTube</a>
-    <a href="https://discord.com/invite/v6sXsaHhpu" target="_blank">Discord</a>
-    <a href="https://www.whatsapp.com/channel/0029Vb78y6d6GcGLSt1Xw834" target="_blank">WhatsApp</a>
-  </div>
 
-  <main>
-    <!-- Sección Acortador -->
-    <section>
-      <h2 class="section-title pulse-title">Como Pasar El Acortador De Mis Archivos</h2>
-      <div style="text-align: center;">
-        <button class="large-button" onclick="showVideoModal()">Ver Video Explicativo</button>
-      </div>
-      <button class="accordion">VER IMPORTANTE</button>
-      <div class="panel">
-        <ul>
-          <li>
-            Ojo con las descargas maliciosas, la mayoría (si no es que todas) son por MediaFire, no a páginas +18 o similares, ni descargas con contraseñas.
-            Todo está abierto, por favor ver el video de cómo pasar el acortador.
-            <br><br>
-            Solo dejo 1 Acortador porque así apoyas mi contenido sin pedir directamente donaciones.
-          </li>
-        </ul>
-      </div>
-    </section>
+    <!-- Header -->
+    <header class="w-full pt-12 pb-8 px-4 text-center relative z-10 max-w-4xl mx-auto">
+        <div class="absolute top-6 right-6">
+            <button onclick="toggleTheme()" class="p-2 rounded-full bg-slate-800 hover:bg-slate-700 text-yellow-400 transition-all duration-300 shadow-lg border border-slate-700 theme-btn">
+                <i class="fas fa-sun"></i>
+            </button>
+        </div>
+        
+        <div class="inline-block relative group">
+            <div class="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+            <h1 class="relative font-gaming text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-400 pb-2 drop-shadow-sm">
+                RECURSOS DE AJ
+            </h1>
+        </div>
+        <p class="mt-4 text-slate-400 text-lg">Optimización • Gaming • Software</p>
+    </header>
 
-    <!-- JUEGOS OPTIMIZADOS -->
-    <section>
-      <h2 class="section-title pulse-title">JUEGOS OPTIMIZADOS</h2>
-      <button class="accordion">Minecraft</button>
-      <div class="panel">
-        <!-- Imagen para Minecraft -->
-        <div style="text-align: center; margin: 20px 0 10px 0;">
-          <img src="Minecraft.png" alt="Minecraft" class="bounce-image" style="max-width: 200px;">
-        </div>
-        <p style="margin: 10px 0; font-weight: bold;">Version Java:</p>
-        <ul>
-          <li><a href="https://cutyion.com/MC1215AJ" target="_blank">Minecraft 1.21.5 +FPS</a></li>
-          <li><a href="https://cutyion.com/MC1214AJ" target="_blank">Minecraft 1.21.4 +FPS</a></li>
-          <li><a href="https://cutyion.com/MC1211" target="_blank">Minecraft 1.21.1 +FPS</a></li>
-          <li><a href="https://cuty.io/ConfigMC" target="_blank">Configuración Minecraft +FPS</a></li>
-        </ul>
-        <p style="margin: 10px 0; font-weight: bold;">Version Bedrock:</p>
-        <ul>
-          <li><a href="https://cutyion.com/AJBEDROCKFPS" target="_blank">Minecraft Bedrock +FPS</a></li>
-          <li><a href="https://cutyion.com/BEDROCKPCFPS" target="_blank">Minecraft Bedrock (PC) +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">SHEDULE I OPTIMIZACION +FPS</button>
-      <div class="panel">
-        <!-- Imagen para Schedule -->
-        <div style="text-align: center; margin: 20px 0 10px 0;">
-          <img src="Schedule.png" alt="Schedule" class="bounce-image" style="max-width: 200px;">
-        </div>
-        <ul>
-          <li><a href="https://cutyion.com/ScheduleAJ" target="_blank">Descargar SHEDULE I OPTIMIZACION +FPS</a></li>
-          <li><a href="https://cuty.io/ScheduleAj" target="_blank">DESCARGAR JUEGO</a></li>
-        </ul>
-      </div>
-      <button class="accordion">WATCHDOGS 2 OPTIMIZACION +FPS</button>
-      <div class="panel">
-        <!-- Imagen para WatchDogs2 -->
-        <div style="text-align: center; margin: 20px 0 10px 0;">
-          <img src="WatchDogs2.png" alt="WatchDogs2" class="bounce-image" style="max-width: 200px;">
-        </div>
-        <ul>
-          <li><a href="https://cutyion.com/WD2FPS" target="_blank">Descargar WATCHDOGS 2 +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">OPTIMIZACION DEFINITIVA FORTNITE</button>
-      <div class="panel">
-        <!-- Imagen para Fortnite -->
-        <div style="text-align: center; margin: 20px 0 10px 0;">
-          <img src="Fortnite.png" alt="Fortnite" class="bounce-image" style="max-width: 200px;">
-        </div>
-        <ul>
-          <li><a href="https://cutyion.com/FortniteFPS" target="_blank">Descargar Fortnite +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">DRAGON BALL SPARKING ZERO +FPS</button>
-      <div class="panel">
-        <!-- Imagen para Dragonball -->
-        <div style="text-align: center; margin: 20px 0 10px 0;">
-          <img src="Dragonball.png" alt="Dragon Ball" class="bounce-image" style="max-width: 200px;">
-        </div>
-        <ul>
-          <li><a href="https://cutyion.com/DragonBallAJ" target="_blank">Descargar Dragon Ball +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">PES-2017 OPTI +FPS</button>
-      <div class="panel">
-        <!-- Imagen para PES2017 -->
-        <div style="text-align: center; margin: 20px 0 10px 0;">
-          <img src="pes2017.png" alt="PES 2017" class="bounce-image" style="max-width: 200px;">
-        </div>
-        <ul>
-          <li><a href="https://cuty.io/PES2017AJ" target="_blank">Descargar PES 2017 +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">ROCKET LEAGUE +FPS</button>
-      <div class="panel">
-        <!-- Imagen para Rocket League -->
-        <div style="text-align: center; margin: 20px 0 10px 0;">
-          <img src="rocketLeague.png" alt="Rocket League" class="bounce-image" style="max-width: 200px;">
-        </div>
-        <ul>
-          <li><a href="https://cuty.io/ROCKETFPSAJ" target="_blank">Descargar Rocket League +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">CALL OF DUTY BLACK OPS 2 +FPS</button>
-      <div class="panel">
-        <!-- Imagen para COD Black Ops 2 -->
-        <div style="text-align: center; margin: 20px 0 10px 0;">
-          <img src="codbo2.png" alt="COD Black Ops 2" class="bounce-image" style="max-width: 200px;">
-        </div>
-        <ul>
-          <li><a href="https://cuty.io/CODBO2FPS" target="_blank">Descargar COD Black Ops 2 +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">CALL OF DUTY MW3 +FPS</button>
-      <div class="panel">
-        <!-- Imagen para COD MW3 -->
-        <div style="text-align: center; margin: 20px 0 10px 0;">
-          <img src="CoDmw3.png" alt="COD MW3" class="bounce-image" style="max-width: 200px;">
-        </div>
-        <ul>
-          <li><a href="https://cuty.io/CODMW3FPS" target="_blank">Descargar COD MW3 +FPS</a></li>
-        </ul>
-      </div>
-      <button class="accordion">GTA V +FPS</button>
-      <div class="panel">
-        <!-- Imagen para GTA V -->
-        <div style="text-align: center; margin: 20px 0 10px 0;">
-          <img src="gtav.png" alt="GTA V" class="bounce-image" style="max-width: 200px;">
-        </div>
-        <ul>
-          <li><a href="https://cuty.io/GTAVFPSAJ" target="_blank">Descargar GTA V +FPS</a></li>
-        </ul>
-      </div>
-    </section>
+    <!-- Social Links (Grid Moderno) -->
+    <div class="w-full max-w-4xl px-4 mb-12 relative z-20"> <!-- z-20 para estar encima del contenido principal -->
+        <div class="flex flex-wrap justify-center gap-4">
+            
+            <!-- TikTok Dropdown Wrapper -->
+            <!-- Usamos relative para posicionar el menú encima -->
+            <div class="relative group">
+                <!-- Dropdown MENU (Ahora es Drop-UP: bottom-full + mb-2) -->
+                <div id="tiktokPanel" class="hidden absolute bottom-full left-0 mb-2 w-full bg-slate-800 rounded-lg shadow-xl overflow-hidden border border-slate-700 z-50 transform origin-bottom transition-all duration-200">
+                    <a href="https://www.tiktok.com/@ajk.al" target="_blank" rel="noopener noreferrer" class="block px-4 py-3 hover:bg-slate-700 text-sm transition-colors border-b border-slate-700/50">
+                        🇨🇴 CO AJ
+                    </a>
+                    <a href="https://www.tiktok.com/@soyy_aj" target="_blank" rel="noopener noreferrer" class="block px-4 py-3 hover:bg-slate-700 text-sm transition-colors border-b border-slate-700/50">
+                        🇺🇸 AJ USA
+                    </a>
+                    <a href="https://www.tiktok.com/@aj.jugando" target="_blank" rel="noopener noreferrer" class="block px-4 py-3 hover:bg-slate-700 text-sm transition-colors">
+                        🎮 AJ Gaming
+                    </a>
+                </div>
 
-    <!-- ARCHIVOS ANDROID (Sección independiente) -->
-    <section>
-      <h2 class="section-title pulse-title">ARCHIVOS ANDROID</h2>
-      
-      <button class="accordion">HACKS DE FREEFIRE (ROOT MAGISK)</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://cutyion.com/FreefireH" target="_blank">Descargar Hacks Freefire</a></li>
-        </ul>
-      </div>
-      
-      <button class="accordion">CAMBIAR RESOLUCION DE PANTALLA EN ANDROID +FPS</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://www.tiktok.com/@ajk.al/video/7273274423484976390" target="_blank">Ver Video Tutorial</a></li>
-          <li><a href="https://cuty.io/ANDROIDFPS" target="_blank">Descargar Archivo Resolución +FPS</a></li>
-        </ul>
-      </div>
-      
-      <button class="accordion">WIFI DE PC A ANDROID DIRECTO</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://cuty.io/PCAANDROID" target="_blank">Descargar WiFi PC a Android</a></li>
-        </ul>
-      </div>
-      
-      <button class="accordion">OPTIMIZACION .BAT ANDROID (CAMBIO DE RESOLUCION + OPTIMIZACIONES)</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://cutyion.com/OPTIANDROID" target="_blank">Descargar OPTIMIZACION .BAT ANDROID</a></li>
-        </ul>
-      </div>
-    </section>
+                <button onclick="toggleTikTok()" class="flex items-center gap-2 bg-[#000000] hover:bg-[#252525] text-white px-6 py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-cyan-500/20 hover:-translate-y-1 font-semibold border border-gray-800 relative z-10">
+                    <i class="fab fa-tiktok text-pink-500"></i> TikTok
+                    <i class="fas fa-chevron-up text-xs ml-1 transition-transform" id="tiktokArrow"></i> <!-- Flecha hacia arriba por defecto al estar cerrado -->
+                </button>
+            </div>
 
-    <!-- SISTEMA OPERATIVO -->
-    <section>
-      <h2 class="section-title pulse-title">Sistema Operativo que uso (WinterOS)</h2>
-      <button class="accordion">Ver ISOs para descargar</button>
-      <div class="panel">
-        <ul>
-          <li><a href="https://cutyion.com/Win10Win" target="_blank">WinterOS Rev14 - Windows 10 +FPS (ISO)</a></li>
-          <li><a href="https://cutyion.com/Win10LT" target="_blank">WinterOS Rev14 - Windows 10 LTSC +FPS (ISO)</a></li>
-          <li><a href="https://cutyion.com/Win11WinterO" target="_blank">WinterOS Rev14 - Windows 11 +FPS (ISO)</a></li>
-          <li><a href="https://cutyion.com/Win11LTS" target="_blank">WinterOS Rev14 - Windows 11 LTSC +FPS (ISO)</a></li>
-        </ul>
-      </div>
-    </section>
+            <a href="https://www.youtube.com/@Oficial-AJ" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-[#ff0000] hover:bg-[#cc0000] text-white px-6 py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-red-500/20 hover:-translate-y-1 font-semibold">
+                <i class="fab fa-youtube"></i> YouTube
+            </a>
+            
+            <a href="https://discord.com/invite/v6sXsaHhpu" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-[#5865F2] hover:bg-[#4752c4] text-white px-6 py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-indigo-500/20 hover:-translate-y-1 font-semibold">
+                <i class="fab fa-discord"></i> Discord
+            </a>
 
-    <!-- DONACIONES -->
-    <section id="donations">
-      <h2 class="section-title pulse-title">Donaciones</h2>
-      <p>Si te gusta mi contenido, considera apoyarme con una donación.</p>
-      <div class="donation-buttons">
-        <button onclick="showPaypalModal()">PayPal</button>
-        <button onclick="showNequiModal()">Nequi</button>
-      </div>
-    </section>
-
-    <!-- SECCIÓN "QUIÉN SOY" -->
-    <section id="aboutSection">
-      <h2 class="section-title pulse-title">¿Quién Soy?</h2>
-      <button onclick="showAboutModal()">Leer</button>
-    </section>
-  </main>
-
-  <footer>
-    <p>Hecho con ❤️ por AJ</p>
-  </footer>
-
-  <button id="backToTop" onclick="scrollToTop()">Volver Arriba</button>
-
-  <!-- Modal Video (Vimeo) -->
-  <div class="video-modal-overlay" id="videoModal">
-    <div class="video-modal-content">
-      <button class="close-btn" onclick="closeVideoModal()">×</button>
-      <iframe src="https://player.vimeo.com/video/1074788174" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            <a href="https://www.whatsapp.com/channel/0029Vb78y6d6GcGLSt1Xw834" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-green-500/20 hover:-translate-y-1 font-semibold">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+        </div>
     </div>
-  </div>
 
-  <!-- Modal PayPal -->
-  <div class="modal-paypal-overlay" id="paypalModal">
-    <div class="modal-paypal-content">
-      <button class="close-btn" onclick="closePaypalModal()">×</button>
-      <h3>PayPal</h3>
-      <p>Hasta 0.20 son bien venidos</p>
-      <a href="https://www.paypal.com/paypalme/AlejandroAlferezA?country.x=CO&locale.x=es_XC" target="_blank">Donar vía PayPal</a>
+    <main class="w-full max-w-3xl px-4 pb-20 relative z-10 flex flex-col gap-10">
+
+        <!-- Sección Acortador (Destacada) -->
+        <section class="glass-panel p-6 rounded-2xl relative overflow-hidden group z-0"> <!-- z-0 para no tapar dropdowns -->
+            <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-yellow-500 rounded-full opacity-10 blur-2xl group-hover:opacity-20 transition-opacity"></div>
+            
+            <h2 class="text-2xl font-gaming font-bold text-center text-yellow-400 mb-6 flex items-center justify-center gap-2">
+                <i class="fas fa-exclamation-triangle"></i> CÓMO PASAR EL ACORTADOR
+            </h2>
+            
+            <div class="flex justify-center mb-6">
+                <button onclick="showVideoModal()" class="relative overflow-hidden bg-gradient-to-r from-yellow-600 to-orange-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition hover:scale-105 hover:shadow-orange-500/30">
+                    <span class="relative z-10 flex items-center gap-2"><i class="fas fa-play-circle"></i> Ver Video Explicativo</span>
+                </button>
+            </div>
+
+            <!-- Acordeón Específico -->
+            <div class="border border-slate-700 rounded-xl overflow-hidden bg-slate-900/50">
+                <button class="accordion-header w-full flex items-center justify-between p-4 bg-slate-800/50 hover:bg-slate-800 transition-colors text-left font-semibold text-gray-200">
+                    <span class="flex items-center gap-3"><i class="fas fa-info-circle text-blue-400"></i> LEER IMPORTANTE</span>
+                    <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                </button>
+                <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-slate-900/80">
+                    <div class="p-5 text-gray-300 text-sm leading-relaxed border-t border-slate-700">
+                        <p class="mb-3"><span class="text-red-400 font-bold">Ojo:</span> Cuidado con las descargas maliciosas. La mayoría de mis archivos están en MediaFire. No uso páginas +18 ni archivos con contraseñas extrañas.</p>
+                        <p>Solo uso 1 acortador para que apoyes mi contenido sin pedir donaciones directas. ¡Gracias!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Juegos Optimizados -->
+        <section>
+            <div class="flex items-center gap-4 mb-6">
+                <div class="h-px bg-slate-700 flex-1"></div>
+                <h2 class="text-2xl font-gaming font-bold text-cyan-400 tracking-wide uppercase"><i class="fas fa-gamepad mr-2"></i> Juegos Optimizados</h2>
+                <div class="h-px bg-slate-700 flex-1"></div>
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <!-- Minecraft -->
+                <div class="accordion-item glass-panel rounded-xl overflow-hidden">
+                    <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-green-900/50 flex items-center justify-center text-green-400 border border-green-700/50">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <span class="font-semibold text-lg">Minecraft</span>
+                        </div>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-5 border-t border-slate-700 bg-slate-900/30">
+                            <!-- Image Container -->
+                            <div class="flex justify-center mb-4">
+                                <img src="Minecraft.png" onerror="this.style.display='none'" alt="Minecraft" class="animate-float max-h-32 object-contain drop-shadow-lg">
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <h4 class="text-green-400 font-bold mb-2 text-sm uppercase">Java Edition</h4>
+                                    <ul class="space-y-2">
+                                        <li><a href="https://cutyion.com/MC1215AJ" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-sm hover:text-cyan-400 transition-colors"><i class="fas fa-download text-xs"></i> 1.21.5 +FPS</a></li>
+                                        <li><a href="https://cutyion.com/MC1214AJ" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-sm hover:text-cyan-400 transition-colors"><i class="fas fa-download text-xs"></i> 1.21.4 +FPS</a></li>
+                                        <li><a href="https://cutyion.com/MC1211" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-sm hover:text-cyan-400 transition-colors"><i class="fas fa-download text-xs"></i> 1.21.1 +FPS</a></li>
+                                        <li><a href="https://cuty.io/ConfigMC" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-sm hover:text-cyan-400 transition-colors"><i class="fas fa-cog text-xs"></i> Configuración +FPS</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="text-green-400 font-bold mb-2 text-sm uppercase">Bedrock Edition</h4>
+                                    <ul class="space-y-2">
+                                        <li><a href="https://cutyion.com/AJBEDROCKFPS" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-sm hover:text-cyan-400 transition-colors"><i class="fas fa-download text-xs"></i> Bedrock +FPS</a></li>
+                                        <li><a href="https://cutyion.com/BEDROCKPCFPS" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-sm hover:text-cyan-400 transition-colors"><i class="fas fa-desktop text-xs"></i> PC Bedrock +FPS</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Schedule -->
+                <div class="accordion-item glass-panel rounded-xl overflow-hidden">
+                    <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-red-900/50 flex items-center justify-center text-red-400 border border-red-700/50">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <span class="font-semibold text-lg">Shedule I Optimización</span>
+                        </div>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-5 border-t border-slate-700 bg-slate-900/30">
+                            <div class="flex justify-center mb-4"><img src="Schedule.png" onerror="this.style.display='none'" alt="Schedule" class="animate-float max-h-32 object-contain"></div>
+                            <ul class="space-y-2">
+                                <li><a href="https://cutyion.com/ScheduleAJ" target="_blank" rel="noopener noreferrer" class="link-hover"><i class="fas fa-bolt text-yellow-500 mr-2"></i> Descargar Optimización +FPS</a></li>
+                                <li><a href="https://cuty.io/ScheduleAj" target="_blank" rel="noopener noreferrer" class="link-hover"><i class="fas fa-gamepad text-cyan-500 mr-2"></i> Descargar Juego</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch Dogs 2 -->
+                <div class="accordion-item glass-panel rounded-xl overflow-hidden">
+                    <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-purple-900/50 flex items-center justify-center text-purple-400 border border-purple-700/50">
+                                <i class="fas fa-hacker"></i>
+                            </div>
+                            <span class="font-semibold text-lg">Watch Dogs 2</span>
+                        </div>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-5 border-t border-slate-700 bg-slate-900/30">
+                            <div class="flex justify-center mb-4"><img src="WatchDogs2.png" onerror="this.style.display='none'" alt="WatchDogs2" class="animate-float max-h-32 object-contain"></div>
+                            <a href="https://cutyion.com/WD2FPS" target="_blank" rel="noopener noreferrer" class="link-hover"><i class="fas fa-download mr-2"></i> Descargar Optimización +FPS</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fortnite -->
+                <div class="accordion-item glass-panel rounded-xl overflow-hidden">
+                    <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-blue-900/50 flex items-center justify-center text-blue-400 border border-blue-700/50">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <span class="font-semibold text-lg">Fortnite</span>
+                        </div>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-5 border-t border-slate-700 bg-slate-900/30">
+                            <div class="flex justify-center mb-4"><img src="Fortnite.png" onerror="this.style.display='none'" alt="Fortnite" class="animate-float max-h-32 object-contain"></div>
+                            <a href="https://cutyion.com/FortniteFPS" target="_blank" rel="noopener noreferrer" class="link-hover"><i class="fas fa-download mr-2"></i> Optimización Definitiva</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dragon Ball -->
+                <div class="accordion-item glass-panel rounded-xl overflow-hidden">
+                    <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-orange-900/50 flex items-center justify-center text-orange-400 border border-orange-700/50">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <span class="font-semibold text-lg">Dragon Ball Sparking Zero</span>
+                        </div>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-5 border-t border-slate-700 bg-slate-900/30">
+                            <div class="flex justify-center mb-4"><img src="Dragonball.png" onerror="this.style.display='none'" alt="Dragon Ball" class="animate-float max-h-32 object-contain"></div>
+                            <a href="https://cutyion.com/DragonBallAJ" target="_blank" rel="noopener noreferrer" class="link-hover"><i class="fas fa-download mr-2"></i> Descargar +FPS</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PES 2017 -->
+                <div class="accordion-item glass-panel rounded-xl overflow-hidden">
+                    <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-900/50 flex items-center justify-center text-emerald-400 border border-emerald-700/50">
+                                <i class="fas fa-futbol"></i>
+                            </div>
+                            <span class="font-semibold text-lg">PES 2017</span>
+                        </div>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-5 border-t border-slate-700 bg-slate-900/30">
+                            <div class="flex justify-center mb-4"><img src="pes2017.png" onerror="this.style.display='none'" alt="PES" class="animate-float max-h-32 object-contain"></div>
+                            <a href="https://cuty.io/PES2017AJ" target="_blank" rel="noopener noreferrer" class="link-hover"><i class="fas fa-download mr-2"></i> Descargar Opti +FPS</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rocket League -->
+                <div class="accordion-item glass-panel rounded-xl overflow-hidden">
+                    <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-sky-900/50 flex items-center justify-center text-sky-400 border border-sky-700/50">
+                                <i class="fas fa-car-side"></i>
+                            </div>
+                            <span class="font-semibold text-lg">Rocket League</span>
+                        </div>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-5 border-t border-slate-700 bg-slate-900/30">
+                            <div class="flex justify-center mb-4"><img src="rocketLeague.png" onerror="this.style.display='none'" alt="Rocket League" class="animate-float max-h-32 object-contain"></div>
+                            <a href="https://cuty.io/ROCKETFPSAJ" target="_blank" rel="noopener noreferrer" class="link-hover"><i class="fas fa-download mr-2"></i> Descargar +FPS</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CODS -->
+                <div class="accordion-item glass-panel rounded-xl overflow-hidden">
+                    <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-gray-700/50 flex items-center justify-center text-gray-300 border border-gray-500/50">
+                                <i class="fas fa-crosshairs"></i>
+                            </div>
+                            <span class="font-semibold text-lg">Call of Duty Series</span>
+                        </div>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-5 border-t border-slate-700 bg-slate-900/30">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-black/20 p-3 rounded text-center">
+                                    <h5 class="font-bold mb-2">Black Ops 2</h5>
+                                    <img src="codbo2.png" onerror="this.style.display='none'" class="h-20 mx-auto mb-2 object-contain">
+                                    <a href="https://cuty.io/CODBO2FPS" target="_blank" rel="noopener noreferrer" class="text-sm text-cyan-400 hover:text-cyan-300">Descargar +FPS</a>
+                                </div>
+                                <div class="bg-black/20 p-3 rounded text-center">
+                                    <h5 class="font-bold mb-2">Modern Warfare 3</h5>
+                                    <img src="CoDmw3.png" onerror="this.style.display='none'" class="h-20 mx-auto mb-2 object-contain">
+                                    <a href="https://cuty.io/CODMW3FPS" target="_blank" rel="noopener noreferrer" class="text-sm text-cyan-400 hover:text-cyan-300">Descargar +FPS</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- GTA V -->
+                 <div class="accordion-item glass-panel rounded-xl overflow-hidden">
+                    <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-green-800/50 flex items-center justify-center text-green-300 border border-green-600/50">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <span class="font-semibold text-lg">GTA V</span>
+                        </div>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-5 border-t border-slate-700 bg-slate-900/30">
+                            <div class="flex justify-center mb-4"><img src="gtav.png" onerror="this.style.display='none'" alt="GTA V" class="animate-float max-h-32 object-contain"></div>
+                            <a href="https://cuty.io/GTAVFPSAJ" target="_blank" rel="noopener noreferrer" class="link-hover"><i class="fas fa-download mr-2"></i> Descargar +FPS</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Android Section -->
+        <section>
+            <div class="flex items-center gap-4 mb-6">
+                <div class="h-px bg-slate-700 flex-1"></div>
+                <h2 class="text-2xl font-gaming font-bold text-green-400 tracking-wide uppercase"><i class="fab fa-android mr-2"></i> Archivos Android</h2>
+                <div class="h-px bg-slate-700 flex-1"></div>
+            </div>
+
+            <div class="flex flex-col gap-3">
+                 <div class="accordion-item glass-panel rounded-xl overflow-hidden">
+                    <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left">
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-mobile-alt text-xl w-6 text-center text-gray-400"></i>
+                            <span class="font-semibold">Hacks Freefire (Root Magisk)</span>
+                        </div>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-5 border-t border-slate-700 bg-slate-900/30">
+                            <a href="https://cutyion.com/FreefireH" target="_blank" rel="noopener noreferrer" class="link-hover">Descargar Hacks</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item glass-panel rounded-xl overflow-hidden">
+                    <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left">
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-expand text-xl w-6 text-center text-gray-400"></i>
+                            <span class="font-semibold">Cambiar Resolución Android +FPS</span>
+                        </div>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-5 border-t border-slate-700 bg-slate-900/30 flex flex-col gap-2">
+                            <a href="https://www.tiktok.com/@ajk.al/video/7273274423484976390" target="_blank" rel="noopener noreferrer" class="link-hover"><i class="fab fa-tiktok"></i> Ver Video Tutorial</a>
+                            <a href="https://cuty.io/ANDROIDFPS" target="_blank" rel="noopener noreferrer" class="link-hover"><i class="fas fa-file-download"></i> Descargar Archivo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item glass-panel rounded-xl overflow-hidden">
+                    <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left">
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-wifi text-xl w-6 text-center text-gray-400"></i>
+                            <span class="font-semibold">WiFi PC a Android Directo</span>
+                        </div>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-5 border-t border-slate-700 bg-slate-900/30">
+                            <a href="https://cuty.io/PCAANDROID" target="_blank" rel="noopener noreferrer" class="link-hover">Descargar WiFi Tool</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item glass-panel rounded-xl overflow-hidden">
+                    <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left">
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-terminal text-xl w-6 text-center text-gray-400"></i>
+                            <span class="font-semibold">Optimización .BAT Android</span>
+                        </div>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-5 border-t border-slate-700 bg-slate-900/30">
+                            <a href="https://cutyion.com/OPTIANDROID" target="_blank" rel="noopener noreferrer" class="link-hover">Descargar Script .BAT</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OS Section -->
+        <section>
+            <div class="glass-panel rounded-xl p-6 text-center border-t-4 border-blue-500">
+                <h2 class="text-xl font-bold mb-4 flex items-center justify-center gap-2">
+                    <i class="fab fa-windows text-blue-400"></i> Sistema Operativo (WinterOS)
+                </h2>
+                <div class="accordion-item bg-slate-800/50 rounded-lg overflow-hidden">
+                    <button class="accordion-header w-full p-3 text-center hover:bg-slate-700 transition font-medium flex justify-center gap-2 items-center">
+                        Ver ISOs Disponibles <i class="fas fa-chevron-down transform transition-transform duration-300 text-sm"></i>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-4 grid gap-2 text-sm text-left">
+                            <a href="https://cutyion.com/Win10Win" target="_blank" rel="noopener noreferrer" class="block p-2 rounded hover:bg-slate-600"><i class="fas fa-compact-disc mr-2"></i> Win 10 Rev14 +FPS</a>
+                            <a href="https://cutyion.com/Win10LT" target="_blank" rel="noopener noreferrer" class="block p-2 rounded hover:bg-slate-600"><i class="fas fa-compact-disc mr-2"></i> Win 10 LTSC +FPS</a>
+                            <a href="https://cutyion.com/Win11WinterO" target="_blank" rel="noopener noreferrer" class="block p-2 rounded hover:bg-slate-600"><i class="fas fa-compact-disc mr-2"></i> Win 11 Rev14 +FPS</a>
+                            <a href="https://cutyion.com/Win11LTS" target="_blank" rel="noopener noreferrer" class="block p-2 rounded hover:bg-slate-600"><i class="fas fa-compact-disc mr-2"></i> Win 11 LTSC +FPS</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About & Donate Grid -->
+        <section class="grid md:grid-cols-2 gap-4">
+            <!-- Donations -->
+            <div class="glass-panel p-6 rounded-2xl text-center flex flex-col items-center justify-center gap-4">
+                <h3 class="font-gaming text-xl font-bold text-pink-400"><i class="fas fa-heart"></i> Donaciones</h3>
+                <p class="text-sm text-gray-400">Si te sirve mi contenido, ¡apóyame!</p>
+                <div class="flex gap-3">
+                    <button onclick="showModal('paypalModal')" class="bg-[#003087] hover:bg-[#00256b] text-white px-4 py-2 rounded-lg font-bold transition shadow-lg flex items-center gap-2">
+                        <i class="fab fa-paypal"></i> PayPal
+                    </button>
+                    <button onclick="showModal('nequiModal')" class="bg-[#2a004f] hover:bg-[#1f003b] text-white px-4 py-2 rounded-lg font-bold transition shadow-lg flex items-center gap-2">
+                        <span class="font-bold">N</span> Nequi
+                    </button>
+                </div>
+            </div>
+
+            <!-- About -->
+            <div class="glass-panel p-6 rounded-2xl text-center flex flex-col items-center justify-center gap-4">
+                <h3 class="font-gaming text-xl font-bold text-cyan-400"><i class="fas fa-user-astronaut"></i> ¿Quién Soy?</h3>
+                <p class="text-sm text-gray-400">Conoce más sobre AJ</p>
+                <button onclick="showModal('aboutModal')" class="bg-slate-700 hover:bg-slate-600 px-6 py-2 rounded-lg font-medium transition w-full">
+                    Leer Biografía
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="w-full text-center py-6 text-slate-500 text-sm border-t border-slate-800 bg-slate-900 relative z-10">
+        <p>Hecho con <i class="fas fa-heart text-red-500 animate-pulse"></i> por AJ</p>
+    </footer>
+
+    <!-- Button Back to Top -->
+    <button onclick="scrollToTop()" id="backToTop" class="fixed bottom-5 right-5 bg-purple-600 hover:bg-purple-700 text-white w-12 h-12 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 opacity-0 invisible z-50 hover:-translate-y-1">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- MODALS (Overlay + Content) -->
+    
+    <!-- Video Modal -->
+    <div id="videoModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4 transition-opacity">
+        <div class="glass-panel w-full max-w-4xl rounded-2xl relative overflow-hidden shadow-2xl animate-blob" style="animation: none;">
+            <button onclick="closeModal('videoModal')" class="absolute top-2 right-4 text-white hover:text-red-400 text-3xl z-10 font-bold">&times;</button>
+            <div class="w-full relative" style="padding-top: 56.25%; /* 16:9 Aspect Ratio */">
+                <!-- Iframe con height controlado dinámicamente o por clase css -->
+                <iframe src="https://player.vimeo.com/video/1074788174" class="absolute top-0 left-0 w-full h-full rounded-lg" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            </div>
+            <!-- Hack para móviles: altura forzada en CSS inline no ideal, usamos clases de Tailwind en el contenedor padre o CSS específico -->
+            <style>
+                /* Override específico solicitado para móviles */
+                @media (max-width: 768px) {
+                    #videoModal iframe {
+                        height: 60vh !important;
+                        position: relative !important;
+                        padding-bottom: 0 !important;
+                    }
+                    #videoModal > div > div {
+                        padding-top: 0 !important;
+                    }
+                }
+            </style>
+        </div>
     </div>
-  </div>
 
-  <!-- Modal Nequi -->
-  <div class="modal-overlay" id="nequiModal">
-    <div class="modal-content">
-      <button class="close-btn" onclick="closeNequiModal()">×</button>
-      <h3>Nequi</h3>
-      <p>Número: <strong>3143766181</strong></p>
-      <p>¡Hasta 50 pesos sirven, muchas gracias!</p>
+    <!-- PayPal Modal -->
+    <div id="paypalModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+        <div class="bg-white text-slate-900 w-full max-w-sm p-6 rounded-2xl relative shadow-2xl transform scale-95 transition-transform">
+            <button onclick="closeModal('paypalModal')" class="absolute top-2 right-3 text-slate-500 hover:text-red-500 text-2xl">&times;</button>
+            <div class="text-center">
+                <i class="fab fa-paypal text-5xl text-[#003087] mb-4"></i>
+                <h3 class="text-2xl font-bold mb-2">PayPal</h3>
+                <p class="text-gray-600 mb-6">Hasta 0.20 son bienvenidos. ¡Gracias por el apoyo!</p>
+                <a href="https://www.paypal.com/paypalme/AlejandroAlferezA?country.x=CO&locale.x=es_XC" target="_blank" rel="noopener noreferrer" class="block w-full bg-[#0070ba] text-white font-bold py-3 rounded-xl hover:bg-[#005ea6] transition">
+                    Ir a PayPal
+                </a>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- Modal "Quién Soy" -->
-  <div class="about-modal-overlay" id="aboutModal">
-    <div class="about-modal-content">
-      <button class="close-btn" onclick="closeAboutModal()">×</button>
-      <h3>¿Quién Soy?</h3>
-      <p>¡Hola! Me llamo Alejandro, aunque en internet me conocen como AJ.</p>
-      <p>Es un apodo corto, fácil de recordar y hasta curioso. Me gusta cuando me dicen “¡Ey AJ, ayúdame con esto!”, porque suena cercano, simple y único.</p>
-      <p>Desde muy pequeño, me interesé por los juegos, la optimización de sistemas y la tecnología. A pesar de tener una PC limitada, logré jugar a GTA V descargándolo en varias partes, usando todo lo que podía. Esto fue el comienzo de mi pasión por la optimización y el contenido tecnológico.</p>
-      <p>Hoy en día, modifico teléfonos y computadoras, optimizo juegos, tengo conocimientos en sistemas personalizados y me encanta compartir trucos y tips. Además, tengo experiencia en marketing digital y he construido una comunidad en YouTube, TikTok y Discord.</p>
-      <p>"El propósito de la vida es compartir el conocimiento, o solo se queda en el olvido."</p>
+    <!-- Nequi Modal -->
+    <div id="nequiModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+        <div class="bg-[#2a004f] text-white w-full max-w-sm p-6 rounded-2xl relative shadow-2xl border border-pink-500/30">
+            <button onclick="closeModal('nequiModal')" class="absolute top-2 right-3 text-white/50 hover:text-white text-2xl">&times;</button>
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-4 tracking-wider">NEQUI</h3>
+                <div class="bg-white/10 p-4 rounded-xl mb-4">
+                    <p class="text-sm text-gray-300 mb-1">Número</p>
+                    <p class="text-2xl font-mono font-bold select-all">3143766181</p>
+                </div>
+                <p class="text-pink-300">¡Hasta 50 pesos sirven, muchas gracias!</p>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script>
-    // ---------- ACCORDIONS: Solo se abre uno a la vez ----------
-    const accordions = document.getElementsByClassName('accordion');
-    for (let i = 0; i < accordions.length; i++) {
-      accordions[i].addEventListener('click', function() {
-        // Cierra los demás acordeones
-        for (let j = 0; j < accordions.length; j++) {
-          if (accordions[j] !== this) {
-            accordions[j].classList.remove('active-accordion');
-            const otherPanel = accordions[j].nextElementSibling;
-            otherPanel.style.maxHeight = null;
-            otherPanel.classList.remove('open');
-          }
+    <!-- About Modal -->
+    <div id="aboutModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-md p-4">
+        <div class="glass-panel w-full max-w-lg p-8 rounded-2xl relative shadow-2xl max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('aboutModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl transition">&times;</button>
+            <h3 class="text-3xl font-gaming font-bold text-cyan-400 mb-6 border-b border-gray-700 pb-2">Sobre Mí</h3>
+            <div class="space-y-4 text-gray-300 leading-relaxed">
+                <p>¡Hola! Me llamo <strong class="text-white">Alejandro</strong>, aunque en internet me conocen como <strong class="text-cyan-400">AJ</strong>.</p>
+                <p>Es un apodo corto, fácil de recordar y hasta curioso. Me gusta cuando me dicen “¡Ey AJ, ayúdame con esto!”, porque suena cercano, simple y único.</p>
+                <p>Desde muy pequeño, me interesé por los juegos, la optimización de sistemas y la tecnología. A pesar de tener una PC limitada, logré jugar a GTA V descargándolo en varias partes, usando todo lo que podía. Esto fue el comienzo de mi pasión por la optimización.</p>
+                <p>Hoy en día, modifico teléfonos y computadoras, optimizo juegos, tengo conocimientos en sistemas personalizados y me encanta compartir trucos y tips.</p>
+                <div class="mt-6 p-4 bg-cyan-900/20 rounded-lg border-l-4 border-cyan-500 italic text-cyan-200">
+                    "El propósito de la vida es compartir el conocimiento, o solo se queda en el olvido."
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- Custom CSS Link Hover Style Injection ---
+        const styleLink = document.createElement('style');
+        styleLink.textContent = `
+            .link-hover {
+                display: block;
+                padding: 10px;
+                background: rgba(255,255,255,0.03);
+                border-radius: 8px;
+                transition: all 0.2s;
+                color: #94a3b8;
+                text-decoration: none;
+                font-weight: 500;
+            }
+            .link-hover:hover {
+                background: rgba(56, 189, 248, 0.1);
+                color: #38bdf8;
+                transform: translateX(5px);
+            }
+        `;
+        document.head.appendChild(styleLink);
+
+        // --- FPS Logic (90-160 Random) ---
+        function updateFPS() {
+            const fps = Math.floor(Math.random() * (160 - 90 + 1)) + 90;
+            const el = document.getElementById('fpsCounter');
+            el.textContent = "FPS: " + fps;
+            
+            if(fps > 140) el.className = el.className.replace(/text-\w+-\d+/, 'text-green-400');
+            else if(fps > 110) el.className = el.className.replace(/text-\w+-\d+/, 'text-yellow-400');
+            else el.className = el.className.replace(/text-\w+-\d+/, 'text-orange-400');
         }
-        // Alterna el acordeón actual
-        this.classList.toggle('active-accordion');
-        const panel = this.nextElementSibling;
-        if (panel.style.maxHeight) {
-          panel.style.maxHeight = null;
-          panel.classList.remove('open');
-        } else {
-          panel.style.maxHeight = panel.scrollHeight + 'px';
-          panel.classList.add('open');
+        setInterval(updateFPS, 500);
+
+        // --- Particle System Logic (Canvas) ---
+        (function() {
+            const canvas = document.getElementById('particleCanvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            
+            // Ajustar tamaño del canvas
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            // Clase Partícula
+            class Particle {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                    // Velocidad aleatoria
+                    this.speedX = Math.random() * 2 - 1; 
+                    this.speedY = Math.random() * 2 - 1;
+                    // Tamaño variable
+                    this.size = Math.random() * 3 + 1;
+                    // Color Cian/Azul Neon
+                    this.color = `rgba(${Math.floor(Math.random()*50)}, ${Math.floor(Math.random()*200)+55}, ${Math.floor(Math.random()*255)}, 1)`;
+                    this.life = 1.0; // Vida para desvanecimiento
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    this.life -= 0.02; // Velocidad de desvanecimiento
+                    if (this.size > 0.1) this.size -= 0.05; // Encogimiento
+                }
+                draw() {
+                    ctx.fillStyle = this.color.replace('1)', `${this.life})`);
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            // Manejador de Partículas
+            function handleParticles() {
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                    // Eliminar si vida < 0
+                    if (particles[i].life <= 0) {
+                        particles.splice(i, 1);
+                        i--;
+                    }
+                }
+            }
+
+            // Loop de Animación
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                handleParticles();
+                requestAnimationFrame(animate);
+            }
+            animate();
+
+            // Eventos Mouse y Touch
+            const addParticles = (x, y) => {
+                // Cantidad de partículas por movimiento
+                for (let i = 0; i < 2; i++) {
+                    particles.push(new Particle(x, y));
+                }
+                // Limitar cantidad máxima para rendimiento en móviles
+                if(particles.length > 100) {
+                    particles.splice(0, particles.length - 100);
+                }
+            };
+
+            window.addEventListener('mousemove', (e) => {
+                addParticles(e.x, e.y);
+            });
+
+            window.addEventListener('touchmove', (e) => {
+                const touch = e.touches[0];
+                addParticles(touch.clientX, touch.clientY);
+            });
+        })();
+
+        // --- Accordion Logic ---
+        const accHeaders = document.querySelectorAll('.accordion-header');
+        accHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const arrow = header.querySelector('.fa-chevron-down');
+                const isOpened = content.style.maxHeight;
+
+                document.querySelectorAll('.accordion-content').forEach(c => {
+                    c.style.maxHeight = null;
+                    c.previousElementSibling.querySelector('.fa-chevron-down').style.transform = 'rotate(0deg)';
+                    c.previousElementSibling.classList.remove('bg-white/10');
+                });
+
+                if (!isOpened) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    arrow.style.transform = 'rotate(180deg)';
+                    header.classList.add('bg-white/10');
+                }
+            });
+        });
+
+        // --- TikTok Dropdown (DropUp) ---
+        function toggleTikTok() {
+            const panel = document.getElementById('tiktokPanel');
+            const arrow = document.getElementById('tiktokArrow');
+            panel.classList.toggle('hidden');
+            if(!panel.classList.contains('hidden')) {
+                arrow.style.transform = 'rotate(180deg)';
+            } else {
+                arrow.style.transform = 'rotate(0deg)';
+            }
         }
-      });
-    }
-    
-    // ---------- BOTÓN VOLVER ARRIBA ----------
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    
-    // ---------- TOGGLE THEME ----------
-    function toggleTheme() {
-      document.body.classList.toggle('light-mode');
-      const btn = document.querySelector('.theme-toggle');
-      if (document.body.classList.contains('light-mode')) {
-        btn.textContent = 'Modo Oscuro';
-      } else {
-        btn.textContent = 'Modo Claro';
-      }
-    }
-    
-    // ---------- TIKTOK ACCORDION ----------
-    function toggleTikTok() {
-      const panel = document.getElementById('tiktokPanel');
-      if (panel.classList.contains('show')) {
-        panel.classList.remove('show');
-      } else {
-        panel.classList.add('show');
-      }
-    }
-    
-    // ---------- MODAL VIDEO ----------
-    function showVideoModal() {
-      document.getElementById('videoModal').style.display = 'flex';
-    }
-    function closeVideoModal() {
-      document.getElementById('videoModal').style.display = 'none';
-    }
-    
-    // ---------- MODAL PAYPAL ----------
-    function showPaypalModal() {
-      document.getElementById('paypalModal').style.display = 'flex';
-    }
-    function closePaypalModal() {
-      document.getElementById('paypalModal').style.display = 'none';
-    }
-    
-    // ---------- MODAL NEQUI ----------
-    function showNequiModal() {
-      document.getElementById('nequiModal').style.display = 'flex';
-    }
-    function closeNequiModal() {
-      document.getElementById('nequiModal').style.display = 'none';
-    }
-    
-    // ---------- MODAL "QUIÉN SOY" ----------
-    function showAboutModal() {
-      document.getElementById('aboutModal').style.display = 'flex';
-    }
-    function closeAboutModal() {
-      document.getElementById('aboutModal').style.display = 'none';
-    }
-    
-    // ---------- FPS COUNTER ----------
-    function updateFPS() {
-      const fps = Math.floor(Math.random() * (900 - 600 + 1)) + 600;
-      document.getElementById('fpsCounter').textContent = "FPS: " + fps;
-    }
-    setInterval(updateFPS, 100);
-  </script>
+        // Cerrar tiktok si click fuera
+        document.addEventListener('click', function(event) {
+            const isButton = event.target.closest('button[onclick="toggleTikTok()"]');
+            const isPanel = event.target.closest('#tiktokPanel');
+            if (!isButton && !isPanel) {
+                document.getElementById('tiktokPanel').classList.add('hidden');
+                const arrow = document.getElementById('tiktokArrow');
+                if(arrow) arrow.style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // --- Modal Logic ---
+        function showModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modal.firstElementChild.style.transform = 'scale(1)';
+                modal.firstElementChild.style.opacity = '1';
+            }, 10);
+        }
+
+        function showVideoModal() {
+            showModal('videoModal');
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            if(id === 'videoModal') {
+                const iframe = modal.querySelector('iframe');
+                const src = iframe.src;
+                iframe.src = '';
+                iframe.src = src;
+            }
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('fixed')) {
+                event.target.classList.add('hidden');
+                event.target.classList.remove('flex');
+                if(event.target.id === 'videoModal') {
+                     const iframe = event.target.querySelector('iframe');
+                     const src = iframe.src;
+                     iframe.src = '';
+                     iframe.src = src;
+                }
+            }
+        }
+
+        // --- Scroll To Top ---
+        const backToTopBtn = document.getElementById('backToTop');
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- Theme Toggle ---
+        function toggleTheme() {
+            const body = document.body;
+            const btnIcon = document.querySelector('.theme-btn i');
+            body.classList.toggle('light-mode');
+            if (body.classList.contains('light-mode')) {
+                btnIcon.classList.remove('fa-sun');
+                btnIcon.classList.add('fa-moon');
+                btnIcon.parentElement.classList.remove('text-yellow-400');
+                btnIcon.parentElement.classList.add('text-slate-900');
+            } else {
+                btnIcon.classList.remove('fa-moon');
+                btnIcon.classList.add('fa-sun');
+                btnIcon.parentElement.classList.remove('text-slate-900');
+                btnIcon.parentElement.classList.add('text-yellow-400');
+            }
+        }
+    </script>
 </body>
 </html>
