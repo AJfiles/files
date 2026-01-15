@@ -15,6 +15,12 @@
     <meta property="og:url" content="https://tupagina.com/">
     <meta property="og:title" content="Recursos Gamer de AJ 🚀">
     <meta property="og:description" content="Optimiza tu PC y Android al máximo. Descargas directas y seguras.">
+    
+    <!-- 
+      IMPORTANTE: Cambia el enlace de abajo por la URL de TU imagen. 
+      Debe ser una imagen grande y de buena calidad (recomendado 1200x630 píxeles).
+      Si la imagen está en tu carpeta local, pon: content="tu-imagen.jpg"
+    -->
     <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/5260/5260498.png">
 
     <!-- Twitter -->
@@ -57,6 +63,7 @@
                         'float': 'float 3s ease-in-out infinite',
                         'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                         'pop-in': 'popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+                        'sway': 'sway 3s ease-in-out infinite', // Nueva animación lenta
                     },
                     keyframes: {
                         blob: {
@@ -72,6 +79,10 @@
                         popIn: {
                             '0%': { opacity: '0', transform: 'scale(0.8)' },
                             '100%': { opacity: '1', transform: 'scale(1)' }
+                        },
+                        sway: {
+                            '0%, 100%': { transform: 'translateX(-5px)' },
+                            '50%': { transform: 'translateX(5px)' }
                         }
                     }
                 }
@@ -430,7 +441,6 @@
             </div>
 
             <div class="flex flex-col gap-3" id="gamesList">
-                
                 <!-- Minecraft -->
                 <div class="accordion-item glass-panel rounded-xl overflow-hidden search-item">
                     <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left click-sfx" aria-expanded="false">
@@ -760,7 +770,7 @@
                 <h3 class="text-3xl font-gaming font-bold text-white mb-2 flex items-center justify-center gap-2">
                     <i class="far fa-comments text-cyan-400"></i> Comentarios y Feedback
                 </h3>
-                <p class="text-gray-400 text-sm md:text-base">
+                <p class="text-red-400 font-semibold text-sm md:text-base animate-sway">
                     ¿Te funcionó algún archivo? ¿Tienes problemas? Déjanos tu comentario:
                 </p>
             </div>
