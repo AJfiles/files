@@ -156,6 +156,20 @@
             box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
             border-color: #38bdf8;
         }
+
+        /* Glitch Effect Classes */
+        .glitch-hover:hover {
+            animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+            color: #38bdf8;
+        }
+        @keyframes glitch-skew {
+            0% { transform: skew(0deg); }
+            20% { transform: skew(-2deg); }
+            40% { transform: skew(2deg); }
+            60% { transform: skew(-1deg); }
+            80% { transform: skew(1deg); }
+            100% { transform: skew(0deg); }
+        }
     </style>
 </head>
 <body class="text-gray-100 transition-colors duration-300 min-h-screen flex flex-col items-center selection:bg-cyan-500 selection:text-white">
@@ -196,9 +210,10 @@
             </button>
         </div>
         
-        <div class="inline-block relative group">
+        <div class="inline-block relative group cursor-pointer select-none">
             <div class="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-            <h1 class="relative font-gaming text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-400 pb-2 drop-shadow-sm">
+            <!-- Added id="mainTitle" and prevent context menu inline for simplicity, also handled in JS -->
+            <h1 id="mainTitle" class="relative font-gaming text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-400 pb-2 drop-shadow-sm glitch-hover transition-all" oncontextmenu="return false;">
                 RECURSOS DE AJ
             </h1>
         </div>
@@ -305,19 +320,19 @@
                                 <div>
                                     <h4 class="text-green-400 font-bold mb-2 text-sm uppercase">Java Edition</h4>
                                     <ul class="space-y-2">
-                                        <li><a href="https://cutyion.com/MC1215AJ" target="_blank" class="flex items-center gap-2 text-sm hover:text-cyan-400 group">
+                                        <li><a href="https://cutyion.com/MC1215AJ" target="_blank" class="flex items-center gap-2 text-sm hover:text-cyan-400 group dl-link">
                                             <i class="fas fa-download text-xs"></i> 1.21.5 +FPS <span class="ml-2 bg-cyan-500 text-black text-[9px] px-1.5 py-0.5 rounded font-bold animate-pulse">NUEVO</span>
                                         </a></li>
-                                        <li><a href="https://cutyion.com/MC1214AJ" target="_blank" class="flex items-center gap-2 text-sm hover:text-cyan-400"><i class="fas fa-download text-xs"></i> 1.21.4 +FPS</a></li>
-                                        <li><a href="https://cutyion.com/MC1211" target="_blank" class="flex items-center gap-2 text-sm hover:text-cyan-400"><i class="fas fa-download text-xs"></i> 1.21.1 +FPS</a></li>
-                                        <li><a href="https://cuty.io/ConfigMC" target="_blank" class="flex items-center gap-2 text-sm hover:text-cyan-400"><i class="fas fa-cog text-xs"></i> Configuración +FPS</a></li>
+                                        <li><a href="https://cutyion.com/MC1214AJ" target="_blank" class="flex items-center gap-2 text-sm hover:text-cyan-400 dl-link"><i class="fas fa-download text-xs"></i> 1.21.4 +FPS</a></li>
+                                        <li><a href="https://cutyion.com/MC1211" target="_blank" class="flex items-center gap-2 text-sm hover:text-cyan-400 dl-link"><i class="fas fa-download text-xs"></i> 1.21.1 +FPS</a></li>
+                                        <li><a href="https://cuty.io/ConfigMC" target="_blank" class="flex items-center gap-2 text-sm hover:text-cyan-400 dl-link"><i class="fas fa-cog text-xs"></i> Configuración +FPS</a></li>
                                     </ul>
                                 </div>
                                 <div>
                                     <h4 class="text-green-400 font-bold mb-2 text-sm uppercase">Bedrock Edition</h4>
                                     <ul class="space-y-2">
-                                        <li><a href="https://cutyion.com/AJBEDROCKFPS" target="_blank" class="flex items-center gap-2 text-sm hover:text-cyan-400"><i class="fas fa-download text-xs"></i> Bedrock +FPS</a></li>
-                                        <li><a href="https://cutyion.com/BEDROCKPCFPS" target="_blank" class="flex items-center gap-2 text-sm hover:text-cyan-400"><i class="fas fa-desktop text-xs"></i> PC Bedrock +FPS</a></li>
+                                        <li><a href="https://cutyion.com/AJBEDROCKFPS" target="_blank" class="flex items-center gap-2 text-sm hover:text-cyan-400 dl-link"><i class="fas fa-download text-xs"></i> Bedrock +FPS</a></li>
+                                        <li><a href="https://cutyion.com/BEDROCKPCFPS" target="_blank" class="flex items-center gap-2 text-sm hover:text-cyan-400 dl-link"><i class="fas fa-desktop text-xs"></i> PC Bedrock +FPS</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -338,8 +353,8 @@
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30">
                             <div class="flex justify-center mb-4"><img src="Schedule.png" onerror="this.style.display='none'" alt="Schedule" loading="lazy" class="animate-float max-h-32 object-contain"></div>
                             <ul class="space-y-2">
-                                <li><a href="https://cutyion.com/ScheduleAJ" target="_blank" class="link-hover"><i class="fas fa-bolt text-yellow-500 mr-2"></i> Descargar Optimización +FPS</a></li>
-                                <li><a href="https://cuty.io/ScheduleAj" target="_blank" class="link-hover"><i class="fas fa-gamepad text-cyan-500 mr-2"></i> Descargar Juego</a></li>
+                                <li><a href="https://cutyion.com/ScheduleAJ" target="_blank" class="link-hover dl-link"><i class="fas fa-bolt text-yellow-500 mr-2"></i> Descargar Optimización +FPS</a></li>
+                                <li><a href="https://cuty.io/ScheduleAj" target="_blank" class="link-hover dl-link"><i class="fas fa-gamepad text-cyan-500 mr-2"></i> Descargar Juego</a></li>
                             </ul>
                         </div>
                     </div>
@@ -357,7 +372,7 @@
                     <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30">
                             <div class="flex justify-center mb-4"><img src="WatchDogs2.png" onerror="this.style.display='none'" alt="WatchDogs2" loading="lazy" class="animate-float max-h-32 object-contain"></div>
-                            <a href="https://cutyion.com/WD2FPS" target="_blank" class="link-hover"><i class="fas fa-download mr-2"></i> Descargar Optimización +FPS</a>
+                            <a href="https://cutyion.com/WD2FPS" target="_blank" class="link-hover dl-link"><i class="fas fa-download mr-2"></i> Descargar Optimización +FPS</a>
                         </div>
                     </div>
                 </div>
@@ -379,7 +394,7 @@
                     <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30">
                             <div class="flex justify-center mb-4"><img src="Fortnite.png" onerror="this.style.display='none'" alt="Fortnite" loading="lazy" class="animate-float max-h-32 object-contain"></div>
-                            <a href="https://cutyion.com/FortniteFPS" target="_blank" class="link-hover"><i class="fas fa-download mr-2"></i> Optimización Definitiva</a>
+                            <a href="https://cutyion.com/FortniteFPS" target="_blank" class="link-hover dl-link"><i class="fas fa-download mr-2"></i> Optimización Definitiva</a>
                         </div>
                     </div>
                 </div>
@@ -396,7 +411,7 @@
                     <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30">
                             <div class="flex justify-center mb-4"><img src="Dragonball.png" onerror="this.style.display='none'" alt="Dragon Ball" loading="lazy" class="animate-float max-h-32 object-contain"></div>
-                            <a href="https://cutyion.com/DragonBallAJ" target="_blank" class="link-hover"><i class="fas fa-download mr-2"></i> Descargar +FPS</a>
+                            <a href="https://cutyion.com/DragonBallAJ" target="_blank" class="link-hover dl-link"><i class="fas fa-download mr-2"></i> Descargar +FPS</a>
                         </div>
                     </div>
                 </div>
@@ -413,7 +428,7 @@
                     <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30">
                             <div class="flex justify-center mb-4"><img src="pes2017.png" onerror="this.style.display='none'" alt="PES" loading="lazy" class="animate-float max-h-32 object-contain"></div>
-                            <a href="https://cuty.io/PES2017AJ" target="_blank" class="link-hover"><i class="fas fa-download mr-2"></i> Descargar Opti +FPS</a>
+                            <a href="https://cuty.io/PES2017AJ" target="_blank" class="link-hover dl-link"><i class="fas fa-download mr-2"></i> Descargar Opti +FPS</a>
                         </div>
                     </div>
                 </div>
@@ -430,7 +445,7 @@
                     <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30">
                             <div class="flex justify-center mb-4"><img src="rocketLeague.png" onerror="this.style.display='none'" alt="Rocket League" loading="lazy" class="animate-float max-h-32 object-contain"></div>
-                            <a href="https://cuty.io/ROCKETFPSAJ" target="_blank" class="link-hover"><i class="fas fa-download mr-2"></i> Descargar +FPS</a>
+                            <a href="https://cuty.io/ROCKETFPSAJ" target="_blank" class="link-hover dl-link"><i class="fas fa-download mr-2"></i> Descargar +FPS</a>
                         </div>
                     </div>
                 </div>
@@ -450,12 +465,12 @@
                                 <div class="bg-black/20 p-3 rounded text-center">
                                     <h5 class="font-bold mb-2">Black Ops 2</h5>
                                     <img src="codbo2.png" onerror="this.style.display='none'" alt="COD BO2" loading="lazy" class="h-20 mx-auto mb-2 object-contain">
-                                    <a href="https://cuty.io/CODBO2FPS" target="_blank" class="text-sm text-cyan-400 hover:text-cyan-300">Descargar +FPS</a>
+                                    <a href="https://cuty.io/CODBO2FPS" target="_blank" class="text-sm text-cyan-400 hover:text-cyan-300 dl-link">Descargar +FPS</a>
                                 </div>
                                 <div class="bg-black/20 p-3 rounded text-center">
                                     <h5 class="font-bold mb-2">Modern Warfare 3</h5>
                                     <img src="CoDmw3.png" onerror="this.style.display='none'" alt="COD MW3" loading="lazy" class="h-20 mx-auto mb-2 object-contain">
-                                    <a href="https://cuty.io/CODMW3FPS" target="_blank" class="text-sm text-cyan-400 hover:text-cyan-300">Descargar +FPS</a>
+                                    <a href="https://cuty.io/CODMW3FPS" target="_blank" class="text-sm text-cyan-400 hover:text-cyan-300 dl-link">Descargar +FPS</a>
                                 </div>
                             </div>
                         </div>
@@ -474,7 +489,7 @@
                     <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30">
                             <div class="flex justify-center mb-4"><img src="gtav.png" onerror="this.style.display='none'" alt="GTA V" loading="lazy" class="animate-float max-h-32 object-contain"></div>
-                            <a href="https://cuty.io/GTAVFPSAJ" target="_blank" class="link-hover"><i class="fas fa-download mr-2"></i> Descargar +FPS</a>
+                            <a href="https://cuty.io/GTAVFPSAJ" target="_blank" class="link-hover dl-link"><i class="fas fa-download mr-2"></i> Descargar +FPS</a>
                         </div>
                     </div>
                 </div>
@@ -501,7 +516,7 @@
                     </button>
                     <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30">
-                            <a href="https://cutyion.com/FreefireH" target="_blank" class="link-hover">Descargar Hacks</a>
+                            <a href="https://cutyion.com/FreefireH" target="_blank" class="link-hover dl-link">Descargar Hacks</a>
                         </div>
                     </div>
                 </div>
@@ -517,7 +532,7 @@
                     <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30 flex flex-col gap-2">
                             <a href="https://www.tiktok.com/@ajk.al/video/7273274423484976390" target="_blank" class="link-hover"><i class="fab fa-tiktok"></i> Ver Video Tutorial</a>
-                            <a href="https://cuty.io/ANDROIDFPS" target="_blank" class="link-hover"><i class="fas fa-file-download"></i> Descargar Archivo</a>
+                            <a href="https://cuty.io/ANDROIDFPS" target="_blank" class="link-hover dl-link"><i class="fas fa-file-download"></i> Descargar Archivo</a>
                         </div>
                     </div>
                 </div>
@@ -532,7 +547,7 @@
                     </button>
                     <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30">
-                            <a href="https://cuty.io/PCAANDROID" target="_blank" class="link-hover">Descargar WiFi Tool</a>
+                            <a href="https://cuty.io/PCAANDROID" target="_blank" class="link-hover dl-link">Descargar WiFi Tool</a>
                         </div>
                     </div>
                 </div>
@@ -547,7 +562,7 @@
                     </button>
                     <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30">
-                            <a href="https://cutyion.com/OPTIANDROID" target="_blank" class="link-hover">Descargar Script .BAT</a>
+                            <a href="https://cutyion.com/OPTIANDROID" target="_blank" class="link-hover dl-link">Descargar Script .BAT</a>
                         </div>
                     </div>
                 </div>
@@ -567,10 +582,10 @@
                     </button>
                     <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-4 grid gap-2 text-sm text-left">
-                            <a href="https://cutyion.com/Win10Win" target="_blank" class="block p-2 rounded hover:bg-slate-600"><i class="fas fa-compact-disc mr-2"></i> Win 10 Rev14 +FPS</a>
-                            <a href="https://cutyion.com/Win10LT" target="_blank" class="block p-2 rounded hover:bg-slate-600"><i class="fas fa-compact-disc mr-2"></i> Win 10 LTSC +FPS</a>
-                            <a href="https://cutyion.com/Win11WinterO" target="_blank" class="block p-2 rounded hover:bg-slate-600"><i class="fas fa-compact-disc mr-2"></i> Win 11 Rev14 +FPS</a>
-                            <a href="https://cutyion.com/Win11LTS" target="_blank" class="block p-2 rounded hover:bg-slate-600"><i class="fas fa-compact-disc mr-2"></i> Win 11 LTSC +FPS</a>
+                            <a href="https://cutyion.com/Win10Win" target="_blank" class="block p-2 rounded hover:bg-slate-600 dl-link"><i class="fas fa-compact-disc mr-2"></i> Win 10 Rev14 +FPS</a>
+                            <a href="https://cutyion.com/Win10LT" target="_blank" class="block p-2 rounded hover:bg-slate-600 dl-link"><i class="fas fa-compact-disc mr-2"></i> Win 10 LTSC +FPS</a>
+                            <a href="https://cutyion.com/Win11WinterO" target="_blank" class="block p-2 rounded hover:bg-slate-600 dl-link"><i class="fas fa-compact-disc mr-2"></i> Win 11 Rev14 +FPS</a>
+                            <a href="https://cutyion.com/Win11LTS" target="_blank" class="block p-2 rounded hover:bg-slate-600 dl-link"><i class="fas fa-compact-disc mr-2"></i> Win 11 LTSC +FPS</a>
                         </div>
                     </div>
                 </div>
@@ -605,8 +620,14 @@
 
     </main>
 
-    <footer class="w-full text-center py-6 text-slate-500 text-sm border-t border-slate-800 bg-slate-900 relative z-10">
+    <footer class="w-full text-center py-6 text-slate-500 text-sm border-t border-slate-800 bg-slate-900 relative z-10 flex flex-col items-center gap-2">
         <p>Hecho con <i class="fas fa-heart text-red-500 animate-pulse"></i> por AJ &bull; <span id="year"></span></p>
+        
+        <!-- Online Users Counter -->
+        <div class="flex items-center gap-2 bg-slate-800/80 px-3 py-1 rounded-full border border-slate-700 shadow-sm">
+             <i class="fas fa-circle text-[8px] text-green-500 animate-pulse"></i>
+             <span class="font-mono text-xs text-green-400"><span id="onlineUsers">0</span> usuarios online</span>
+        </div>
     </footer>
 
     <!-- Button Back to Top -->
@@ -615,6 +636,29 @@
     </button>
 
     <!-- MODALS -->
+
+    <!-- Easter Egg Gift Modal -->
+    <div id="giftModal" class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/90 backdrop-blur-md p-4">
+        <div class="glass-panel w-full max-w-md p-8 rounded-2xl relative shadow-[0_0_50px_rgba(255,0,0,0.5)] border-2 border-red-500 transform scale-95 transition-all">
+            <button onclick="closeModal('giftModal')" class="absolute top-2 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
+            <div class="text-center">
+                <i class="fas fa-gift text-6xl text-red-500 mb-4 animate-bounce"></i>
+                <h3 class="text-3xl font-gaming font-bold text-white mb-2">¡REGALO SECRETO!</h3>
+                <p class="text-gray-300 mb-6 text-sm">Por ser curioso y paciente, aquí tienes tu recompensa:</p>
+                
+                <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 mb-4">
+                    <p class="text-green-400 font-bold mb-1">Xbox Game Pass Ultimate (1 Mes)</p>
+                    <p class="font-mono text-xl text-white select-all bg-black/50 p-2 rounded">QDPM6-GC96K-QCF2Y-XTQMJ-2YTTZ</p>
+                    <p class="text-xs text-gray-500 mt-1">Región: Estados Unidos 🇺🇸</p>
+                </div>
+
+                <div class="text-left bg-red-900/20 border border-red-500/30 p-3 rounded-lg text-xs text-red-200">
+                    <p class="font-bold mb-1"><i class="fas fa-exclamation-triangle"></i> ADVERTENCIA:</p>
+                    <p>Este código es exclusivo para cuentas de EE.UU. Debes estar allí o usar VPN/Cuenta de esa región. Si no cumples estos requisitos, NO funcionará.</p>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <!-- Video Modal -->
     <div id="videoModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4 transition-opacity">
@@ -705,6 +749,39 @@
             }, 800);
         });
 
+        // --- EASTER EGG LOGIC (25s Hold) ---
+        let eggTimer;
+        const mainTitle = document.getElementById('mainTitle');
+
+        function startEggTimer() {
+            // Cancel any existing timer to be safe
+            clearTimeout(eggTimer);
+            // Start 25s timer
+            eggTimer = setTimeout(() => {
+                showModal('giftModal');
+            }, 25000);
+        }
+
+        function cancelEggTimer() {
+            clearTimeout(eggTimer);
+        }
+
+        // PC Events
+        mainTitle.addEventListener('mouseenter', startEggTimer);
+        mainTitle.addEventListener('mouseleave', cancelEggTimer);
+        mainTitle.addEventListener('mousedown', startEggTimer); // Fallback for clicking
+        mainTitle.addEventListener('mouseup', cancelEggTimer);
+
+        // Mobile Events
+        mainTitle.addEventListener('touchstart', (e) => {
+            // Prevent context menu to allow long press without popup
+            // Note: This is also handled by oncontextmenu="return false" in HTML
+            startEggTimer();
+        }, {passive: true});
+        
+        mainTitle.addEventListener('touchend', cancelEggTimer);
+        mainTitle.addEventListener('touchcancel', cancelEggTimer);
+        
         // --- DYNAMIC YEAR ---
         document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -831,6 +908,48 @@
             else el.className = el.className.replace(/text-\w+-\d+/, 'text-orange-400');
         }
         setInterval(updateFPS, 200);
+
+        // --- ONLINE USERS SIMULATION ---
+        function updateOnlineUsers() {
+            const el = document.getElementById('onlineUsers');
+            // Random number between 300 and 550
+            let users = Math.floor(Math.random() * (550 - 300 + 1)) + 300;
+            el.innerText = users;
+            
+            // Randomly update it every few seconds
+            setInterval(() => {
+                const change = Math.floor(Math.random() * 10) - 5; // fluctuate by +/- 5
+                users += change;
+                if(users < 200) users = 200;
+                el.innerText = users;
+            }, 5000);
+        }
+        updateOnlineUsers();
+
+        // --- DOWNLOAD FEEDBACK INTERACTION ---
+        document.addEventListener('DOMContentLoaded', () => {
+             document.querySelectorAll('.dl-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Don't prevent default, we want the link to work
+                    const originalContent = this.innerHTML;
+                    
+                    // Don't double trigger
+                    if(this.classList.contains('clicked-feedback')) return;
+                    this.classList.add('clicked-feedback');
+
+                    // Change visual state
+                    this.innerHTML = '<i class="fas fa-circle-notch fa-spin text-cyan-400"></i> <span class="text-cyan-400">Abriendo...</span>';
+                    this.style.pointerEvents = 'none'; // prevent rapid clicks
+
+                    // Revert after 3s (enough time for user to see feedback before tab switch or just as feedback)
+                    setTimeout(() => {
+                        this.innerHTML = originalContent;
+                        this.classList.remove('clicked-feedback');
+                        this.style.pointerEvents = 'auto';
+                    }, 3000);
+                });
+            });
+        });
 
         // --- Particle System ---
         (function() {
