@@ -4,42 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- CANONICAL URL - SEO TECNICO -->
+    <!-- CANONICAL URL -->
     <link rel="canonical" href="https://ajfiles.github.io/files/" />
 
-    <!-- Google Search Console Verification -->
+    <!-- Google Search Console -->
     <meta name="google-site-verification" content="GDwWVBIm6ILf0q7CDyUIdd1G60g6ERp4da5SHiBgJao" />
 
-    <!-- SEO & Open Graph -->
+    <!-- SEO & Metadata -->
     <title>Archivos y Recursos de AJ</title>
-    <!-- Meta descripción actualizada -->
-    <meta name="description" content="🚀 Optimiza tus juegos: Minecraft, Fortnite, GTA V +FPS. Descarga WinterOS, herramientas Android/PC. Todo GRATIS por AJ. ¡Aumenta rendimiento ahora!">
+    <meta name="description" content="🚀 Optimiza tus juegos: Minecraft, Fortnite, GTA V +FPS. Descarga WinterOS, herramientas Android/PC. Todo GRATIS por AJ.">
     <meta name="keywords" content="AJ, FPS Boost, Minecraft, Fortnite, WinterOS, Android Lag Fix">
     <meta name="author" content="AJ">
     
-    <!-- Open Graph / Facebook / WhatsApp -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <!-- URL Open Graph actualizada -->
     <meta property="og:url" content="https://ajfiles.github.io/files/">
     <meta property="og:title" content="Recursos Gamer de AJ 🚀">
     <meta property="og:description" content="Optimiza tu PC y Android al máximo. Descargas directas y seguras.">
-    
-    <!-- 
-      IMPORTANTE: Cambia el enlace de abajo por la URL de TU imagen. 
-      Debe ser una imagen grande y de buena calidad (recomendado 1200x630 píxeles).
-      Si la imagen está en tu carpeta local, pon: content="tu-imagen.jpg"
-    -->
     <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/5260/5260498.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="Recursos Gamer de AJ 🚀">
-    <meta property="twitter:description" content="Optimiza tu PC y Android al máximo.">
-
+    
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>">
 
-    <!-- STRUCTURED DATA (SEO INVISIBLE - MEJORA 3) -->
+    <!-- JSON-LD -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -47,12 +37,8 @@
       "name": "Recursos de AJ",
       "operatingSystem": "Windows, Android",
       "applicationCategory": "UtilitiesApplication",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "description": "Colección de optimizaciones, scripts y herramientas para mejorar el rendimiento en juegos (FPS Boost) y sistemas operativos."
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Colección de optimizaciones y herramientas para FPS Boost."
     }
     </script>
 
@@ -61,13 +47,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome Icons -->
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Configuración Tailwind -->
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -78,17 +63,14 @@
                         gaming: ['Rajdhani', 'sans-serif'],
                     },
                     colors: {
-                        dark: {
-                            bg: '#0f172a',
-                            card: '#1e293b',
-                        }
+                        dark: { bg: '#0f172a', card: '#1e293b' }
                     },
                     animation: {
                         'blob': 'blob 7s infinite',
                         'float': 'float 3s ease-in-out infinite',
                         'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                         'pop-in': 'popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
-                        'sway': 'sway 3s ease-in-out infinite', // Nueva animación lenta
+                        'sway': 'sway 3s ease-in-out infinite',
                     },
                     keyframes: {
                         blob: {
@@ -122,24 +104,51 @@
             width: 100vw;
         }
 
-        /* SCROLL PROGRESS BAR (MEJORA 2) */
-        #scrollProgress {
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.7);
+        /* PERFORMANCE MODE STYLES */
+        body.performance-mode * {
+            animation: none !important;
+            transition: none !important;
+        }
+        
+        body.performance-mode #trailCanvas,
+        body.performance-mode #particleCanvas,
+        body.performance-mode .grid-bg,
+        body.performance-mode .tilt-shine,
+        body.performance-mode .snake-span, 
+        body.performance-mode .accordion-content {
+            display: none !important;
+            /* For accordion, keep functionality but remove sliding animation via transition: none above */
+        }
+        
+        body.performance-mode .glass-panel {
+            backdrop-filter: none;
+            background: #1e293b; /* Solid color fallback */
+        }
+        
+        /* Fix visibility of accordion content in performance mode */
+        body.performance-mode .accordion-content {
+            display: block !important;
+            height: auto !important;
+            max-height: 0;
+            overflow: hidden;
+        }
+        body.performance-mode .accordion-header[aria-expanded="true"] + .accordion-content {
+            max-height: none !important;
         }
 
-        #particleCanvas {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; pointer-events: none;
-        }
+
+        /* Scroll Progress */
+        #scrollProgress { box-shadow: 0 0 10px rgba(56, 189, 248, 0.7); }
+
+        /* Canvas Layers */
+        #trailCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; pointer-events: none; }
+        #particleCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
 
         .grid-bg {
             background-size: 50px 50px;
             background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
                               linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            z-index: -2;
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -2;
         }
 
         /* Scrollbar */
@@ -156,8 +165,8 @@
         }
         
         .glass-panel {
-            background: rgba(30, 41, 59, 0.75); /* Aumenté un poco la opacidad base */
-            backdrop-filter: blur(8px); /* OPTIMIZACIÓN: Bajado de 12px a 8px para mejor rendimiento */
+            background: rgba(30, 41, 59, 0.75);
+            backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             transition: transform 0.1s ease, box-shadow 0.3s ease;
@@ -167,83 +176,25 @@
             border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        /* Reveal Animation Classes */
-        .reveal-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-            will-change: opacity, transform; /* OPTIMIZACIÓN: Hint al navegador */
-        }
-        .reveal-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* Animations & Effects */
+        .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; will-change: opacity, transform; }
+        .reveal-on-scroll.visible { opacity: 1; transform: translateY(0); }
 
-        /* Preloader Styles & Animations */
-        #preloader {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: #0f172a;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.8s ease-out;
-        }
+        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #0f172a; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease-out; }
+        @keyframes zoomInEpic { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(30); opacity: 0; letter-spacing: 20px; } }
+        .zoom-effect { animation: zoomInEpic 0.8s cubic-bezier(0.7, 0, 0.3, 1) forwards; }
 
-        @keyframes zoomInEpic {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(30); opacity: 0; letter-spacing: 20px; }
-        }
-
-        .zoom-effect {
-            animation: zoomInEpic 0.8s cubic-bezier(0.7, 0, 0.3, 1) forwards;
-        }
-
-        /* Badge Animations */
-        @keyframes badgePulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.05); }
-        }
-        .badge-anim {
-            animation: badgePulse 1.5s infinite ease-in-out;
-        }
+        @keyframes badgePulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.05); } }
+        .badge-anim { animation: badgePulse 1.5s infinite ease-in-out; }
         
-        /* Filter Button Active State */
-        .filter-btn.active {
-            background-color: #38bdf8;
-            color: #0f172a;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-            border-color: #38bdf8;
-        }
+        .filter-btn.active { background-color: #38bdf8; color: #0f172a; box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); border-color: #38bdf8; }
 
-        /* Glitch Effect Classes */
-        .glitch-hover:hover {
-            animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
-            color: #38bdf8;
-        }
-        @keyframes glitch-skew {
-            0% { transform: skew(0deg); }
-            20% { transform: skew(-2deg); }
-            40% { transform: skew(2deg); }
-            60% { transform: skew(-1deg); }
-            80% { transform: skew(1deg); }
-            100% { transform: skew(0deg); }
-        }
+        .glitch-hover:hover { animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite; color: #38bdf8; }
+        @keyframes glitch-skew { 0% { transform: skew(0deg); } 20% { transform: skew(-2deg); } 40% { transform: skew(2deg); } 60% { transform: skew(-1deg); } 80% { transform: skew(1deg); } 100% { transform: skew(0deg); } }
 
-        /* Tilt Effect Shine */
-        .tilt-shine {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-            border-radius: inherit;
-        }
+        .tilt-shine { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%); opacity: 0; transition: opacity 0.3s; pointer-events: none; border-radius: inherit; }
         .tilt-card:hover .tilt-shine { opacity: 1; }
 
-        /* RGB Border Animation */
         @keyframes rgbGlowAnim {
             0% { border-color: #ef4444; box-shadow: 0 0 15px rgba(239, 68, 68, 0.6); }
             25% { border-color: #eab308; box-shadow: 0 0 15px rgba(234, 179, 8, 0.6); }
@@ -251,76 +202,21 @@
             75% { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.6); }
             100% { border-color: #ef4444; box-shadow: 0 0 15px rgba(239, 68, 68, 0.6); }
         }
+        .rgb-border { animation: rgbGlowAnim 3s linear infinite; border-width: 2px; border-style: solid; }
 
-        .rgb-border {
-            animation: rgbGlowAnim 3s linear infinite;
-            border-width: 2px;
-            border-style: solid;
-        }
-
-        /* --- SNAKE LED ANIMATION (Lento 2.5s) --- */
-        .snake-border-container {
-            position: relative;
-            overflow: hidden; 
-        }
+        /* Snake Border */
+        .snake-border-container { position: relative; overflow: hidden; }
+        .snake-span { position: absolute; display: block; }
+        .snake-span:nth-child(1) { top: 0; left: -100%; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, #06b6d4); animation: snakeAnim1 2.5s linear infinite; }
+        @keyframes snakeAnim1 { 0% { left: -100%; } 50%, 100% { left: 100%; } }
+        .snake-span:nth-child(2) { top: -100%; right: 0; width: 2px; height: 100%; background: linear-gradient(180deg, transparent, #06b6d4); animation: snakeAnim2 2.5s linear infinite; animation-delay: 0.625s; }
+        @keyframes snakeAnim2 { 0% { top: -100%; } 50%, 100% { top: 100%; } }
+        .snake-span:nth-child(3) { bottom: 0; right: -100%; width: 100%; height: 2px; background: linear-gradient(270deg, transparent, #06b6d4); animation: snakeAnim3 2.5s linear infinite; animation-delay: 1.25s; }
+        @keyframes snakeAnim3 { 0% { right: -100%; } 50%, 100% { right: 100%; } }
+        .snake-span:nth-child(4) { bottom: -100%; left: 0; width: 2px; height: 100%; background: linear-gradient(360deg, transparent, #06b6d4); animation: snakeAnim4 2.5s linear infinite; animation-delay: 1.875s; }
+        @keyframes snakeAnim4 { 0% { bottom: -100%; } 50%, 100% { bottom: 100%; } }
         
-        .snake-span {
-            position: absolute;
-            display: block;
-        }
-        
-        /* Top */
-        .snake-span:nth-child(1) {
-            top: 0; left: -100%; width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, #06b6d4); 
-            animation: snakeAnim1 2.5s linear infinite;
-        }
-        @keyframes snakeAnim1 {
-            0% { left: -100%; }
-            50%, 100% { left: 100%; }
-        }
-        
-        /* Right */
-        .snake-span:nth-child(2) {
-            top: -100%; right: 0; width: 2px; height: 100%;
-            background: linear-gradient(180deg, transparent, #06b6d4);
-            animation: snakeAnim2 2.5s linear infinite;
-            animation-delay: 0.625s;
-        }
-        @keyframes snakeAnim2 {
-            0% { top: -100%; }
-            50%, 100% { top: 100%; }
-        }
-        
-        /* Bottom */
-        .snake-span:nth-child(3) {
-            bottom: 0; right: -100%; width: 100%; height: 2px;
-            background: linear-gradient(270deg, transparent, #06b6d4);
-            animation: snakeAnim3 2.5s linear infinite;
-            animation-delay: 1.25s;
-        }
-        @keyframes snakeAnim3 {
-            0% { right: -100%; }
-            50%, 100% { right: 100%; }
-        }
-        
-        /* Left */
-        .snake-span:nth-child(4) {
-            bottom: -100%; left: 0; width: 2px; height: 100%;
-            background: linear-gradient(360deg, transparent, #06b6d4);
-            animation: snakeAnim4 2.5s linear infinite;
-            animation-delay: 1.875s;
-        }
-        @keyframes snakeAnim4 {
-            0% { bottom: -100%; }
-            50%, 100% { bottom: 100%; }
-        }
-        
-        /* Accessibility Focus Styles */
-        button:focus-visible, a:focus-visible, .accordion-header:focus-visible {
-            outline: 2px solid #38bdf8;
-            outline-offset: 2px;
-        }
+        button:focus-visible, a:focus-visible, .accordion-header:focus-visible { outline: 2px solid #38bdf8; outline-offset: 2px; }
     </style>
 </head>
 <body class="text-gray-100 transition-colors duration-300 min-h-screen flex flex-col items-center selection:bg-cyan-500 selection:text-white">
@@ -333,11 +229,14 @@
         </div>
     </div>
 
-    <!-- SCROLL PROGRESS BAR (MEJORA 2) -->
+    <!-- SCROLL PROGRESS BAR -->
     <div id="scrollProgress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 z-[1000] w-0 transition-all duration-100 ease-out"></div>
 
     <!-- Backgrounds -->
     <div class="grid-bg"></div>
+    <!-- CURSOR TRAIL CANVAS -->
+    <canvas id="trailCanvas"></canvas>
+    <!-- PARTICLE BACKGROUND CANVAS -->
     <canvas id="particleCanvas"></canvas>
 
     <!-- FPS Counter -->
@@ -353,11 +252,19 @@
     <!-- Header -->
     <header class="w-full pt-16 pb-8 px-4 text-center relative z-10 max-w-4xl mx-auto reveal-on-scroll visible">
         <div class="absolute top-6 right-6 lg:right-auto lg:left-[calc(50%+250px)] flex gap-3">
+            
+            <!-- Performance Toggle Button -->
+            <button onclick="togglePerformance()" id="perfBtn" aria-label="Modo Rendimiento" class="p-2 rounded-full bg-slate-800 hover:bg-slate-700 text-gray-400 hover:text-green-400 transition-all duration-300 shadow-lg border border-slate-700 click-sfx group relative">
+                <i class="fas fa-bolt"></i>
+                <span class="absolute right-0 top-full mt-2 w-max bg-black text-xs text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">Modo Rendimiento</span>
+            </button>
+
             <!-- Share Button -->
             <button onclick="shareWeb()" aria-label="Compartir Web" class="p-2 rounded-full bg-slate-800 hover:bg-slate-700 text-blue-400 transition-all duration-300 shadow-lg border border-slate-700 group relative click-sfx">
                 <i class="fas fa-share-alt"></i>
                 <span class="absolute right-0 top-full mt-2 w-max bg-black text-xs text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">Copiar Link</span>
             </button>
+            
             <!-- Theme Toggle -->
             <button onclick="toggleTheme()" aria-label="Cambiar Tema" class="p-2 rounded-full bg-slate-800 hover:bg-slate-700 text-yellow-400 transition-all duration-300 shadow-lg border border-slate-700 theme-btn click-sfx">
                 <i class="fas fa-sun"></i>
@@ -376,7 +283,6 @@
     <!-- Social Links -->
     <div class="w-full max-w-4xl px-4 mb-8 relative z-20 reveal-on-scroll">
         <div class="flex flex-wrap justify-center gap-4">
-            <!-- TikTok Group -->
             <div class="relative group">
                 <div id="tiktokPanel" class="hidden absolute bottom-full left-0 mb-2 w-full bg-slate-800 rounded-lg shadow-xl overflow-hidden border border-slate-700 z-50 transform origin-bottom transition-all duration-200">
                     <a href="https://www.tiktok.com/@ajk.al" target="_blank" rel="noopener noreferrer" class="block px-4 py-3 hover:bg-slate-700 text-sm transition-colors border-b border-slate-700/50 click-sfx">🇨🇴 CO AJ</a>
@@ -398,7 +304,6 @@
 
         <!-- SEARCH BAR & FILTERS -->
         <div class="reveal-on-scroll w-full max-w-md mx-auto flex flex-col gap-4">
-            <!-- Input -->
             <div class="relative group">
                 <div class="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg blur opacity-30 group-hover:opacity-75 transition duration-200"></div>
                 <div class="relative flex items-center bg-slate-900 rounded-lg border border-slate-700 shadow-xl">
@@ -407,8 +312,6 @@
                         class="w-full bg-transparent text-gray-200 px-4 py-3 outline-none placeholder-gray-500">
                 </div>
             </div>
-            
-            <!-- Category Filters (Tabs) -->
             <div class="flex flex-wrap justify-center gap-2" role="tablist">
                 <button onclick="filterCategory('all', this)" class="filter-btn active px-4 py-1.5 rounded-full text-sm font-semibold border border-slate-700 bg-slate-800 text-gray-400 hover:bg-slate-700 transition-all duration-300 click-sfx" role="tab" aria-selected="true">TODOS</button>
                 <button onclick="filterCategory('pc', this)" class="filter-btn px-4 py-1.5 rounded-full text-sm font-semibold border border-slate-700 bg-slate-800 text-gray-400 hover:bg-slate-700 transition-all duration-300 click-sfx" role="tab" aria-selected="false"><i class="fas fa-desktop mr-1"></i> PC</button>
@@ -418,34 +321,37 @@
         </div>
 
         <!-- FEATURED CAROUSEL -->
-        <section id="featuredSection" class="reveal-on-scroll w-full flex justify-center gap-6 overflow-x-auto py-4 px-4 scrollbar-hide flex-wrap md:flex-nowrap">
-            <!-- Card 2: Minecraft (Hot Blue) - RGB BORDER -->
-            <div class="w-72 md:w-80 flex-shrink-0 glass-panel rounded-2xl p-4 relative overflow-hidden group tilt-card hover:bg-slate-800/80 transition-colors rgb-border">
-                <div class="tilt-shine"></div>
-                <!-- Minecraft ahora en AZUL -->
-                <div class="absolute top-2 right-2 bg-blue-600 text-[10px] font-bold px-2 py-0.5 rounded text-white shadow-lg flex items-center gap-1">HOT <i class="fas fa-fire text-yellow-300"></i></div>
-                <div class="h-24 mb-3 rounded-lg bg-cover bg-center" style="background-image: url('Minecraft.png'); background-color: #064e3b;"></div>
-                <h3 class="font-gaming text-lg md:text-xl font-bold text-white mb-1">Minecraft +FPS</h3>
-                <p class="text-xs text-gray-400 mb-3 line-clamp-2">Cliente optimizado 1.21.5 y versiones anteriores. Java & Bedrock.</p>
-                <!-- Deep Link ID Added to onclick -->
-                <button onclick="navigateTo('minecraft');" class="w-full bg-green-600/20 hover:bg-green-600 text-green-400 hover:text-white py-2 rounded-lg text-sm font-bold transition click-sfx">Descargar</button>
-            </div>
+        <section class="reveal-on-scroll w-full flex flex-col items-center">
+            <h2 class="w-full text-center text-3xl font-gaming font-bold text-white mb-6 animate-pulse drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
+                <i class="fas fa-star text-yellow-400 mr-2"></i> ÚLTIMOS ARCHIVOS
+            </h2>
+            <div id="featuredSection" class="w-full flex justify-center gap-6 overflow-x-auto py-4 px-4 scrollbar-hide flex-wrap md:flex-nowrap">
+                <!-- Card 1: Fortnite (Destacado) -->
+                <div class="w-72 md:w-80 flex-shrink-0 glass-panel rounded-2xl p-4 relative overflow-hidden group tilt-card hover:bg-slate-800/80 transition-colors rgb-border">
+                    <div class="tilt-shine"></div>
+                    <div class="absolute top-2 right-2 bg-red-600 text-[10px] font-bold px-2 py-1 rounded text-white shadow-lg flex items-center gap-1 animate-pulse">
+                        ÚLTIMO PUBLICADO <span class="bg-white text-red-600 px-1 rounded ml-1">HOT</span> <i class="fas fa-fire text-yellow-300"></i>
+                    </div>
+                    <div class="h-24 mb-3 rounded-lg bg-cover bg-center" style="background-image: url('Fortnite.png'); background-color: #7c2d12;"></div>
+                    <h3 class="font-gaming text-lg md:text-xl font-bold text-white mb-1">Fortnite Boost</h3>
+                    <p class="text-xs text-gray-400 mb-3 line-clamp-2">Reduce el input lag y aumenta tus cuadros por segundo en PC competitiva.</p>
+                    <button onclick="navigateTo('fortnite');" class="w-full bg-orange-600/20 hover:bg-orange-600 text-orange-400 hover:text-white py-2 rounded-lg text-sm font-bold transition click-sfx">Optimizar</button>
+                </div>
 
-            <!-- Card 3: Fortnite - RGB BORDER -->
-            <div class="w-72 md:w-80 flex-shrink-0 glass-panel rounded-2xl p-4 relative overflow-hidden group tilt-card hover:bg-slate-800/80 transition-colors rgb-border">
-                <div class="tilt-shine"></div>
-                <!-- Fortnite ahora en ROJO -->
-                <div class="absolute top-2 right-2 bg-red-600 text-[10px] font-bold px-2 py-0.5 rounded text-white shadow-lg flex items-center gap-1">HOT <i class="fas fa-fire text-yellow-300"></i></div>
-                <div class="h-24 mb-3 rounded-lg bg-cover bg-center" style="background-image: url('Fortnite.png'); background-color: #7c2d12;"></div>
-                <h3 class="font-gaming text-lg md:text-xl font-bold text-white mb-1">Fortnite Boost</h3>
-                <p class="text-xs text-gray-400 mb-3 line-clamp-2">Reduce el input lag y aumenta tus cuadros por segundo en PC competitiva.</p>
-                <!-- Deep Link ID Added to onclick -->
-                <button onclick="navigateTo('fortnite');" class="w-full bg-orange-600/20 hover:bg-orange-600 text-orange-400 hover:text-white py-2 rounded-lg text-sm font-bold transition click-sfx">Optimizar</button>
+                <!-- Card 2: Minecraft (Destacado Azul) -->
+                <div class="w-72 md:w-80 flex-shrink-0 glass-panel rounded-2xl p-4 relative overflow-hidden group tilt-card hover:bg-slate-800/80 transition-colors rgb-border">
+                    <div class="tilt-shine"></div>
+                    <div class="absolute top-2 right-2 bg-blue-600 text-[10px] font-bold px-2 py-0.5 rounded text-white shadow-lg flex items-center gap-1">HOT <i class="fas fa-fire text-yellow-300"></i></div>
+                    <div class="h-24 mb-3 rounded-lg bg-cover bg-center" style="background-image: url('Minecraft.png'); background-color: #064e3b;"></div>
+                    <h3 class="font-gaming text-lg md:text-xl font-bold text-white mb-1">Minecraft +FPS</h3>
+                    <p class="text-xs text-gray-400 mb-3 line-clamp-2">Cliente optimizado 1.21.5 y versiones anteriores. Java & Bedrock.</p>
+                    <button onclick="navigateTo('minecraft');" class="w-full bg-green-600/20 hover:bg-green-600 text-green-400 hover:text-white py-2 rounded-lg text-sm font-bold transition click-sfx">Descargar</button>
+                </div>
             </div>
         </section>
 
         <!-- ACORTADOR SECTION -->
-        <section id="acortadorSection" class="glass-panel p-6 rounded-2xl relative overflow-hidden group z-0 reveal-on-scroll transition-all duration-300">
+        <section id="acortadorSection" class="glass-panel p-6 rounded-2xl relative overflow-hidden group z-0 reveal-on-scroll transition-all duration-300 mt-6">
             <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-yellow-500 rounded-full opacity-10 blur-2xl group-hover:opacity-20 transition-opacity"></div>
             <h2 class="text-2xl font-gaming font-bold text-center text-yellow-400 mb-6 flex items-center justify-center gap-2">
                 <i class="fas fa-exclamation-triangle"></i> CÓMO PASAR EL ACORTADOR
@@ -456,7 +362,6 @@
                 </button>
             </div>
             <div class="border border-slate-700 rounded-xl overflow-hidden bg-slate-900/50">
-                <!-- A11y Accordion Header -->
                 <button class="accordion-header w-full flex items-center justify-between p-4 bg-slate-800/50 hover:bg-slate-800 transition-colors text-left font-semibold text-gray-200 click-sfx" 
                         aria-expanded="false" aria-controls="acc-shortener">
                     <span class="flex items-center gap-3"><i class="fas fa-info-circle text-blue-400"></i> LEER IMPORTANTE</span>
@@ -471,24 +376,44 @@
             </div>
         </section>
 
-        <!-- GAMES SECTION (Category: PC) -->
+        <!-- LISTA DE JUEGOS (PC) -->
         <section id="gamesSection" class="reveal-on-scroll category-section">
             <div class="flex items-center gap-4 mb-6">
                 <div class="h-px bg-slate-700 flex-1"></div>
                 <h2 class="text-2xl font-gaming font-bold text-cyan-400 tracking-wide uppercase"><i class="fas fa-gamepad mr-2"></i> Juegos Optimizados</h2>
                 <div class="h-px bg-slate-700 flex-1"></div>
             </div>
-
-            <!-- Deep Linking Note: IDs added to each accordion item for hash navigation -->
             <div class="flex flex-col gap-3" id="gamesList">
-                <!-- Minecraft -->
+                
+                <!-- Fortnite (NUEVO ORDEN: 1) -->
+                <div id="fortnite" class="accordion-item glass-panel rounded-xl overflow-hidden search-item transition-all duration-300">
+                    <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left click-sfx" aria-expanded="false">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-blue-900/50 flex items-center justify-center text-blue-400 border border-blue-700/50"><i class="fas fa-shield-alt"></i></div>
+                            <span class="font-semibold text-lg item-title flex items-center">
+                                Fortnite
+                                <span class="ml-3 px-2 py-0.5 text-[10px] font-bold text-white bg-red-600 rounded flex items-center gap-1 shadow-[0_0_10px_rgba(220,38,38,0.5)] badge-anim">
+                                    HOT <i class="fas fa-fire-alt text-yellow-100"></i>
+                                </span>
+                            </span>
+                        </div>
+                        <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="p-5 border-t border-slate-700 bg-slate-900/30">
+                            <div class="flex justify-center mb-4"><img src="Fortnite.png" onerror="this.style.display='none'" alt="Fortnite" loading="lazy" class="animate-float max-h-32 object-contain"></div>
+                            <a href="https://cuty.io/FortAJFPS" target="_blank" class="link-hover dl-link click-sfx"><i class="fas fa-download mr-2"></i> Optimización Definitiva</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Minecraft (NUEVO ORDEN: 2) -->
                 <div id="minecraft" class="accordion-item glass-panel rounded-xl overflow-hidden search-item transition-all duration-300">
                     <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left click-sfx" aria-expanded="false">
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-10 rounded-lg bg-green-900/50 flex items-center justify-center text-green-400 border border-green-700/50"><i class="fas fa-cube"></i></div>
                             <span class="font-semibold text-lg item-title flex items-center">
                                 Minecraft
-                                <!-- Badge azul para coincidir con destacados -->
                                 <span class="ml-3 px-2 py-0.5 text-[10px] font-bold text-white bg-blue-600 rounded flex items-center gap-1 shadow-[0_0_10px_rgba(37,99,235,0.5)] badge-anim">
                                     HOT <i class="fas fa-fire text-yellow-300"></i>
                                 </span>
@@ -496,7 +421,7 @@
                         </div>
                         <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
                     </button>
-                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out" role="region">
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30">
                             <div class="flex justify-center mb-4"><img src="Minecraft.png" onerror="this.style.display='none'" alt="Minecraft" loading="lazy" class="animate-float max-h-32 object-contain drop-shadow-lg"></div>
                             <div class="grid md:grid-cols-2 gap-4">
@@ -532,7 +457,7 @@
                         </div>
                         <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
                     </button>
-                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out" role="region">
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30">
                             <div class="flex justify-center mb-4"><img src="Schedule.png" onerror="this.style.display='none'" alt="Schedule" loading="lazy" class="animate-float max-h-32 object-contain"></div>
                             <ul class="space-y-2">
@@ -552,34 +477,10 @@
                         </div>
                         <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
                     </button>
-                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out" role="region">
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30">
                             <div class="flex justify-center mb-4"><img src="WatchDogs2.png" onerror="this.style.display='none'" alt="WatchDogs2" loading="lazy" class="animate-float max-h-32 object-contain"></div>
                             <a href="https://cutyion.com/WD2FPS" target="_blank" class="link-hover dl-link click-sfx"><i class="fas fa-download mr-2"></i> Descargar Optimización +FPS</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Fortnite -->
-                <div id="fortnite" class="accordion-item glass-panel rounded-xl overflow-hidden search-item transition-all duration-300">
-                    <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left click-sfx" aria-expanded="false">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-lg bg-blue-900/50 flex items-center justify-center text-blue-400 border border-blue-700/50"><i class="fas fa-shield-alt"></i></div>
-                            <span class="font-semibold text-lg item-title flex items-center">
-                                Fortnite
-                                <!-- Badge ROJO para coincidir con destacados -->
-                                <span class="ml-3 px-2 py-0.5 text-[10px] font-bold text-white bg-red-600 rounded flex items-center gap-1 shadow-[0_0_10px_rgba(220,38,38,0.5)] badge-anim">
-                                    HOT <i class="fas fa-fire-alt text-yellow-100"></i>
-                                </span>
-                            </span>
-                        </div>
-                        <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
-                    </button>
-                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out" role="region">
-                        <div class="p-5 border-t border-slate-700 bg-slate-900/30">
-                            <div class="flex justify-center mb-4"><img src="Fortnite.png" onerror="this.style.display='none'" alt="Fortnite" loading="lazy" class="animate-float max-h-32 object-contain"></div>
-                            <!-- Link Actualizado -->
-                            <a href="https://cuty.io/FortAJFPS" target="_blank" class="link-hover dl-link click-sfx"><i class="fas fa-download mr-2"></i> Optimización Definitiva</a>
                         </div>
                     </div>
                 </div>
@@ -593,7 +494,7 @@
                         </div>
                         <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
                     </button>
-                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out" role="region">
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30">
                             <div class="flex justify-center mb-4"><img src="Dragonball.png" onerror="this.style.display='none'" alt="Dragon Ball" loading="lazy" class="animate-float max-h-32 object-contain"></div>
                             <a href="https://cutyion.com/DragonBallAJ" target="_blank" class="link-hover dl-link click-sfx"><i class="fas fa-download mr-2"></i> Descargar +FPS</a>
@@ -610,7 +511,7 @@
                         </div>
                         <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
                     </button>
-                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out" role="region">
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30">
                             <div class="flex justify-center mb-4"><img src="pes2017.png" onerror="this.style.display='none'" alt="PES" loading="lazy" class="animate-float max-h-32 object-contain"></div>
                             <a href="https://cuty.io/PES2017AJ" target="_blank" class="link-hover dl-link click-sfx"><i class="fas fa-download mr-2"></i> Descargar Opti +FPS</a>
@@ -627,7 +528,7 @@
                         </div>
                         <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
                     </button>
-                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out" role="region">
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30">
                             <div class="flex justify-center mb-4"><img src="rocketLeague.png" onerror="this.style.display='none'" alt="Rocket League" loading="lazy" class="animate-float max-h-32 object-contain"></div>
                             <a href="https://cuty.io/ROCKETFPSAJ" target="_blank" class="link-hover dl-link click-sfx"><i class="fas fa-download mr-2"></i> Descargar +FPS</a>
@@ -644,7 +545,7 @@
                         </div>
                         <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
                     </button>
-                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out" role="region">
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30">
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div class="bg-black/20 p-3 rounded text-center">
@@ -671,7 +572,7 @@
                         </div>
                         <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
                     </button>
-                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out" role="region">
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30">
                             <div class="flex justify-center mb-4"><img src="gtav.png" onerror="this.style.display='none'" alt="GTA V" loading="lazy" class="animate-float max-h-32 object-contain"></div>
                             <a href="https://cuty.io/GTAVFPSAJ" target="_blank" class="link-hover dl-link click-sfx"><i class="fas fa-download mr-2"></i> Descargar +FPS</a>
@@ -681,16 +582,14 @@
             </div>
         </section>
 
-        <!-- ANDROID SECTION (Category: Android) -->
+        <!-- ANDROID SECTION -->
         <section id="androidSection" class="reveal-on-scroll category-section">
             <div class="flex items-center gap-4 mb-6">
                 <div class="h-px bg-slate-700 flex-1"></div>
                 <h2 class="text-2xl font-gaming font-bold text-green-400 tracking-wide uppercase"><i class="fab fa-android mr-2"></i> Archivos Android</h2>
                 <div class="h-px bg-slate-700 flex-1"></div>
             </div>
-
             <div class="flex flex-col gap-3" id="androidList">
-                <!-- Freefire -->
                  <div id="freefire" class="accordion-item glass-panel rounded-xl overflow-hidden search-item transition-all duration-300">
                     <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left click-sfx" aria-expanded="false">
                         <div class="flex items-center gap-4">
@@ -699,13 +598,12 @@
                         </div>
                         <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
                     </button>
-                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out" role="region">
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30">
                             <a href="https://cutyion.com/FreefireH" target="_blank" class="link-hover dl-link click-sfx">Descargar Hacks</a>
                         </div>
                     </div>
                 </div>
-
                 <div id="res-android" class="accordion-item glass-panel rounded-xl overflow-hidden search-item transition-all duration-300">
                     <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left click-sfx" aria-expanded="false">
                         <div class="flex items-center gap-4">
@@ -714,14 +612,13 @@
                         </div>
                         <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
                     </button>
-                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out" role="region">
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30 flex flex-col gap-2">
                             <a href="https://www.tiktok.com/@ajk.al/video/7273274423484976390" target="_blank" class="link-hover click-sfx"><i class="fab fa-tiktok"></i> Ver Video Tutorial</a>
                             <a href="https://cuty.io/ANDROIDFPS" target="_blank" class="link-hover dl-link click-sfx"><i class="fas fa-file-download"></i> Descargar Archivo</a>
                         </div>
                     </div>
                 </div>
-
                 <div id="wifi-tool" class="accordion-item glass-panel rounded-xl overflow-hidden search-item transition-all duration-300">
                     <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left click-sfx" aria-expanded="false">
                         <div class="flex items-center gap-4">
@@ -730,13 +627,12 @@
                         </div>
                         <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
                     </button>
-                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out" role="region">
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30">
                             <a href="https://cuty.io/PCAANDROID" target="_blank" class="link-hover dl-link click-sfx">Descargar WiFi Tool</a>
                         </div>
                     </div>
                 </div>
-
                 <div id="bat-android" class="accordion-item glass-panel rounded-xl overflow-hidden search-item transition-all duration-300">
                     <button class="accordion-header w-full flex items-center justify-between p-4 hover:bg-white/5 transition-colors text-left click-sfx" aria-expanded="false">
                         <div class="flex items-center gap-4">
@@ -745,7 +641,7 @@
                         </div>
                         <i class="fas fa-chevron-down transform transition-transform duration-300 text-slate-500"></i>
                     </button>
-                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out" role="region">
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-5 border-t border-slate-700 bg-slate-900/30">
                             <a href="https://cutyion.com/OPTIANDROID" target="_blank" class="link-hover dl-link click-sfx">Descargar Script .BAT</a>
                         </div>
@@ -761,11 +657,11 @@
                     <i class="fab fa-windows text-blue-400"></i> Sistema Operativo (WinterOS)
                 </h2>
                 <div id="winteros" class="accordion-item bg-slate-800/50 rounded-lg overflow-hidden search-item transition-all duration-300">
-                    <span class="hidden item-title">WinterOS Windows ISO</span> <!-- Helper text for search -->
+                    <span class="hidden item-title">WinterOS Windows ISO</span>
                     <button class="accordion-header w-full p-3 text-center hover:bg-slate-700 transition font-medium flex justify-center gap-2 items-center click-sfx" aria-expanded="false">
                         Ver ISOs Disponibles <i class="fas fa-chevron-down transform transition-transform duration-300 text-sm"></i>
                     </button>
-                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out" role="region">
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="p-4 grid gap-2 text-sm text-left">
                             <a href="https://cutyion.com/Win10Win" target="_blank" class="block p-2 rounded hover:bg-slate-600 dl-link click-sfx"><i class="fas fa-compact-disc mr-2"></i> Win 10 Rev14 +FPS</a>
                             <a href="https://cutyion.com/Win10LT" target="_blank" class="block p-2 rounded hover:bg-slate-600 dl-link click-sfx"><i class="fas fa-compact-disc mr-2"></i> Win 10 LTSC +FPS</a>
@@ -777,9 +673,8 @@
             </div>
         </section>
 
-        <!-- About & Donate Grid -->
+        <!-- About & Donate -->
         <section class="grid md:grid-cols-2 gap-4 reveal-on-scroll">
-            <!-- Donations -->
             <div class="glass-panel p-6 rounded-2xl text-center flex flex-col items-center justify-center gap-4">
                 <h3 class="font-gaming text-xl font-bold text-pink-400"><i class="fas fa-heart"></i> Donaciones</h3>
                 <p class="text-sm text-gray-400">Si te sirve mi contenido, ¡apóyame!</p>
@@ -792,8 +687,6 @@
                     </button>
                 </div>
             </div>
-
-            <!-- About -->
             <div class="glass-panel p-6 rounded-2xl text-center flex flex-col items-center justify-center gap-4">
                 <h3 class="font-gaming text-xl font-bold text-cyan-400"><i class="fas fa-user-astronaut"></i> ¿Quién Soy?</h3>
                 <p class="text-sm text-gray-400">Conoce más sobre AJ</p>
@@ -803,12 +696,9 @@
             </div>
         </section>
 
-        <!-- ===== SECCIÓN DE COMENTARIOS (DISEÑO PERSONALIZADO) ===== -->
+        <!-- Comments -->
         <section id="comentarios" class="glass-panel p-8 rounded-2xl my-8 w-full reveal-on-scroll border-t-4 border-cyan-500 relative overflow-hidden">
-            <!-- Fondo decorativo sutil -->
             <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
-
-            <!-- 1. Título y Subtítulo -->
             <div class="text-center mb-8">
                 <h3 class="text-3xl font-gaming font-bold text-white mb-2 flex items-center justify-center gap-2">
                     <i class="far fa-comments text-cyan-400"></i> Comentarios y Feedback
@@ -817,34 +707,25 @@
                     ¿Te funcionó algún archivo? ¿Tienes problemas? Déjanos tu comentario:
                 </p>
             </div>
-
-            <!-- 2. Caja de Aviso IMPORTANTE -->
             <div class="bg-yellow-900/20 border-l-4 border-yellow-500 p-4 rounded-r-lg mb-6 backdrop-blur-sm">
                 <div class="flex items-start gap-3">
                     <i class="fas fa-exclamation-triangle text-yellow-500 mt-1"></i>
                     <div class="text-sm text-yellow-100/90">
-                        <strong class="text-yellow-400 tracking-wide">IMPORTANTE:</strong> Para comentar necesitas una cuenta de GitHub. Es gratis, segura y rápida de crear.
+                        <strong class="text-yellow-400 tracking-wide">IMPORTANTE:</strong> Para comentar necesitas una cuenta de GitHub.
                         <a href="https://github.com/join" target="_blank" class="inline-flex items-center gap-1 text-white font-bold underline hover:text-cyan-400 transition-colors ml-1">
                             Crear cuenta aquí <i class="fas fa-external-link-alt text-xs"></i>
                         </a>
                     </div>
                 </div>
             </div>
-
-            <!-- 3. Indicador de Iniciar Sesión -->
             <div class="text-center mb-6">
                 <p class="text-slate-400 text-sm flex items-center justify-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                    Si ya tienes cuenta, inicia sesión directamente abajo 👇
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Si ya tienes cuenta, inicia sesión directamente abajo 👇
                 </p>
             </div>
-            
-            <!-- 4. Caja de Giscus -->
-            <!-- Usamos min-h para evitar saltos bruscos mientras carga -->
             <div class="giscus min-h-[200px] bg-slate-900/30 rounded-xl p-2 md:p-4"></div>
         </section>
 
-        <!-- ===== SCRIPT DE GISCUS (Configurado con tema Transparente) ===== -->
         <script src="https://giscus.app/client.js"
                 data-repo="ajfiles/files"
                 data-repo-id="R_kgDOOY9cYg"
@@ -861,14 +742,11 @@
                 crossorigin="anonymous"
                 async>
         </script>
-        <!-- Nota: Cambié data-input-position a "top" para que la caja de escribir salga arriba de los comentarios antiguos, que suele ser más cómodo. Puedes cambiarlo a "bottom" si prefieres. -->
 
     </main>
 
     <footer class="w-full text-center py-6 text-slate-500 text-sm border-t border-slate-800 bg-slate-900 relative z-10 flex flex-col items-center gap-2">
         <p>Hecho con <i class="fas fa-heart text-red-500 animate-pulse"></i> por AJ &bull; <span id="year"></span></p>
-        
-        <!-- Online Users Counter -->
         <div class="flex items-center gap-2 bg-slate-800/80 px-3 py-1 rounded-full border border-slate-700 shadow-sm">
              <i class="fas fa-circle text-[8px] text-green-500 animate-pulse"></i>
              <span class="font-mono text-xs text-green-400"><span id="onlineUsers">0</span> usuarios online</span>
@@ -880,7 +758,7 @@
         <i class="fas fa-arrow-up"></i>
     </button>
     
-    <!-- COOKIE CONSENT BANNER (MEJORA 4) -->
+    <!-- Cookie Banner -->
     <div id="cookieBanner" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-80 glass-panel p-4 rounded-xl flex flex-col gap-3 z-[150] translate-y-20 opacity-0 transition-all duration-500">
         <div class="flex items-start gap-3">
             <i class="fas fa-cookie-bite text-yellow-500 text-xl mt-1"></i>
@@ -891,68 +769,46 @@
         </div>
     </div>
 
-    <!-- MODALS -->
-
-    <!-- Easter Egg Gift Modal -->
+    <!-- MODALS (Easter Egg, Video, PayPal, Nequi, About) -->
+    
     <div id="giftModal" role="dialog" aria-modal="true" aria-labelledby="giftTitle" class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/90 backdrop-blur-md p-4">
         <div class="glass-panel w-full max-w-md p-8 rounded-2xl relative shadow-[0_0_50px_rgba(255,0,0,0.5)] border-2 border-red-500 transform scale-95 transition-all">
-            <button onclick="closeModal('giftModal')" aria-label="Cerrar regalo" class="absolute top-2 right-4 text-gray-400 hover:text-white text-2xl click-sfx">&times;</button>
+            <button onclick="closeModal('giftModal')" class="absolute top-2 right-4 text-gray-400 hover:text-white text-2xl click-sfx">&times;</button>
             <div class="text-center">
                 <i class="fas fa-gift text-6xl text-red-500 mb-4 animate-bounce"></i>
                 <h3 id="giftTitle" class="text-3xl font-gaming font-bold text-white mb-2">¡REGALO SECRETO!</h3>
                 <p class="text-gray-300 mb-6 text-sm">Por ser curioso y paciente, aquí tienes tu recompensa:</p>
-                
                 <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 mb-4">
                     <p class="text-green-400 font-bold mb-1">Xbox Game Pass Ultimate (1 Mes)</p>
                     <p class="font-mono text-xl text-white select-all bg-black/50 p-2 rounded">QDPM6-GC96K-QCF2Y-XTQMJ-2YTTZ</p>
                     <p class="text-xs text-gray-500 mt-1">Región: Estados Unidos 🇺🇸</p>
                 </div>
-
                 <div class="text-left bg-red-900/20 border border-red-500/30 p-3 rounded-lg text-xs text-red-200">
                     <p class="font-bold mb-1"><i class="fas fa-exclamation-triangle"></i> ADVERTENCIA:</p>
-                    <p>Este código es exclusivo para cuentas de EE.UU. Debes estar allí o usar VPN/Cuenta de esa región. Si no cumples estos requisitos, NO funcionará.</p>
+                    <p>Este código es exclusivo para cuentas de EE.UU. Debes estar allí o usar VPN.</p>
                 </div>
-
-                <p class="mt-4 text-cyan-400 text-xs font-semibold animate-pulse">
-                    <i class="fas fa-sync-alt mr-1"></i> ¡Vuelve pronto! Cada mes habrá un regalo diferente.
-                </p>
+                <p class="mt-4 text-[10px] text-gray-500 italic">Este código desaparecerá el 1 de febrero para el nuevo código, recuerda que no estará en el mismo lugar.</p>
             </div>
         </div>
     </div>
     
-    <!-- Video Modal -->
-    <div id="videoModal" role="dialog" aria-modal="true" aria-label="Video Explicativo" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4 transition-opacity">
+    <div id="videoModal" role="dialog" aria-modal="true" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4 transition-opacity">
         <div class="glass-panel w-full max-w-4xl rounded-2xl relative overflow-hidden shadow-2xl animate-blob" style="animation: none;">
-            <button onclick="closeModal('videoModal')" aria-label="Cerrar video" class="absolute top-2 right-4 text-white hover:text-red-400 text-3xl z-10 font-bold click-sfx">&times;</button>
+            <button onclick="closeModal('videoModal')" class="absolute top-2 right-4 text-white hover:text-red-400 text-3xl z-10 font-bold click-sfx">&times;</button>
             <div class="w-full relative" style="padding-top: 56.25%;">
                 <iframe src="https://player.vimeo.com/video/1074788174" class="absolute top-0 left-0 w-full h-full rounded-lg" allow="autoplay; fullscreen" allowfullscreen></iframe>
             </div>
-            <style>
-                @media (max-width: 768px) {
-                    #videoModal iframe { height: 60vh !important; position: relative !important; padding-bottom: 0 !important; }
-                    #videoModal > div > div { padding-top: 0 !important; }
-                }
-            </style>
         </div>
     </div>
 
-    <!-- PayPal Modal -->
-    <div id="paypalModal" role="dialog" aria-modal="true" aria-labelledby="paypalTitle" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-        <!-- Wrapper para animación Pop-in -->
+    <div id="paypalModal" role="dialog" aria-modal="true" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
         <div class="relative w-full max-w-sm animate-pop-in">
-            <!-- Contenedor con efecto Snake (snake-border-container) -->
             <div class="bg-white text-slate-900 p-6 rounded-2xl relative shadow-2xl snake-border-container">
-                
-                <!-- Spans animados para el efecto snake -->
-                <span class="snake-span"></span>
-                <span class="snake-span"></span>
-                <span class="snake-span"></span>
-                <span class="snake-span"></span>
-
-                <button onclick="closeModal('paypalModal')" aria-label="Cerrar PayPal" class="absolute top-2 right-3 text-slate-500 hover:text-red-500 text-2xl click-sfx z-20">&times;</button>
+                <span class="snake-span"></span><span class="snake-span"></span><span class="snake-span"></span><span class="snake-span"></span>
+                <button onclick="closeModal('paypalModal')" class="absolute top-2 right-3 text-slate-500 hover:text-red-500 text-2xl click-sfx z-20">&times;</button>
                 <div class="text-center relative z-10">
                     <i class="fab fa-paypal text-5xl text-[#003087] mb-4"></i>
-                    <h3 id="paypalTitle" class="text-2xl font-bold mb-2">PayPal</h3>
+                    <h3 class="text-2xl font-bold mb-2">PayPal</h3>
                     <p class="text-gray-600 mb-6">Hasta 0.20 son bienvenidos.</p>
                     <a href="https://www.paypal.com/paypalme/AlejandroAlferezA?country.x=CO&locale.x=es_XC" target="_blank" class="block w-full bg-[#0070ba] text-white font-bold py-3 rounded-xl hover:bg-[#005ea6] transition click-sfx">Ir a PayPal</a>
                 </div>
@@ -960,61 +816,34 @@
         </div>
     </div>
 
-    <!-- Nequi Modal -->
-    <div id="nequiModal" role="dialog" aria-modal="true" aria-labelledby="nequiTitle" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-        <!-- Wrapper para animación Pop-in -->
+    <div id="nequiModal" role="dialog" aria-modal="true" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
         <div class="relative w-full max-w-sm animate-pop-in">
-            <!-- Contenedor con efecto Snake (snake-border-container) -->
             <div class="bg-[#2a004f] text-white p-6 rounded-2xl relative shadow-2xl border border-pink-500/30 snake-border-container">
-                
-                <!-- Spans animados para el efecto snake -->
-                <span class="snake-span"></span>
-                <span class="snake-span"></span>
-                <span class="snake-span"></span>
-                <span class="snake-span"></span>
-
-                <button onclick="closeModal('nequiModal')" aria-label="Cerrar Nequi" class="absolute top-2 right-3 text-white/50 hover:text-white text-2xl click-sfx z-20">&times;</button>
+                <span class="snake-span"></span><span class="snake-span"></span><span class="snake-span"></span><span class="snake-span"></span>
+                <button onclick="closeModal('nequiModal')" class="absolute top-2 right-3 text-white/50 hover:text-white text-2xl click-sfx z-20">&times;</button>
                 <div class="text-center relative z-10">
-                    <h3 id="nequiTitle" class="text-2xl font-bold mb-4 tracking-wider">NEQUI</h3>
+                    <h3 class="text-2xl font-bold mb-4 tracking-wider">NEQUI</h3>
                     <div onclick="copyNequi('3143766181')" class="bg-white/10 p-4 rounded-xl mb-4 cursor-pointer hover:bg-white/20 transition group click-sfx" role="button" tabindex="0">
                         <p class="text-sm text-gray-300 mb-1">Toca para copiar</p>
-                        <p class="text-2xl font-mono font-bold flex justify-center items-center gap-2">
-                            3143766181 <i class="far fa-copy opacity-50 group-hover:opacity-100"></i>
-                        </p>
+                        <p class="text-2xl font-mono font-bold flex justify-center items-center gap-2">3143766181 <i class="far fa-copy opacity-50 group-hover:opacity-100"></i></p>
                     </div>
-                    <p class="text-pink-300">¡Hasta 50 pesos sirven, muchas gracias!</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- About Modal -->
-    <div id="aboutModal" role="dialog" aria-modal="true" aria-labelledby="aboutTitle" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-md p-4">
-        <!-- Contenedor externo de la animación de entrada (pop-in) -->
+    <div id="aboutModal" role="dialog" aria-modal="true" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-md p-4">
         <div class="relative w-full max-w-lg animate-pop-in">
-            
-            <!-- MARCO EXTERNO: Contiene el Glass Panel, la animación Snake y oculta el desbordamiento -->
             <div class="glass-panel rounded-2xl relative shadow-2xl max-h-[90vh] snake-border-container flex flex-col">
-                
-                <!-- Spans animados para el efecto snake (Fijos en el borde del marco) -->
-                <span class="snake-span"></span>
-                <span class="snake-span"></span>
-                <span class="snake-span"></span>
-                <span class="snake-span"></span>
-
-                <!-- Botón de cerrar (Fijo en la esquina superior derecha del marco, fuera del scroll) -->
-                <button onclick="closeModal('aboutModal')" aria-label="Cerrar biografía" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl transition click-sfx z-20">&times;</button>
-
-                <!-- CONTENEDOR INTERNO: Aquí va el contenido que hace scroll -->
+                <span class="snake-span"></span><span class="snake-span"></span><span class="snake-span"></span><span class="snake-span"></span>
+                <button onclick="closeModal('aboutModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl transition click-sfx z-20">&times;</button>
                 <div class="overflow-y-auto p-8 w-full h-full">
-                    <h3 id="aboutTitle" class="text-3xl font-gaming font-bold text-cyan-400 mb-6 border-b border-gray-700 pb-2 relative z-10 mt-2">Sobre Mí</h3>
+                    <h3 class="text-3xl font-gaming font-bold text-cyan-400 mb-6 border-b border-gray-700 pb-2 relative z-10 mt-2">Sobre Mí</h3>
                     <div class="space-y-4 text-gray-300 leading-relaxed relative z-10">
                         <p>¡Hola! Me llamo <strong class="text-white">Alejandro</strong>, aunque en internet me conocen como <strong class="text-cyan-400">AJ</strong>.</p>
                         <p>Es un apodo corto, fácil de recordar y hasta curioso. Me gusta cuando me dicen “¡Ey AJ, ayúdame con esto!”, porque suena cercano, simple y único.</p>
                         <p>Desde muy pequeño, me interesé por los juegos, la optimización de sistemas y la tecnología. A pesar de tener una PC limitada, logré jugar a GTA V descargándolo en varias partes, usando todo lo que podía.</p>
-                        <div class="mt-6 p-4 bg-cyan-900/20 rounded-lg border-l-4 border-cyan-500 italic text-cyan-200">
-                            "El propósito de la vida es compartir el conocimiento, o solo se queda en el olvido."
-                        </div>
+                        <div class="mt-6 p-4 bg-cyan-900/20 rounded-lg border-l-4 border-cyan-500 italic text-cyan-200">"El propósito de la vida es compartir el conocimiento, o solo se queda en el olvido."</div>
                     </div>
                 </div>
             </div>
@@ -1028,21 +857,183 @@
         styleLink.textContent = `
             .link-hover { display: block; padding: 10px; background: rgba(255,255,255,0.03); border-radius: 8px; transition: all 0.2s; color: #94a3b8; text-decoration: none; font-weight: 500; }
             .link-hover:hover { background: rgba(56, 189, 248, 0.1); color: #38bdf8; transform: translateX(5px); }
-            /* Hide Scrollbar for Featured Section */
             .scrollbar-hide::-webkit-scrollbar { display: none; }
             .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         `;
         document.head.appendChild(styleLink);
 
-        // --- DEEP LINKING LOGIC (MEJORA 1) ---
-        function navigateTo(id) {
-            // Check if user clicked from carousel, or we are loading from hash
-            if(window.innerWidth < 768) {
-                // On mobile, just scroll to section to avoid confusion if tabs are hidden
-                filterCategory('all');
+        // --- PERFORMANCE MODE TOGGLE ---
+        function togglePerformance() {
+            const body = document.body;
+            body.classList.toggle('performance-mode');
+            const isPerfMode = body.classList.contains('performance-mode');
+            localStorage.setItem('performanceMode', isPerfMode);
+            
+            // Visual Feedback on Button
+            const btn = document.getElementById('perfBtn');
+            if(isPerfMode) {
+                // Change classes for ACTIVE state (Green & Glow)
+                btn.classList.remove('text-gray-400', 'hover:text-green-400');
+                btn.classList.add('text-green-400', 'bg-slate-700', 'shadow-[0_0_15px_rgba(74,222,128,0.5)]');
+                showToast("Modo Rendimiento: ON ⚡");
             } else {
-                // Ensure PC tab is active if it's a PC game
-                // Simple heuristic: if it's not android or os, assume PC/All
+                // Change classes for INACTIVE state (Default)
+                btn.classList.remove('text-green-400', 'bg-slate-700', 'shadow-[0_0_15px_rgba(74,222,128,0.5)]');
+                btn.classList.add('text-gray-400', 'hover:text-green-400');
+                showToast("Modo Rendimiento: OFF ✨");
+                
+                // Restart canvas animations if turned back on
+                if(typeof initTrail === 'function') initTrail();
+                if(typeof initParticles === 'function') initParticles();
+            }
+        }
+        
+        // Check Saved Preference on Load
+        if(localStorage.getItem('performanceMode') === 'true') {
+            document.body.classList.add('performance-mode');
+            const btn = document.getElementById('perfBtn');
+            if(btn) {
+                btn.classList.remove('text-gray-400', 'hover:text-green-400');
+                btn.classList.add('text-green-400', 'bg-slate-700', 'shadow-[0_0_15px_rgba(74,222,128,0.5)]');
+            }
+        }
+
+        // --- NEW TRAIL EFFECT (MORE VISIBLE) ---
+        let initTrail;
+        (function() {
+            const canvas = document.getElementById('trailCanvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+            
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            class Sparkle {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                    // Mayor tamaño inicial para que se vea
+                    this.size = Math.random() * 5 + 2; 
+                    this.speedX = Math.random() * 3 - 1.5;
+                    this.speedY = Math.random() * 3 - 1.5;
+                    // Colores Neon Brillantes
+                    this.color = Math.random() > 0.5 ? '0, 255, 255' : '200, 0, 255'; 
+                    this.life = 1.0;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    this.life -= 0.02; // Desvanecimiento lento
+                    if(this.size > 0.2) this.size -= 0.1;
+                }
+                draw() {
+                    ctx.fillStyle = `rgba(${this.color}, ${this.life})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // Efecto de brillo extra
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = `rgba(${this.color}, 1)`;
+                }
+            }
+
+            function animateTrail() {
+                if(document.body.classList.contains('performance-mode')) return; // Stop if perf mode
+
+                ctx.clearRect(0, 0, width, height);
+                ctx.shadowBlur = 0; // Reset for performance when clearing
+                
+                for(let i=0; i<particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                    if(particles[i].life <= 0) {
+                        particles.splice(i, 1);
+                        i--;
+                    }
+                }
+                requestAnimationFrame(animateTrail);
+            }
+
+            // Public init function
+            initTrail = function() {
+                resize();
+                animateTrail();
+            };
+
+            // Event Listeners for Mouse/Touch
+            const addSparkles = (x, y) => {
+                if(document.body.classList.contains('performance-mode')) return;
+                for(let i=0; i<3; i++) { // 3 particulas por movimiento
+                    particles.push(new Sparkle(x, y));
+                }
+                if(particles.length > 100) particles.splice(0, 20); // Limite
+            };
+
+            window.addEventListener('mousemove', e => addSparkles(e.clientX, e.clientY));
+            window.addEventListener('touchmove', e => addSparkles(e.touches[0].clientX, e.touches[0].clientY), {passive: true});
+            
+            // Start
+            initTrail();
+        })();
+
+        // --- PARTICLE BACKGROUND ---
+        let initParticles;
+        (function() {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            const canvas = document.getElementById('particleCanvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            
+            function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+            window.addEventListener('resize', resize);
+            resize();
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.vx = (Math.random() - 0.5) * 0.5;
+                    this.vy = (Math.random() - 0.5) * 0.5;
+                    this.size = Math.random() * 2;
+                    this.color = `rgba(255, 255, 255, ${Math.random() * 0.3})`;
+                }
+                update() {
+                    this.x += this.vx; this.y += this.vy;
+                    if(this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                    if(this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                }
+                draw() {
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+                }
+            }
+
+            function animate() {
+                if(document.body.classList.contains('performance-mode')) return;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => { p.update(); p.draw(); });
+                requestAnimationFrame(animate);
+            }
+
+            initParticles = function() {
+                particles = [];
+                for(let i=0; i<50; i++) particles.push(new Particle());
+                animate();
+            };
+            initParticles();
+        })();
+
+
+        // --- DEEP LINKING ---
+        function navigateTo(id) {
+            if(window.innerWidth < 768) { filterCategory('all'); }
+            else {
                 if(['minecraft','fortnite','wd2','dragonball','pes2017','rocketleague','cod','gtav'].includes(id)) {
                     filterCategory('pc', document.querySelectorAll('.filter-btn')[1]);
                 } else if(['freefire','res-android','wifi-tool','bat-android'].includes(id)) {
@@ -1051,34 +1042,30 @@
                     filterCategory('system', document.querySelectorAll('.filter-btn')[3]);
                 }
             }
-            
             setTimeout(() => {
                 const element = document.getElementById(id);
                 if(element) {
                     element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    // Open accordion if closed
                     const btn = element.querySelector('.accordion-header');
                     const content = element.querySelector('.accordion-content');
-                    if(content.style.maxHeight === '' || content.style.maxHeight === null) {
-                        toggleAccordion(btn);
-                    }
-                    // Flash effect
+                    // Check if closed (maxHeight is null or empty)
+                    if(!content.style.maxHeight) { toggleAccordion(btn); }
+                    
                     element.classList.add('ring-2', 'ring-cyan-400', 'ring-offset-2', 'ring-offset-[#0f172a]');
                     setTimeout(() => element.classList.remove('ring-2', 'ring-cyan-400', 'ring-offset-2', 'ring-offset-[#0f172a]'), 2000);
                 }
             }, 100);
         }
 
-        // --- COOKIE BANNER LOGIC (MEJORA 4) ---
+        // --- COOKIE BANNER ---
         function checkCookies() {
             if (!localStorage.getItem('cookiesAccepted')) {
                 setTimeout(() => {
                     const banner = document.getElementById('cookieBanner');
-                    banner.classList.remove('translate-y-20', 'opacity-0');
+                    if(banner) banner.classList.remove('translate-y-20', 'opacity-0');
                 }, 2000);
             }
         }
-        
         function acceptCookies() {
             localStorage.setItem('cookiesAccepted', 'true');
             const banner = document.getElementById('cookieBanner');
@@ -1086,313 +1073,184 @@
             setTimeout(() => banner.remove(), 500);
         }
         
-        // --- SCROLL PROGRESS LOGIC (MEJORA 2) ---
+        // --- SCROLL BAR ---
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
-            document.getElementById("scrollProgress").style.width = scrolled + "%";
+            const bar = document.getElementById("scrollProgress");
+            if(bar) bar.style.width = scrolled + "%";
             
-            // Existing back to top logic
-            document.getElementById('backToTop').classList.toggle('opacity-0', window.scrollY < 300); 
-            document.getElementById('backToTop').classList.toggle('invisible', window.scrollY < 300);
+            const btn = document.getElementById('backToTop');
+            if(btn) {
+                btn.classList.toggle('opacity-0', window.scrollY < 300); 
+                btn.classList.toggle('invisible', window.scrollY < 300);
+            }
         });
 
-        // --- AUDIO CONTEXT (LAZY LOAD - PROFESSIONAL FIX) ---
-        // Solo inicializamos el audio cuando el usuario interactúa por primera vez.
-        // Esto evita warnings en la consola y asegura que suene en iOS/Chrome.
+        // --- AUDIO ---
         let audioCtx;
-        
         function initAudio() {
             if (!audioCtx) {
                 const AudioContext = window.AudioContext || window.webkitAudioContext;
                 audioCtx = new AudioContext();
             }
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
+            if (audioCtx.state === 'suspended') audioCtx.resume();
         }
-
         function playClickSound() {
-            // Intentar inicializar si no existe
             initAudio();
-            
-            if (!audioCtx) return; // Si falla por alguna razón extrema, no hacer nada
-
+            if (!audioCtx) return;
             const oscillator = audioCtx.createOscillator();
             const gainNode = audioCtx.createGain();
-            
             oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(800, audioCtx.currentTime); // High pitch
-            oscillator.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.1); // Drop pitch
-            
+            oscillator.frequency.setValueAtTime(800, audioCtx.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.1);
             gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
             gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
-            
             oscillator.connect(gainNode);
             gainNode.connect(audioCtx.destination);
-            
             oscillator.start();
             oscillator.stop(audioCtx.currentTime + 0.1);
         }
-
-        // Initialize Audio on first user interaction anywhere on the page
         document.body.addEventListener('click', initAudio, { once: true });
         document.body.addEventListener('touchstart', initAudio, { once: true });
         document.body.addEventListener('keydown', initAudio, { once: true });
+        document.querySelectorAll('.click-sfx').forEach(el => el.addEventListener('click', playClickSound));
 
-        document.querySelectorAll('.click-sfx').forEach(el => {
-            el.addEventListener('click', playClickSound);
-        });
-
-        // --- PRELOADER & INITIALIZATION ---
+        // --- INIT ---
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
             const content = document.getElementById('preloaderContent');
-            
             setTimeout(() => {
-                // Trigger Zoom Animation
                 content.classList.add('zoom-effect');
-                
-                // Hide Background after zoom starts
                 setTimeout(() => {
                     preloader.style.opacity = '0';
                     setTimeout(() => { 
                         preloader.style.display = 'none'; 
-                        
-                        // CHECK FOR DEEP LINKS (HASH) AFTER LOAD
-                        if(window.location.hash) {
-                            const id = window.location.hash.substring(1);
-                            navigateTo(id);
-                        }
-                        
-                        // CHECK COOKIES
+                        if(window.location.hash) { navigateTo(window.location.hash.substring(1)); }
                         checkCookies();
-                        
                     }, 800);
                 }, 500); 
             }, 800);
         });
 
-        // --- EASTER EGG LOGIC (25s Hold) ---
+        // --- EASTER EGG ---
         let eggTimer;
         const mainTitle = document.getElementById('mainTitle');
+        function startEggTimer() { clearTimeout(eggTimer); eggTimer = setTimeout(() => showModal('giftModal'), 25000); }
+        function cancelEggTimer() { clearTimeout(eggTimer); }
+        mainTitle.addEventListener('mouseenter', startEggTimer); mainTitle.addEventListener('mouseleave', cancelEggTimer);
+        mainTitle.addEventListener('mousedown', startEggTimer); mainTitle.addEventListener('mouseup', cancelEggTimer);
+        mainTitle.addEventListener('touchstart', (e) => startEggTimer(), {passive: true}); mainTitle.addEventListener('touchend', cancelEggTimer);
 
-        function startEggTimer() {
-            clearTimeout(eggTimer);
-            eggTimer = setTimeout(() => {
-                showModal('giftModal');
-            }, 25000);
-        }
-
-        function cancelEggTimer() {
-            clearTimeout(eggTimer);
-        }
-
-        // PC Events
-        mainTitle.addEventListener('mouseenter', startEggTimer);
-        mainTitle.addEventListener('mouseleave', cancelEggTimer);
-        mainTitle.addEventListener('mousedown', startEggTimer); 
-        mainTitle.addEventListener('mouseup', cancelEggTimer);
-
-        // Mobile Events
-        mainTitle.addEventListener('touchstart', (e) => {
-            startEggTimer();
-        }, {passive: true});
-        mainTitle.addEventListener('touchend', cancelEggTimer);
-        mainTitle.addEventListener('touchcancel', cancelEggTimer);
-        
-        // --- DYNAMIC YEAR ---
         document.getElementById('year').textContent = new Date().getFullYear();
         
-        // --- 3D TILT EFFECT FOR CARDS (PC Only) ---
-        // OPTIMIZATION: Use requestAnimationFrame for smoother performance
+        // --- 3D TILT ---
         let isTicking = false;
-        
         document.addEventListener('mousemove', (e) => {
-            if (window.innerWidth < 768) return; // Disable on mobile
+            if (document.body.classList.contains('performance-mode')) return;
+            if (window.innerWidth < 768) return;
             if (isTicking) return;
-            
             window.requestAnimationFrame(() => {
                 document.querySelectorAll('.tilt-card').forEach(card => {
                     const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
+                    const x = e.clientX - rect.left; const y = e.clientY - rect.top;
                     if(x >= 0 && y >= 0 && x <= rect.width && y <= rect.height) {
-                        const centerX = rect.width / 2;
-                        const centerY = rect.height / 2;
-                        const rotateX = ((y - centerY) / centerY) * -5; // Max -5deg tilt
-                        const rotateY = ((x - centerX) / centerX) * 5;  // Max 5deg tilt
-                        
+                        const centerX = rect.width / 2; const centerY = rect.height / 2;
+                        const rotateX = ((y - centerY) / centerY) * -5; const rotateY = ((x - centerX) / centerX) * 5;
                         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-                    } else {
-                        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-                    }
+                    } else { card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)'; }
                 });
                 isTicking = false;
             });
             isTicking = true;
         });
 
-        // --- CATEGORY FILTERS (FIXED: Explicit Target) ---
+        // --- FILTERS ---
         function filterCategory(category, btnElement) {
-            // Update buttons visually
             document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-                btn.setAttribute('aria-selected', 'false');
+                btn.classList.remove('active'); btn.setAttribute('aria-selected', 'false');
             });
-            
-            // If btnElement was passed (explicitly), use it. 
-            if (btnElement) {
-                btnElement.classList.add('active');
-                btnElement.setAttribute('aria-selected', 'true');
-            }
-
-            const sections = {
-                pc: document.getElementById('gamesSection'),
-                android: document.getElementById('androidSection'),
-                system: document.getElementById('osSection')
-            };
-
-            // Reset search input
+            if (btnElement) { btnElement.classList.add('active'); btnElement.setAttribute('aria-selected', 'true'); }
+            const sections = { pc: document.getElementById('gamesSection'), android: document.getElementById('androidSection'), system: document.getElementById('osSection') };
             document.getElementById('searchInput').value = '';
-            // Show all items inside sections (in case they were filtered by search)
             document.querySelectorAll('.search-item').forEach(item => item.style.display = '');
-
-            if (category === 'all') {
-                Object.values(sections).forEach(sec => sec.style.display = 'block');
-            } else {
-                Object.values(sections).forEach(sec => sec.style.display = 'none');
-                if(sections[category]) sections[category].style.display = 'block';
-            }
+            if (category === 'all') { Object.values(sections).forEach(sec => sec.style.display = 'block'); }
+            else { Object.values(sections).forEach(sec => sec.style.display = 'none'); if(sections[category]) sections[category].style.display = 'block'; }
         }
 
-        // --- SEARCH FUNCTIONALITY ---
+        // --- SEARCH ---
         function filterContent() {
             const input = document.getElementById('searchInput');
             const filter = input.value.toUpperCase();
             const items = document.querySelectorAll('.search-item');
-            const acortadorSection = document.getElementById('acortadorSection');
-            const featuredSection = document.getElementById('featuredSection');
-
             if (filter.length > 0) {
-                acortadorSection.style.display = 'none';
-                featuredSection.style.display = 'none';
+                document.getElementById('acortadorSection').style.display = 'none';
+                document.getElementById('featuredSection').parentElement.style.display = 'none'; // Hide parent section of carousel
                 document.getElementById('gamesSection').style.display = 'block';
                 document.getElementById('androidSection').style.display = 'block';
                 document.getElementById('osSection').style.display = 'block';
-                // Remove visual active state from tabs when searching
                 document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active')); 
             } else {
-                acortadorSection.style.display = 'block';
-                featuredSection.style.display = 'flex';
-                // Default back to "All" implicitly or let user re-click tabs
+                document.getElementById('acortadorSection').style.display = 'block';
+                document.getElementById('featuredSection').parentElement.style.display = 'flex';
             }
-
             items.forEach(item => {
                 const title = item.querySelector('.item-title')?.innerText || '';
-                const helper = item.querySelector('.item-title-helper')?.innerText || ''; 
-                const text = title + " " + helper;
-
-                if (text.toUpperCase().indexOf(filter) > -1) {
-                    item.style.display = "";
-                } else {
-                    item.style.display = "none";
-                }
+                if ((title).toUpperCase().indexOf(filter) > -1) item.style.display = ""; else item.style.display = "none";
             });
         }
 
-        // --- SHARE FEATURE ---
         function shareWeb() {
-            const url = window.location.href.split('#')[0]; // Share clean URL
-            navigator.clipboard.writeText(url).then(() => {
-                showToast("Link de la web copiado 🔗");
-            }).catch(err => {
-                console.error('Error al copiar link:', err);
-            });
+            const url = window.location.href.split('#')[0];
+            navigator.clipboard.writeText(url).then(() => showToast("Link de la web copiado 🔗")).catch(err => console.error(err));
         }
-
-        // --- NEQUI COPY & TOAST ---
-        function copyNequi(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                showToast("¡Número copiado!");
-                // No cerramos el modal automáticamente para dar tiempo a leer, opcional
-            }).catch(err => {
-                console.error('Error al copiar: ', err);
-            });
-        }
-
+        function copyNequi(text) { navigator.clipboard.writeText(text).then(() => showToast("¡Número copiado!")); }
         function showToast(message) {
             const toast = document.getElementById('toast');
             document.getElementById('toastMsg').innerText = message;
             toast.classList.remove('opacity-0', 'translate-y-10');
-            setTimeout(() => {
-                toast.classList.add('opacity-0', 'translate-y-10');
-            }, 3000);
+            setTimeout(() => toast.classList.add('opacity-0', 'translate-y-10'), 3000);
         }
 
-        // --- SCROLL REVEAL ANIMATION ---
         const revealElements = document.querySelectorAll('.reveal-on-scroll');
         const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    revealObserver.unobserve(entry.target);
-                }
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); } });
         }, { threshold: 0.1 });
         revealElements.forEach(el => revealObserver.observe(el));
 
-
-        // --- REALISTIC FPS COUNTER ---
         function updateFPS() {
-            const baseFPS = 144;
-            let currentFPS = baseFPS;
-            const isLagSpike = Math.random() < 0.1;
-            
-            if (isLagSpike) {
-                const drop = Math.floor(Math.random() * 15) + 5;
-                currentFPS = baseFPS - drop;
-            } else {
-                const fluctuation = Math.floor(Math.random() * 5);
-                currentFPS = baseFPS - fluctuation;
-            }
-            
+            const baseFPS = 144; let currentFPS = baseFPS;
+            if (Math.random() < 0.1) currentFPS = baseFPS - (Math.floor(Math.random() * 15) + 5);
+            else currentFPS = baseFPS - Math.floor(Math.random() * 5);
             const el = document.getElementById('fpsCounter');
             el.textContent = "FPS: " + currentFPS;
-            
             if(currentFPS > 130) el.className = el.className.replace(/text-\w+-\d+/, 'text-green-400');
             else if(currentFPS > 100) el.className = el.className.replace(/text-\w+-\d+/, 'text-yellow-400');
             else el.className = el.className.replace(/text-\w+-\d+/, 'text-orange-400');
         }
         setInterval(updateFPS, 200);
 
-        // --- ONLINE USERS SIMULATION ---
         function updateOnlineUsers() {
             const el = document.getElementById('onlineUsers');
             let users = Math.floor(Math.random() * (550 - 300 + 1)) + 300;
             el.innerText = users;
-            
             setInterval(() => {
-                const change = Math.floor(Math.random() * 10) - 5; 
-                users += change;
+                users += Math.floor(Math.random() * 10) - 5;
                 if(users < 200) users = 200;
                 el.innerText = users;
             }, 5000);
         }
         updateOnlineUsers();
 
-        // --- DOWNLOAD FEEDBACK INTERACTION ---
         document.addEventListener('DOMContentLoaded', () => {
              document.querySelectorAll('.dl-link').forEach(link => {
                 link.addEventListener('click', function(e) {
-                    const originalContent = this.innerHTML;
                     if(this.classList.contains('clicked-feedback')) return;
+                    const originalContent = this.innerHTML;
                     this.classList.add('clicked-feedback');
                     this.innerHTML = '<i class="fas fa-circle-notch fa-spin text-cyan-400"></i> <span class="text-cyan-400">Abriendo...</span>';
                     this.style.pointerEvents = 'none'; 
-
                     setTimeout(() => {
                         this.innerHTML = originalContent;
                         this.classList.remove('clicked-feedback');
@@ -1402,103 +1260,25 @@
             });
         });
 
-        // --- PARTICLE SYSTEM (OPTIMIZED: Throttling + Reduced Motion) ---
-        (function() {
-            // 1. Reduced Motion Check
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (prefersReducedMotion) return; // Stop execution if user prefers reduced motion
-
-            const canvas = document.getElementById('particleCanvas');
-            const ctx = canvas.getContext('2d');
-            let particles = [];
-            
-            function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-            window.addEventListener('resize', resizeCanvas);
-            resizeCanvas();
-
-            class Particle {
-                constructor(x, y) {
-                    this.x = x; this.y = y;
-                    this.speedX = Math.random() * 2 - 1; this.speedY = Math.random() * 2 - 1;
-                    this.size = Math.random() * 3 + 1;
-                    this.color = `rgba(${Math.floor(Math.random()*50)}, ${Math.floor(Math.random()*200)+55}, ${Math.floor(Math.random()*255)}, 1)`;
-                    this.life = 1.0;
-                }
-                update() { 
-                    this.x += this.speedX; 
-                    this.y += this.speedY; 
-                    this.life -= 0.02; 
-                    if (this.size > 0.1) this.size -= 0.05; 
-                }
-                draw() { 
-                    // OPTIMIZATION: Simple round check
-                    ctx.fillStyle = this.color.replace('1)', `${this.life})`); 
-                    ctx.beginPath(); 
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); 
-                    ctx.fill(); 
-                }
-            }
-
-            function handleParticles() {
-                for (let i = 0; i < particles.length; i++) {
-                    particles[i].update(); 
-                    particles[i].draw();
-                    if (particles[i].life <= 0) { 
-                        particles.splice(i, 1); 
-                        i--; 
-                    }
-                }
-            }
-
-            function animate() { 
-                ctx.clearRect(0, 0, canvas.width, canvas.height); 
-                handleParticles(); 
-                requestAnimationFrame(animate); 
-            }
-            animate();
-
-            const addParticles = (x, y) => { 
-                for (let i = 0; i < 2; i++) particles.push(new Particle(x, y)); 
-                // OPTIMIZATION: Reduced max particles from 100 to 60 for better performance
-                if(particles.length > 60) particles.splice(0, particles.length - 60); 
-            };
-            
-            // 2. Throttling Event Listeners
-            let isThrottled = false;
-            // OPTIMIZATION: Increased throttle delay from 50ms to 100ms
-            const throttleDelay = 100; // ms
-
-            const throttledAddParticles = (x, y) => {
-                if (isThrottled) return;
-                isThrottled = true;
-                setTimeout(() => isThrottled = false, throttleDelay);
-                addParticles(x, y);
-            };
-
-            window.addEventListener('mousemove', (e) => throttledAddParticles(e.x, e.y));
-            window.addEventListener('touchmove', (e) => { 
-                const touch = e.touches[0]; 
-                throttledAddParticles(touch.clientX, touch.clientY); 
-            });
-        })();
-
-        // --- ACCORDION LOGIC (KEYBOARD ACCESSIBLE) ---
+        // Accordion Logic
         function toggleAccordion(header) {
             const content = header.nextElementSibling;
             const arrow = header.querySelector('.fa-chevron-down');
-            const isOpened = content.style.maxHeight;
+            const isOpened = content.style.maxHeight && content.style.maxHeight !== '0px';
             
-            // Close others
+            // Close all
             document.querySelectorAll('.accordion-content').forEach(c => {
                 c.style.maxHeight = null;
-                c.previousElementSibling.querySelector('.fa-chevron-down').style.transform = 'rotate(0deg)';
-                c.previousElementSibling.classList.remove('bg-white/10');
-                c.previousElementSibling.setAttribute('aria-expanded', 'false');
+                const prev = c.previousElementSibling;
+                if(prev) {
+                    prev.classList.remove('bg-white/10');
+                    prev.setAttribute('aria-expanded', 'false');
+                    const arr = prev.querySelector('.fa-chevron-down');
+                    if(arr) arr.style.transform = 'rotate(0deg)';
+                }
             });
 
-            // Toggle current
             if (!isOpened) { 
-                // OPTIMIZATION: Use requestAnimationFrame for smoother height transition start
                 window.requestAnimationFrame(() => {
                     content.style.maxHeight = content.scrollHeight + "px"; 
                     arrow.style.transform = 'rotate(180deg)'; 
@@ -1507,74 +1287,47 @@
                 });
             }
         }
-
-        const accHeaders = document.querySelectorAll('.accordion-header');
-        accHeaders.forEach(header => {
-            // Mouse Click
+        document.querySelectorAll('.accordion-header').forEach(header => {
             header.addEventListener('click', () => toggleAccordion(header));
-            
-            // Keyboard (Enter/Space)
-            header.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    toggleAccordion(header);
-                }
-            });
-            // Make focusable
+            header.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleAccordion(header); }});
             header.setAttribute('tabindex', '0');
         });
 
-        // --- TikTok Dropdown ---
+        // TikTok Logic
         function toggleTikTok() {
             const panel = document.getElementById('tiktokPanel');
             const arrow = document.getElementById('tiktokArrow');
             panel.classList.toggle('hidden');
             const isHidden = panel.classList.contains('hidden');
             arrow.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(180deg)';
-            
-            // A11y
             const btn = document.querySelector('button[onclick="toggleTikTok()"]');
             btn.setAttribute('aria-expanded', !isHidden);
         }
         document.addEventListener('click', (e) => {
             if (!e.target.closest('button[onclick="toggleTikTok()"]') && !e.target.closest('#tiktokPanel')) {
-                document.getElementById('tiktokPanel').classList.add('hidden');
-                const arrow = document.getElementById('tiktokArrow'); if(arrow) arrow.style.transform = 'rotate(0deg)';
-                const btn = document.querySelector('button[onclick="toggleTikTok()"]');
-                if(btn) btn.setAttribute('aria-expanded', 'false');
+                const p = document.getElementById('tiktokPanel');
+                if(!p.classList.contains('hidden')) toggleTikTok();
             }
         });
 
-        // --- Modals ---
+        // Modals
         function showModal(id) {
             const modal = document.getElementById(id);
             modal.classList.remove('hidden'); modal.classList.add('flex');
             modal.setAttribute('aria-modal', 'true');
-            
-            // Excluir modales con animación CSS (Pop-in) para que JS no interfiera
             if (id !== 'aboutModal' && id !== 'paypalModal' && id !== 'nequiModal') {
                 setTimeout(() => { modal.firstElementChild.style.transform = 'scale(1)'; modal.firstElementChild.style.opacity = '1'; }, 10);
             }
         }
-        
         function closeModal(id) {
             const modal = document.getElementById(id);
             modal.classList.add('hidden'); modal.classList.remove('flex');
             modal.setAttribute('aria-modal', 'false');
             if(id === 'videoModal') { const iframe = modal.querySelector('iframe'); const src = iframe.src; iframe.src = ''; iframe.src = src; }
         }
-        
-        // Close modal on click outside
-        window.onclick = function(event) {
-            if (event.target.classList.contains('fixed')) {
-                // Determine which modal is open by checking id
-                if(event.target.id) closeModal(event.target.id);
-            }
-        }
+        window.onclick = function(event) { if (event.target.classList.contains('fixed') && event.target.id) closeModal(event.target.id); }
 
-        // --- Scroll Top & Theme ---
-        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-        
+        function showVideoModal() { showModal('videoModal'); }
         function toggleTheme() {
             document.body.classList.toggle('light-mode');
             const btnIcon = document.querySelector('.theme-btn i');
@@ -1583,9 +1336,7 @@
             btnIcon.parentElement.classList.toggle('text-yellow-400', !isLight);
             btnIcon.parentElement.classList.toggle('text-slate-900', isLight);
         }
-
-        // Video Modal Trigger
-        function showVideoModal() { showModal('videoModal'); }
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
     </script>
 </body>
 </html>
